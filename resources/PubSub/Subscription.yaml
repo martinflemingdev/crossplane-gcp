@@ -1,8 +1,24 @@
 apiVersion: pubsub.gcp.upbound.io/v1beta1
 kind: Subscription
 metadata:
-  name: example-subscription
+  labels:
+    testing.upbound.io/example-name: subscription
+  name: subscription
 spec:
   forProvider:
-    name: example-subscription-name
-    topic: example-topic-name
+    topicSelector:
+      matchLabels:
+        testing.upbound.io/example-name: topic
+    # ackDeadlineSeconds:
+    # bigqueryConfig:
+    # deadLetterPolicy:
+    # enableExactlyOnceDelivery:
+    # enableMessageOrdering:
+    # expirationPolicy:
+    # filter:
+    # labels:
+    # messageRetentionDuration:
+    # project:
+    # pushConfig:
+    # retainAckedMessages:
+    # retryPolicy:
