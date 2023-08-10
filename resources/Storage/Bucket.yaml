@@ -1,0 +1,7 @@
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: Bucket
+metadata:
+  name: crossplane-bucket
+spec:
+  forProvider:
+    location: US

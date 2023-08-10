@@ -1,0 +1,8 @@
+apiVersion: kms.gcp.upbound.io/v1beta1
+kind: CryptoKey
+metadata:
+  name: example-cryptokey
+spec:
+  forProvider:
+    keyRing: example-keyring-name
+    name: example-cryptokey-name

@@ -1,0 +1,8 @@
+apiVersion: dataflow.gcp.upbound.io/v1beta1
+kind: Job
+metadata:
+  name: example-dataflow-job
+spec:
+  forProvider:
+    name: example-job-name
+    templateGcsPath: gs://path-to-template

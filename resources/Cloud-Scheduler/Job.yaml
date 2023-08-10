@@ -1,0 +1,7 @@
+apiVersion: cloudscheduler.gcp.upbound.io/v1beta1
+kind: Job
+metadata:
+  name: example-scheduler-job
+spec:
+  forProvider:
+    name: example-job-name

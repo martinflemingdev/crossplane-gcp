@@ -1,0 +1,25 @@
+apiVersion: bigquery.gcp.upbound.io/v1beta1
+kind: Dataset
+metadata:
+  name: exampledataset
+  labels:
+      testing.upbound.io/example-name: exampledataset
+# apply failed: Error creating Dataset: googleapi: Error 400: Invalid dataset ID "example-dataset". 
+# Dataset IDs must be alphanumeric (plus underscores) and must be at most 1024 characters long.
+# NOTE: It appears the dataset name is derived from the metadata.name field, but both fields have different constraints.
+spec:
+  forProvider:
+    access:
+      - role: OWNER
+        userByEmail: crossplane-admin@axial-life-395119.iam.gserviceaccount.com
+      # - role: READER
+        # domain: example.domain.com
+      # - role: READER
+        # specialGroup: projectReaders
+    defaultTableExpirationMs: 3600000
+    description: This is a test description
+    friendlyName: test
+    labels:
+      env: default
+    location: US
+    # project: autofills project ID in providerConfig

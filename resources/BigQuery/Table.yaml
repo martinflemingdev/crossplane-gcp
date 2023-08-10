@@ -1,0 +1,31 @@
+apiVersion: bigquery.gcp.upbound.io/v1beta1
+kind: Table
+metadata:
+  name: example-table
+  labels:
+      testing.upbound.io/example-name: example-table
+spec:
+  forProvider:
+    datasetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: exampledataset
+    deletionProtection: false
+    labels:
+      env: default
+    schema: |
+      [
+        {
+          "name": "permalink",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The Permalink"
+        },
+        {
+          "name": "state",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "State where the head office is located"
+        }
+      ]
+    # timePartitioning:
+    #   - type: DAY
