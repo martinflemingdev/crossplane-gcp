@@ -1,7 +1,11 @@
 apiVersion: kms.gcp.upbound.io/v1beta1
 kind: KeyRing
 metadata:
-  name: example-keyring
+  annotations:
+    upjet.upbound.io/manual-intervention: This resource is dependency of CryptoKey.
+  labels:
+    testing.upbound.io/example-name: keyring
+  name: keyring-crypto-key-version-1
 spec:
   forProvider:
-    name: example-keyring-name
+    location: global

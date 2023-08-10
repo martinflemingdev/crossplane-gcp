@@ -22,4 +22,4 @@ spec:
     labels:
       env: default
     location: US
-    # project: autofills project ID in providerConfig
+    # project: autofills project ID from providerConfig projectID field

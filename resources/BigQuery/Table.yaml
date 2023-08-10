@@ -1,14 +1,14 @@
 apiVersion: bigquery.gcp.upbound.io/v1beta1
 kind: Table
 metadata:
-  name: example-table
+  name: exampletable
   labels:
-      testing.upbound.io/example-name: example-table
+      testing.upbound.io/example-name: exampletable
 spec:
   forProvider:
     datasetIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: exampledataset
+        testing.upbound.io/example-name: exampledataset # using labels to link to dataset
     deletionProtection: false
     labels:
       env: default

@@ -1,8 +1,17 @@
 apiVersion: kms.gcp.upbound.io/v1beta1
 kind: CryptoKey
 metadata:
-  name: example-cryptokey
+  annotations:
+    upjet.upbound.io/manual-intervention: By default, keys in Cloud KMS spend 24
+      hours in the Scheduled for destruction (soft deleted) state before the key
+      material is logically deleted from the system
+  labels:
+    testing.upbound.io/example-name: crypto-key
+  name: crypto-key-version-1
 spec:
   forProvider:
-    keyRing: example-keyring-name
-    name: example-cryptokey-name
+    destroyScheduledDuration: 86400s
+    keyRingSelector:
+      matchLabels:
+        testing.upbound.io/example-name: keyring
+    rotationPeriod: 100000s
