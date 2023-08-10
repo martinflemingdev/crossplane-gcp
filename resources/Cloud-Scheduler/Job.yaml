@@ -1,7 +1,15 @@
 apiVersion: cloudscheduler.gcp.upbound.io/v1beta1
 kind: Job
 metadata:
-  name: example-scheduler-job
+  labels:
+    testing.upbound.io/example-name: cloudschedulerjob
+  name: cloudschedulerjob
 spec:
   forProvider:
-    name: example-job-name
+    description: cloudschedulerjob
+    httpTarget:
+      - body: dGVzdAo=
+        httpMethod: POST
+        uri: https://postman-echo.com/post
+    region: us-central1
+    schedule: "*/2 * * * *"
