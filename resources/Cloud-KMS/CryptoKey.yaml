@@ -15,3 +15,10 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: keyring
     rotationPeriod: 100000s
+    # importOnly: null
+    # keyRing: null
+    # keyRingRef: null
+    # labels: null
+    # purpose: null
+    # skipInitialVersionCreation: null
+    # versionTemplate: null

@@ -7,3 +7,20 @@ metadata:
 spec:
   forProvider:
     location: US
+    # autoclass: null
+    # cors: null
+    # customPlacementConfig: null
+    # defaultEventBasedHold: null
+    # encryption: null
+    # forceDestroy: null
+    # labels: null
+    # lifecycleRule: null
+    # logging: null
+    # project: null
+    # publicAccessPrevention: null
+    # requesterPays: null
+    # retentionPolicy: null
+    # storageClass: null
+    # uniformBucketLevelAccess: null
+    # versioning: null
+    # website: null

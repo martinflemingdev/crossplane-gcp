@@ -4,4 +4,8 @@ metadata:
   name: example-entrygroup
 spec:
   forProvider:
-    entryGroupId: example-entrygroup-id
+    description: null
+    displayName: null
+    entryGroupId: null
+    project: null
+    region: null

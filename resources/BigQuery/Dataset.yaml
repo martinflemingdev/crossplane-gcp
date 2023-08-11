@@ -23,3 +23,9 @@ spec:
       env: default
     location: US
     # project: autofills project ID from providerConfig projectID field
+    # defaultCollation: null
+    # defaultEncryptionConfiguration: null
+    # defaultPartitionExpirationMs: null
+    # deleteContentsOnDestroy: null
+    # isCaseInsensitive: null
+    # maxTimeTravelHours: null

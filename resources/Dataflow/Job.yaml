@@ -15,4 +15,19 @@ spec:
     region: us-east4
     tempGcsLocation: gs://crossplane-bucket/temp/                       # temp dir 
     templateGcsPath: gs://crossplane-bucket/word_count_template.py      # template location
-    
+
+    # additionalExperiments: null
+    # enableStreamingEngine: null
+    # ipConfiguration: null
+    # kmsKeyName: null
+    # labels: null
+    # machineType: null
+    # maxWorkers: null
+    # network: null
+    # onDelete: null
+    # project: null
+    # serviceAccountEmail: null
+    # skipWaitOnJobTermination: null
+    # subnetwork: null
+    # transformNameMapping: null
+    # zone: null

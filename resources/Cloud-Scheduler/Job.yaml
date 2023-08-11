@@ -13,3 +13,10 @@ spec:
         uri: https://postman-echo.com/post
     region: us-central1
     schedule: "*/2 * * * *"
+    # appEngineHttpTarget: null
+    # attemptDeadline: null
+    # paused: null
+    # project: null
+    # pubsubTarget: null
+    # retryConfig: null
+    # timeZone: null

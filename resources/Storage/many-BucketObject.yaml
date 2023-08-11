@@ -1,0 +1,131 @@
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: BucketObject
+metadata:
+  annotations:
+    # Note from the upbound marketplace example:
+    upjet.upbound.io/manual-intervention: BucketObject does not support source field
+    # This would be great to have ... otherwise we're down to text files
+  labels:
+    testing.upbound.io/example-name: input
+  name: input
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: crossplane-bucket
+    #########################################################################################
+    # BucketObject does not support source field 
+    # https://github.com/upbound/provider-gcp/issues/9
+    #########################################################################################
+    # contentType: application/zip
+    # name: test.zip
+    # source: /home/martinfleming/src/crossplane/gcp/crossplane-gcp/resources/Storage/test.zip
+    # 
+    # when using "source" field, getting this error even though file exists
+    # apply failed: open /home/martinfleming/src/crossplane/gcp/crossplane-gcp/resources/Storage/test.zip: 
+    # no such file or directory:
+    #########################################################################################
+    content: "Content of text file goes here"
+    contentType: text/plain
+    name: input.txt
+---
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: BucketObject
+metadata:
+  labels:
+    testing.upbound.io/example-name: output
+  name: output
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: crossplane-bucket
+    content: "Content of text file goes here"
+    contentType: text/plain
+    name: output.txt
+---
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: BucketObject
+metadata:
+  labels:
+    testing.upbound.io/example-name: temp
+  name: temp
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: crossplane-bucket
+    # contentType: Folder   # not needed, but can be included
+    name: temp/             # folder name should end with '/'
+    content: ' '            # content is ignored but should be non-empty
+---
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: BucketObject
+metadata:
+  labels:
+    testing.upbound.io/example-name: staging
+  name: staging
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: crossplane-bucket
+
+    name: staging/          # folder name should end with '/'
+    content: ' '            # content is ignored but should be non-empty
+---
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: BucketObject
+metadata:
+  labels:
+    testing.upbound.io/example-name: wordcount
+  name: wordcount
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: crossplane-bucket
+    content: |
+      import argparse
+      import re
+
+      import apache_beam as beam
+      from apache_beam.options.pipeline_options import PipelineOptions
+      from apache_beam.options.pipeline_options import GoogleCloudOptions
+      from apache_beam.options.pipeline_options import SetupOptions
+      from apache_beam.options.pipeline_options import StandardOptions
+
+      class WordCount(beam.PTransform):
+          def expand(self, pcoll):
+              return (
+                  pcoll
+                  | 'ExtractWords' >> beam.FlatMap(lambda x: re.findall(r'[A-Za-z\']+', x))
+                  | 'CountWords' >> beam.combiners.Count.PerElement()
+              )
+
+      def run(argv=None, save_main_session=True):
+          parser = argparse.ArgumentParser()
+          parser.add_argument('--inputFile', required=True,
+                              help='Input file to process.')
+          parser.add_argument('--outputFile', required=True,
+                              help='Output file to write results to.')
+          known_args, pipeline_args = parser.parse_known_args(argv)
+
+          pipeline_options = PipelineOptions(pipeline_args)
+          google_cloud_options = pipeline_options.view_as(GoogleCloudOptions)
+          google_cloud_options.project = 'YOUR_PROJECT_ID'
+          google_cloud_options.job_name = 'your-job-name'
+          google_cloud_options.staging_location = 'gs://your-bucket/staging'
+          google_cloud_options.temp_location = 'gs://your-bucket/temp'
+          pipeline_options.view_as(StandardOptions).runner = 'DataflowRunner'
+          pipeline_options.view_as(SetupOptions).save_main_session = save_main_session
+
+          with beam.Pipeline(options=pipeline_options) as p:
+              lines = p | 'ReadFromText' >> beam.io.ReadFromText(known_args.inputFile)
+              counts = lines | WordCount()
+              counts | 'WriteToText' >> beam.io.WriteToText(known_args.outputFile, shard_name_template='')
+
+      if __name__ == '__main__':
+          run()
+    contentType: text/plain
+    name: word_count_template.py

@@ -4,4 +4,15 @@ metadata:
   name: example-entry
 spec:
   forProvider:
-    entryId: example-entry-id
+    description: null
+    displayName: null
+    entryGroup: null
+    entryGroupRef: null
+    entryGroupSelector: null
+    entryId: null
+    gcsFilesetSpec: null
+    linkedResource: null
+    schema: null
+    type: null
+    userSpecifiedSystem: null
+    userSpecifiedType: null

@@ -29,3 +29,15 @@ spec:
       ]
     # timePartitioning:
     #   - type: DAY
+    # clustering: null
+    # datasetId: null
+    # datasetIdRef: null
+    # description: null
+    # encryptionConfiguration: null
+    # expirationTime: null
+    # externalDataConfiguration: null
+    # friendlyName: null
+    # materializedView: null
+    # project: null
+    # rangePartitioning: null
+    # view: null
