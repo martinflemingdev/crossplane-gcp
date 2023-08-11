@@ -1,0 +1,12 @@
+apiVersion: cloudrun.gcp.upbound.io/v1beta1
+kind: Service
+metadata:
+  name: stubbed-service.cloudrun.gcp.upbound.io
+spec:
+  forProvider:
+    autogenerateRevisionName: null
+    location: null
+    metadata: null
+    project: null
+    template: null
+    traffic: null

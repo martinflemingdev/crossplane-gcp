@@ -1,0 +1,24 @@
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: Bucket
+metadata:
+  name: stubbed-bucket.storage.gcp.upbound.io
+spec:
+  forProvider:
+    autoclass: null
+    cors: null
+    customPlacementConfig: null
+    defaultEventBasedHold: null
+    encryption: null
+    forceDestroy: null
+    labels: null
+    lifecycleRule: null
+    location: null
+    logging: null
+    project: null
+    publicAccessPrevention: null
+    requesterPays: null
+    retentionPolicy: null
+    storageClass: null
+    uniformBucketLevelAccess: null
+    versioning: null
+    website: null

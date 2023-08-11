@@ -1,0 +1,11 @@
+apiVersion: datacatalog.gcp.upbound.io/v1beta1
+kind: EntryGroup
+metadata:
+  name: stubbed-entrygroup.datacatalog.gcp.upbound.io
+spec:
+  forProvider:
+    description: null
+    displayName: null
+    entryGroupId: null
+    project: null
+    region: null

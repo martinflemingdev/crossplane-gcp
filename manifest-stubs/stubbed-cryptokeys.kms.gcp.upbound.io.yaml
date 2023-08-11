@@ -1,0 +1,16 @@
+apiVersion: kms.gcp.upbound.io/v1beta1
+kind: CryptoKey
+metadata:
+  name: stubbed-cryptokey.kms.gcp.upbound.io
+spec:
+  forProvider:
+    destroyScheduledDuration: null
+    importOnly: null
+    keyRing: null
+    keyRingRef: null
+    keyRingSelector: null
+    labels: null
+    purpose: null
+    rotationPeriod: null
+    skipInitialVersionCreation: null
+    versionTemplate: null

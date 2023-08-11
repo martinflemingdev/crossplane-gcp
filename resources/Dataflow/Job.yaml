@@ -1,8 +1,18 @@
 apiVersion: dataflow.gcp.upbound.io/v1beta1
 kind: Job
 metadata:
-  name: example-dataflow-job
+  annotations:
+    upjet.upbound.io/manual-intervention: This example resource needs an input file stored in a bucket
+  labels:
+    testing.upbound.io/example-name: big_data_job
+  name: big-data-job
 spec:
   forProvider:
-    name: example-job-name
-    templateGcsPath: gs://path-to-template
+    name: dataflow-job
+    parameters:
+      inputFile: gs://crossplane-bucket/input.txt
+      outputFile: gs://crossplane-bucket/output.txt
+    region: us-east4
+    tempGcsLocation: gs://crossplane-bucket/temp/                       # temp dir 
+    templateGcsPath: gs://crossplane-bucket/word_count_template.py      # template location
+    

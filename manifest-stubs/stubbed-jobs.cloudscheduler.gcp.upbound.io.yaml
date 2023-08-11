@@ -1,0 +1,17 @@
+apiVersion: cloudscheduler.gcp.upbound.io/v1beta1
+kind: Job
+metadata:
+  name: stubbed-job.cloudscheduler.gcp.upbound.io
+spec:
+  forProvider:
+    appEngineHttpTarget: null
+    attemptDeadline: null
+    description: null
+    httpTarget: null
+    paused: null
+    project: null
+    pubsubTarget: null
+    region: null
+    retryConfig: null
+    schedule: null
+    timeZone: null

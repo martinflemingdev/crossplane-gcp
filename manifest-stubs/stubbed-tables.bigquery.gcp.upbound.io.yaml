@@ -1,0 +1,23 @@
+apiVersion: bigquery.gcp.upbound.io/v1beta1
+kind: Table
+metadata:
+  name: stubbed-table.bigquery.gcp.upbound.io
+spec:
+  forProvider:
+    clustering: null
+    datasetId: null
+    datasetIdRef: null
+    datasetIdSelector: null
+    deletionProtection: null
+    description: null
+    encryptionConfiguration: null
+    expirationTime: null
+    externalDataConfiguration: null
+    friendlyName: null
+    labels: null
+    materializedView: null
+    project: null
+    rangePartitioning: null
+    schema: null
+    timePartitioning: null
+    view: null

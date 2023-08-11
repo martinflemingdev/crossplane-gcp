@@ -1,0 +1,14 @@
+apiVersion: pubsub.gcp.upbound.io/v1beta1
+kind: Topic
+metadata:
+  name: stubbed-topic.pubsub.gcp.upbound.io
+spec:
+  forProvider:
+    kmsKeyName: null
+    kmsKeyNameRef: null
+    kmsKeyNameSelector: null
+    labels: null
+    messageRetentionDuration: null
+    messageStoragePolicy: null
+    project: null
+    schemaSettings: null

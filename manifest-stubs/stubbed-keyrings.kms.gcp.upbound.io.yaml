@@ -1,0 +1,8 @@
+apiVersion: kms.gcp.upbound.io/v1beta1
+kind: KeyRing
+metadata:
+  name: stubbed-keyring.kms.gcp.upbound.io
+spec:
+  forProvider:
+    location: null
+    project: null

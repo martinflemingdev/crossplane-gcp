@@ -1,0 +1,26 @@
+apiVersion: dataflow.gcp.upbound.io/v1beta1
+kind: Job
+metadata:
+  name: stubbed-job.dataflow.gcp.upbound.io
+spec:
+  forProvider:
+    additionalExperiments: null
+    enableStreamingEngine: null
+    ipConfiguration: null
+    kmsKeyName: null
+    labels: null
+    machineType: null
+    maxWorkers: null
+    name: null
+    network: null
+    onDelete: null
+    parameters: null
+    project: null
+    region: null
+    serviceAccountEmail: null
+    skipWaitOnJobTermination: null
+    subnetwork: null
+    tempGcsLocation: null
+    templateGcsPath: null
+    transformNameMapping: null
+    zone: null

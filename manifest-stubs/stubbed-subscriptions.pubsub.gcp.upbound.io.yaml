@@ -1,0 +1,22 @@
+apiVersion: pubsub.gcp.upbound.io/v1beta1
+kind: Subscription
+metadata:
+  name: stubbed-subscription.pubsub.gcp.upbound.io
+spec:
+  forProvider:
+    ackDeadlineSeconds: null
+    bigqueryConfig: null
+    deadLetterPolicy: null
+    enableExactlyOnceDelivery: null
+    enableMessageOrdering: null
+    expirationPolicy: null
+    filter: null
+    labels: null
+    messageRetentionDuration: null
+    project: null
+    pushConfig: null
+    retainAckedMessages: null
+    retryPolicy: null
+    topic: null
+    topicRef: null
+    topicSelector: null

@@ -1,0 +1,19 @@
+apiVersion: bigquery.gcp.upbound.io/v1beta1
+kind: Dataset
+metadata:
+  name: stubbed-dataset.bigquery.gcp.upbound.io
+spec:
+  forProvider:
+    access: null
+    defaultCollation: null
+    defaultEncryptionConfiguration: null
+    defaultPartitionExpirationMs: null
+    defaultTableExpirationMs: null
+    deleteContentsOnDestroy: null
+    description: null
+    friendlyName: null
+    isCaseInsensitive: null
+    labels: null
+    location: null
+    maxTimeTravelHours: null
+    project: null
