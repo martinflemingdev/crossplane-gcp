@@ -23,7 +23,10 @@ def return_newest_version_index(versions: list) -> int:
 
 def stub_manifest(crd: dict) -> str:
     # Use newest version
-    i = return_newest_version_index(crd['spec']['versions'])
+    versions = []
+    for v in crd['spec']['versions']:
+        versions.append(v['name'])
+    i = return_newest_version_index(versions)
 
     # Create manifest template
     manifest = {
