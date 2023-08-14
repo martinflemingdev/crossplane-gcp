@@ -53,11 +53,50 @@ Possible Solution:
 ---
 
 CRD:
+  apiVersion: datacatalog.gcp.upbound.io/v1beta1
+  kind: Entry
+
+Problem: 
+  spec.forProvider.schema expects a json string instead of actual datatypes
+
+Example:
+  schema: |
+    {
+      "columns": [
+        {
+          "column": "id",
+          "type": "INT64",
+          "description": "Unique identifier",
+          "mode": "REQUIRED"
+        },
+        {
+          "column": "name",
+          "type": "STRING",
+          "description": "Name of the individual",
+          "mode": "NULLABLE"
+        },
+        {
+          "column": "email",
+          "type": "STRING",
+          "description": "Email address",
+          "mode": "NULLABLE"
+        }
+      ]
+    }
+
+Possible Solution:
+  Amend CRD to have schema type be an object and not a string
+
+---
+
+CRD:
   apiVersion: storage.gcp.upbound.io/v1beta1
   kind: BucketObject
 
 Problem:
-  BucketObject does not support source field. https://github.com/upbound/provider-gcp/issues/9
+  BucketObject does not support source field. 
+  https://github.com/upbound/provider-gcp/issues/9
+
   Source field would allow uploading files via path, without it we only have "content" field.
 
 Example:
