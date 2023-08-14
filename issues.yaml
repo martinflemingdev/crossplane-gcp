@@ -1,0 +1,75 @@
+CRD:
+  apiVersion: bigquery.gcp.upbound.io/v1beta1
+  kind: Dataset
+
+Problem:
+  It appears the Dataset name is derived from the K8s "metadata.name" field and not a field in the CRD's spec.forProvider
+  This could work but both fields have different constraints and therefore clash.
+
+Google contraint error when using dash:
+# apply failed: Error creating Dataset: googleapi: Error 400: Invalid dataset ID "example-dataset". 
+# Dataset IDs must be alphanumeric (plus underscores) and must be at most 1024 characters long.
+Google constraint error when using period:
+# observe failed: cannot run refresh: refresh failed: Invalid resource name: 
+# A name must start with a letter or underscore and may contain only letters, digits, underscores, and dashes.
+K8s constraint error when using underscore:
+# The Dataset "example_dataset" is invalid: metadata.name: Invalid value: "example_dataset": a lowercase RFC 1123 subdomain 
+# must consist of lower case alphanumeric characters, '-' or '.', and must start and end with an alphanumeric character 
+# (e.g. 'example.com', regex used for validation is '[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*')
+
+Possible Solution:
+  Add a "spec.forProvider.name" field so that the Dataset name is not derived from "metadata.name"
+  There is a "spec.forProvider.friendlyName" field currently, but filling it out does not solve the issue.
+
+---
+
+CRD:
+  apiVersion: bigquery.gcp.upbound.io/v1beta1
+  kind: Table
+
+Problem: 
+  spec.forProvider.schema expects a stringified version of an array of objects instead of actual datatypes
+
+Example:
+  schema: |
+    [
+      {
+        "name": "permalink",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "The Permalink"
+      },
+      {
+        "name": "state",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "State where the head office is located"
+      }
+    ]
+
+Possible Solution:
+  Amend CRD to have schema type be an array of objects and not string
+
+---
+
+CRD:
+  apiVersion: storage.gcp.upbound.io/v1beta1
+  kind: BucketObject
+
+Problem:
+  BucketObject does not support source field. https://github.com/upbound/provider-gcp/issues/9
+  Source field would allow uploading files via path, without it we only have "content" field.
+
+Example:
+
+  spec:
+    forProvider:
+      bucket: example-bucket
+      content: "Content of text file goes here"
+      contentType: text/plain
+      name: input.txt
+
+Possible Solution:
+  Support source field like terraform does.
+
+---
