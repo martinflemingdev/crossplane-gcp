@@ -1,0 +1,29 @@
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: BucketObject
+metadata:
+  name: temp
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: crossplane-bucket
+    # contentType: Folder   # not needed, but can be included
+    name: temp/             # folder name should end with '/'
+    content: ' '            # content is ignored but should be non-empty
+    #
+    # 
+    #
+    # bucket: null
+    # bucketRef: null
+    # cacheControl: null
+    # contentDisposition: null
+    # contentEncoding: null
+    # contentLanguage: null
+    # customerEncryption: null
+    # detectMd5Hash: null
+    # eventBasedHold: null
+    # kmsKeyName: null
+    # metadata: null
+    # source: null
+    # storageClass: null
+    # temporaryHold: null

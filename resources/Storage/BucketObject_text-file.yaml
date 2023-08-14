@@ -28,48 +28,18 @@ spec:
     content: "Content of text file goes here"
     contentType: text/plain
     name: input.txt
----
-apiVersion: storage.gcp.upbound.io/v1beta1
-kind: BucketObject
-metadata:
-  labels:
-    testing.upbound.io/example-name: output
-  name: output
-spec:
-  forProvider:
-    bucketSelector:
-      matchLabels:
-        testing.upbound.io/example-name: crossplane-bucket
-    content: "Content of text file goes here"
-    contentType: text/plain
-    name: output.txt
----
-apiVersion: storage.gcp.upbound.io/v1beta1
-kind: BucketObject
-metadata:
-  labels:
-    testing.upbound.io/example-name: temp
-  name: temp
-spec:
-  forProvider:
-    bucketSelector:
-      matchLabels:
-        testing.upbound.io/example-name: crossplane-bucket
-    # contentType: Folder   # not needed, but can be included
-    name: temp/             # folder name should end with '/'
-    content: ' '            # content is ignored but should be non-empty
----
-apiVersion: storage.gcp.upbound.io/v1beta1
-kind: BucketObject
-metadata:
-  labels:
-    testing.upbound.io/example-name: staging
-  name: staging
-spec:
-  forProvider:
-    bucketSelector:
-      matchLabels:
-        testing.upbound.io/example-name: crossplane-bucket
-
-    name: staging/          # folder name should end with '/'
-    content: ' '            # content is ignored but should be non-empty
+    #
+    # bucket: null
+    # bucketRef: null
+    # cacheControl: null
+    # contentDisposition: null
+    # contentEncoding: null
+    # contentLanguage: null
+    # customerEncryption: null
+    # detectMd5Hash: null
+    # eventBasedHold: null
+    # kmsKeyName: null
+    # metadata: null
+    # source: null
+    # storageClass: null
+    # temporaryHold: null

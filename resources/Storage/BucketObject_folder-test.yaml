@@ -1,0 +1,25 @@
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: BucketObject
+metadata:
+  name: destroytrue
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: crossplane-bucket-destroytrue
+    # contentType: Folder   # not needed, but can be included
+    name: destroytrue/             # folder name should end with '/'
+    content: ' '            # content is ignored but should be non-empty
+---
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: BucketObject
+metadata:
+  name: destroyfalse
+spec:
+  forProvider:
+    bucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: crossplane-bucket-destroyfalse
+    # contentType: Folder   # not needed, but can be included
+    name: destroyfalse/             # folder name should end with '/'
+    content: ' '            # content is ignored but should be non-empty

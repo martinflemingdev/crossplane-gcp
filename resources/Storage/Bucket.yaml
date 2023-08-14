@@ -2,17 +2,36 @@ apiVersion: storage.gcp.upbound.io/v1beta1
 kind: Bucket
 metadata:
   labels:
-    testing.upbound.io/example-name: crossplane-bucket
-  name: crossplane-bucket
+    testing.upbound.io/example-name: crossplane-bucket-destroytrue
+  # Name of K8s object AND name of GCP Bucket, must be globally unique! 
+  # Throws misleading "permissions/bucket does not exist" error if name isn't globally unique
+  name: martinflemingdevdestroytrue
 spec:
   forProvider:
+    forceDestroy: true 
     location: US
+    # cors:
+    #   - maxAgeSeconds: 3600
+    #     method:
+    #       - GET
+    #       - HEAD
+    #       - PUT
+    #       - POST
+    #       - DELETE
+    #     origin:
+    #       - http://example.com
+    #     responseHeader:
+    #       - "*"
+    # uniformBucketLevelAccess: false
+    # website:
+    #   - mainPageSuffix: index.html
+    #     notFoundPage: 404.html
+
+
     # autoclass: null
-    # cors: null
     # customPlacementConfig: null
     # defaultEventBasedHold: null
     # encryption: null
-    # forceDestroy: null
     # labels: null
     # lifecycleRule: null
     # logging: null
@@ -21,6 +40,17 @@ spec:
     # requesterPays: null
     # retentionPolicy: null
     # storageClass: null
-    # uniformBucketLevelAccess: null
     # versioning: null
-    # website: null
+---
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: Bucket
+metadata:
+  labels:
+    testing.upbound.io/example-name: crossplane-bucket-destroyfalse
+  # Name of K8s object AND name of GCP Bucket, must be globally unique! 
+  # Throws misleading "permissions/bucket does not exist" error if name isn't globally unique
+  name: martinflemingdevdestroyfalse
+spec:
+  forProvider:
+    forceDestroy: false 
+    location: US
