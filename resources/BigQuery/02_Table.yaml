@@ -15,24 +15,30 @@ spec:
     schema: |
       [
         {
-          "name": "permalink",
-          "type": "STRING",
-          "mode": "NULLABLE",
-          "description": "The Permalink"
+          "name": "id",
+          "type": "INT64",
+          "mode": "REQUIRED",
+          "description": "Unique identifier for the record"
         },
         {
-          "name": "state",
+          "name": "name",
+          "type": "STRING",
+          "mode": "REQUIRED",
+          "description": "Full name of the individual"
+        },
+        {
+          "name": "email",
           "type": "STRING",
           "mode": "NULLABLE",
-          "description": "State where the head office is located"
+          "description": "Email address of the individual"
         }
       ]
+    description: exampletable
     # timePartitioning:
     #   - type: DAY
     # clustering: null
     # datasetId: null
     # datasetIdRef: null
-    # description: null
     # encryptionConfiguration: null
     # expirationTime: null
     # externalDataConfiguration: null

@@ -1,0 +1,60 @@
+apiVersion: datacatalog.gcp.upbound.io/v1beta1
+kind: Entry
+metadata:
+  name: example-entry
+spec:
+  forProvider:
+    entryGroupSelector:
+      matchLabels:
+        testing.upbound.io/example-name: entry-group
+    entryId: entry123
+    userSpecifiedSystem: SomethingExternal
+    userSpecifiedType: my_custom_type
+    schema: |
+      {
+        "columns": [
+          {
+            "column": "id",
+            "type": "INT64",
+            "description": "Unique identifier",
+            "mode": "REQUIRED"
+          },
+          {
+            "column": "name",
+            "type": "STRING",
+            "description": "Name of the individual",
+            "mode": "NULLABLE"
+          },
+          {
+            "column": "email",
+            "type": "STRING",
+            "description": "Email address",
+            "mode": "NULLABLE"
+          }
+        ]
+      }
+
+    # Schema of the entry (e.g. BigQuery, GoogleSQL, Avro schema), as a json string. 
+    # An entry might not have any schema attached to it. 
+    # See https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries#schema 
+    # for what fields this schema can contain.
+
+    # linkedResource: "//bigquery.googleapis.com/projects/my-project/datasets/my-dataset/tables/my-table"
+
+      # The resource this metadata entry refers to. For Google Cloud Platform resources, 
+      # linkedResource is the full name of the resource. For example, the linkedResource 
+      # for a table resource from BigQuery is: 
+      # //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId 
+      # Output only when Entry is of type in the EntryType enum. For entries with userSpecifiedType, 
+      # this field is optional and defaults to an empty string.
+
+    # type: FILESET
+      # The type of the entry. Only used for Entries with types in the EntryType enum. 
+      # Currently, only FILESET enum value is allowed. All other entries created through 
+      # Data Catalog must use userSpecifiedType. Possible values are: FILESET.
+
+    # description: null
+    # displayName: null
+    # entryGroup: null
+    # entryGroupRef: null
+    # gcsFilesetSpec: null

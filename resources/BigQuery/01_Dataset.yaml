@@ -11,7 +11,7 @@ spec:
   forProvider:
     access:
       - role: OWNER
-        userByEmail: crossplane-admin@axial-life-395119.iam.gserviceaccount.com
+        userByEmail: crossplane@axial-life-395119.iam.gserviceaccount.com
       # - role: READER
         # domain: example.domain.com
       # - role: READER
