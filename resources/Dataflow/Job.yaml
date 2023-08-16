@@ -10,11 +10,11 @@ spec:
   forProvider:
     name: dataflow-job
     parameters:
-      inputFile: gs://crossplane-bucket/input.txt
-      outputFile: gs://crossplane-bucket/output.txt
+      inputFile: gs://cloud-function-test-bucket-1234567890/input.txt
+      outputFile: gs://cloud-function-test-bucket-1234567890/output.txt
     region: us-east4
-    tempGcsLocation: gs://crossplane-bucket/temp/                       # temp dir 
-    templateGcsPath: gs://crossplane-bucket/word_count_template.py      # template location
+    tempGcsLocation: gs://cloud-function-test-bucket-1234567890/temp/                       # temp dir 
+    templateGcsPath: gs://cloud-function-test-bucket-1234567890/dataflow-template.py        # template location
 
     # additionalExperiments: null
     # enableStreamingEngine: null

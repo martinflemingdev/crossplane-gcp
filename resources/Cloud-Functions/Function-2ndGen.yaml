@@ -17,9 +17,7 @@ spec:
     sourceArchiveBucketSelector:
       matchLabels:
         testing.upbound.io/example-name: cloud-function-test-bucket-1234567890
-    sourceArchiveObjectSelector:
-      matchLabels:
-        testing.upbound.io/example-name: hello-world-python-function
+    sourceArchiveObject: hello-world.zip
     triggerHttp: true
 
     # buildEnvironmentVariables: null
