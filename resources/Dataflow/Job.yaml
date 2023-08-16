@@ -14,14 +14,14 @@ spec:
       outputFile: gs://cloud-function-test-bucket-1234567890/output.txt
     region: us-east4
     tempGcsLocation: gs://cloud-function-test-bucket-1234567890/temp/                       # temp dir 
-    templateGcsPath: gs://cloud-function-test-bucket-1234567890/dataflow-template.py        # template location
-
+    templateGcsPath: gs://cloud-function-test-bucket-1234567890/dataflow-template.py      # template location
+    machineType: e2-standard-2
+    
     # additionalExperiments: null
     # enableStreamingEngine: null
     # ipConfiguration: null
     # kmsKeyName: null
     # labels: null
-    # machineType: null
     # maxWorkers: null
     # network: null
     # onDelete: null
