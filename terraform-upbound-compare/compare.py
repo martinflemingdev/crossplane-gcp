@@ -24,8 +24,8 @@ def compare_lists(listA, listB):
     return matches, only_in_listA, only_in_listB
 
 # Paths
-terraform_path="terraform-provider-google/google/services"
-upbound_path="provider-gcp/package/crds"
+terraform_path="terraform-provider-google-google-services"
+upbound_path="provider-gcp-package-crds"
 
 # Files
 terraform_files=list_files_recursive(terraform_path)
