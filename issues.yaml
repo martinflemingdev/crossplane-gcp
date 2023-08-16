@@ -112,3 +112,20 @@ Possible Solution:
   Support source field like terraform does.
 
 ---
+
+CRD:
+  apiVersion: dataflow.gcp.upbound.io/v1beta1
+  kind: Job
+
+Problem:
+  No support for Flex Template.
+
+  This Kind is for the classic template, evidenced by the fields found here
+  https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/dataflow_job
+
+  There is no Kind specifically for the newer Flex Template, GA September 2020.
+  https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/dataflow_flex_template_job
+
+
+Possible Solution:
+  Generate/include Flex Template Kind.
