@@ -1,0 +1,39 @@
+apiVersion: cloudfunctions.gcp.upbound.io/v1beta1
+kind: Function
+metadata:
+  name: stubbed-function.cloudfunctions.gcp.upbound.io
+spec:
+  forProvider:
+    availableMemoryMb: null
+    buildEnvironmentVariables: null
+    buildWorkerPool: null
+    description: null
+    dockerRegistry: null
+    dockerRepository: null
+    entryPoint: null
+    environmentVariables: null
+    eventTrigger: null
+    httpsTriggerSecurityLevel: null
+    httpsTriggerUrl: null
+    ingressSettings: null
+    kmsKeyName: null
+    labels: null
+    maxInstances: null
+    minInstances: null
+    project: null
+    region: null
+    runtime: null
+    secretEnvironmentVariables: null
+    secretVolumes: null
+    serviceAccountEmail: null
+    sourceArchiveBucket: null
+    sourceArchiveBucketRef: null
+    sourceArchiveBucketSelector: null
+    sourceArchiveObject: null
+    sourceArchiveObjectRef: null
+    sourceArchiveObjectSelector: null
+    sourceRepository: null
+    timeout: null
+    triggerHttp: null
+    vpcConnector: null
+    vpcConnectorEgressSettings: null

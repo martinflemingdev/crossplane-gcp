@@ -1,0 +1,45 @@
+WONT WORK NEEDS TO BE A ZIP FILE
+# apiVersion: storage.gcp.upbound.io/v1beta1
+# kind: Bucket
+# metadata:
+#   labels:
+#     testing.upbound.io/example-name: cloud-function-test-bucket-1234567890
+#   # Name of K8s object AND name of GCP Bucket, must be globally unique! 
+#   # Throws misleading "permissions/bucket does not exist" error if name isn't globally unique
+#   name: cloud-function-test-bucket-1234567890
+# spec:
+#   forProvider:
+#     forceDestroy: false 
+#     location: US
+# ---
+# apiVersion: storage.gcp.upbound.io/v1beta1
+# kind: BucketObject
+# metadata:
+#   name: hello-world-python-function
+#   labels:
+#     testing.upbound.io/example-name: hello-world-python-function
+# spec:
+#   forProvider:
+#     bucketSelector:
+#       matchLabels:
+#         testing.upbound.io/example-name: cloud-function-test-bucket-1234567890
+#     content: |
+#       def hello_world(request):
+#         return 'Hello, World!'
+#     contentType: text/plain
+#     name: hello-world.py
+#     #
+#     # bucket: null
+#     # bucketRef: null
+#     # cacheControl: null
+#     # contentDisposition: null
+#     # contentEncoding: null
+#     # contentLanguage: null
+#     # customerEncryption: null
+#     # detectMd5Hash: null
+#     # eventBasedHold: null
+#     # kmsKeyName: null
+#     # metadata: null
+#     # source: null
+#     # storageClass: null
+#     # temporaryHold: null

@@ -1,0 +1,18 @@
+apiVersion: cloudrun.gcp.upbound.io/v1beta1
+kind: V2Service
+metadata:
+  name: stubbed-v2service.cloudrun.gcp.upbound.io
+spec:
+  forProvider:
+    annotations: null
+    binaryAuthorization: null
+    client: null
+    clientVersion: null
+    description: null
+    ingress: null
+    labels: null
+    launchStage: null
+    location: null
+    project: null
+    template: null
+    traffic: null

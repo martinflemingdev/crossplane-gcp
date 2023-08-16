@@ -1,0 +1,14 @@
+apiVersion: cloudrun.gcp.upbound.io/v1beta1
+kind: V2Job
+metadata:
+  name: stubbed-v2job.cloudrun.gcp.upbound.io
+spec:
+  forProvider:
+    binaryAuthorization: null
+    client: null
+    clientVersion: null
+    labels: null
+    launchStage: null
+    location: null
+    project: null
+    template: null

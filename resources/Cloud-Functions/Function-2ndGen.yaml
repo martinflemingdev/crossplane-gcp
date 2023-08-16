@@ -1,0 +1,49 @@
+apiVersion: cloudfunctions.gcp.upbound.io/v1beta1
+kind: Function
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloudfunctions/v1beta1/function
+    upjet.upbound.io/manual-intervention: BucketObject does not yet support source field
+  labels:
+    testing.upbound.io/example-name: cloud-functionvpc
+  name: cloud-functionvpc
+spec:
+  forProvider:
+    availableMemoryMb: 128
+    description: hello-world-cloud-functionvpc
+    entryPoint: hello_world
+    region: us-central1
+    runtime: python310
+    sourceArchiveBucketSelector:
+      matchLabels:
+        testing.upbound.io/example-name: cloud-function-test-bucket-1234567890
+    sourceArchiveObjectSelector:
+      matchLabels:
+        testing.upbound.io/example-name: hello-world-python-function
+    triggerHttp: true
+
+    # buildEnvironmentVariables: null
+    # buildWorkerPool: null
+    # dockerRegistry: null
+    # dockerRepository: null
+    # environmentVariables: null
+    # eventTrigger: null
+    # httpsTriggerSecurityLevel: null
+    # httpsTriggerUrl: null
+    # ingressSettings: null
+    # kmsKeyName: null
+    # labels: null
+    # maxInstances: null
+    # minInstances: null
+    # project: null
+    # secretEnvironmentVariables: null
+    # secretVolumes: null
+    # serviceAccountEmail: null
+    # sourceArchiveBucket: null
+    # sourceArchiveBucketRef: null
+    # sourceArchiveObject: null
+    # sourceArchiveObjectRef: null
+    # sourceRepository: null
+    # timeout: null
+    # vpcConnector: null
+    # vpcConnectorEgressSettings: null

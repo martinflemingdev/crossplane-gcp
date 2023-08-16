@@ -1,0 +1,13 @@
+apiVersion: cloudfunctions2.gcp.upbound.io/v1beta1
+kind: Function
+metadata:
+  name: stubbed-function.cloudfunctions2.gcp.upbound.io
+spec:
+  forProvider:
+    buildConfig: null
+    description: null
+    eventTrigger: null
+    labels: null
+    location: null
+    project: null
+    serviceConfig: null

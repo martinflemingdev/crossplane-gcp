@@ -1,0 +1,22 @@
+apiVersion: cloudrun.gcp.upbound.io/v1beta1
+kind: V2Service
+metadata:
+  labels:
+    testing.upbound.io/example-name: default
+  name: default
+spec:
+  forProvider:
+    binaryAuthorization:
+      - breakglassJustification: Some justification
+        useDefault: true
+    ingress: INGRESS_TRAFFIC_ALL
+    location: us-central1
+    template:
+      - containers:
+          - image: us-docker.pkg.dev/cloudrun/container/hello
+
+    # client: null
+    # clientVersion: null
+    # labels: null
+    # launchStage: null
+    # project: null

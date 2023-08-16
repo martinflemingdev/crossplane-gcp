@@ -1,0 +1,24 @@
+apiVersion: cloudfunctions2.gcp.upbound.io/v1beta1
+kind: Function
+metadata:
+  labels:
+    testing.upbound.io/example-name: function
+  name: function
+spec:
+  forProvider:
+    buildConfig:
+      - entryPoint: hello_world
+        runtime: python310
+        source:
+          - storageSource:
+              - bucketSelector:
+                  matchLabels:
+                    testing.upbound.io/example-name: cloud-function-test-bucket-1234567890
+                object: hello-world.zip
+    location: us-central1
+
+    # description: null
+    # eventTrigger: null
+    # labels: null
+    # project: null
+    # serviceConfig: null
