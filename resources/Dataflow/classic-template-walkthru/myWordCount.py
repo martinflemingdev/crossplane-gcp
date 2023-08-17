@@ -3,7 +3,9 @@
 class WordcountOptions(PipelineOptions):
     @classmethod
     def _add_argparse_args(cls, parser):
-        parser.add_argument(
+        # Use add_value_provider_argument for arguments to be templatable
+        # Use add_argument as usual for non-templatable arguments
+        parser.add_value_provider_argument(
             '--input',
             default='gs://dataflow-samples/shakespeare/kinglear.txt',
             help='Path of the file to read from')
