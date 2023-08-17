@@ -1,4 +1,4 @@
-# from https://medium.com/swlh/apache-beam-google-cloud-dataflow-and-creating-custom-templates-using-python-c666c151b4bc
+# https://medium.com/swlh/apache-beam-google-cloud-dataflow-and-creating-custom-templates-using-python-c666c151b4bc
 
 import apache_beam as beam
 from apache_beam.options.pipeline_options import PipelineOptions

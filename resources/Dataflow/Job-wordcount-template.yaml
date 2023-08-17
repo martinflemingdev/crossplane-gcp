@@ -4,17 +4,17 @@ metadata:
   annotations:
     upjet.upbound.io/manual-intervention: This example resource needs an input file stored in a bucket
   labels:
-    testing.upbound.io/example-name: dataflow-job-classic-template
-  name: dataflow-job-classic-template
+    testing.upbound.io/example-name: dataflow-job-example-word-count
+  name: dataflow-job-example-word-count
 spec:
   forProvider:
-    name: dataflow-job-classic-template
+    name: dataflow-job-example-word-count
     parameters:
       inputFile: gs://dataflow-classic-template-example/input.txt
-      outputFile: gs://dataflow-classic-template-example/output.txt       
-    region: southamerica-west1
-    tempGcsLocation: gs://dataflow-classic-template-example/temp/                           # temp dir 
-    templateGcsPath: gs://dataflow-classic-template-example/templates/classic-template      # had to be staged via CLI
+      output: gs://dataflow-classic-template-example/output/
+    region: us-east-1
+    tempGcsLocation: gs://dataflow-classic-template-example/temp/                       # temp dir 
+    templateGcsPath: gs://dataflow-templates-southamerica-west1/latest/Word_Count     # template location
     machineType: e2-standard-2
     
     # additionalExperiments: null
