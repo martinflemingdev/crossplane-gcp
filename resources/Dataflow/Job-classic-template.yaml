@@ -9,9 +9,9 @@ metadata:
 spec:
   forProvider:
     name: dataflow-job-classic-template
-    parameters:
-      inputFile: gs://dataflow-classic-template-example/input.txt
-      outputFile: gs://dataflow-classic-template-example/output.txt       
+    # parameters:                                                                           # Hard coded these params in the template
+    #   inputFile: gs://dataflow-classic-template-example/input.txt                         
+    #   outputFile: gs://dataflow-classic-template-example/output.txt       
     region: southamerica-west1
     tempGcsLocation: gs://dataflow-classic-template-example/temp/                           # temp dir 
     templateGcsPath: gs://dataflow-classic-template-example/templates/classic-template      # had to be staged via CLI

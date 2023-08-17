@@ -12,7 +12,7 @@ spec:
     parameters:
       inputFile: gs://dataflow-classic-template-example/input.txt
       output: gs://dataflow-classic-template-example/output/
-    region: us-east-1
+    region: southamerica-west1
     tempGcsLocation: gs://dataflow-classic-template-example/temp/                       # temp dir 
     templateGcsPath: gs://dataflow-templates-southamerica-west1/latest/Word_Count     # template location
     machineType: e2-standard-2
