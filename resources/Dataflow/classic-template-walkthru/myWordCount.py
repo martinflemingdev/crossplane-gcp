@@ -1,4 +1,7 @@
-
+import apache_beam as beam
+from apache_beam.options.pipeline_options import PipelineOptions
+from apache_beam.options.value_provider import StaticValueProvider
+from apache_beam.io import WriteToText, ReadFromText
 
 class WordcountOptions(PipelineOptions):
     @classmethod
@@ -13,8 +16,10 @@ class WordcountOptions(PipelineOptions):
             '--output',
             required=True,
             help='Output file to write results to.')
-    pipeline_options = PipelineOptions(['--output', 'some/output_path'])
-    p = beam.Pipeline(options=pipeline_options)
+        
 
-    wordcount_options = pipeline_options.view_as(WordcountOptions)
-    lines = p | 'read' >> ReadFromText(wordcount_options.input)
+pipeline_options = PipelineOptions(['--output', 'some/output_path'])
+p = beam.Pipeline(options=pipeline_options)
+
+wordcount_options = pipeline_options.view_as(WordcountOptions)
+lines = p | 'read' >> ReadFromText(wordcount_options.input)
