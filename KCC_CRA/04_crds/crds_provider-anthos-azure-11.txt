@@ -1,0 +1,11 @@
+kubernetesclusternodepools.containerservice.azure.gke.cloud.google.com             2023-09-07T16:35:33Z
+kubernetesclusters.containerservice.azure.gke.cloud.google.com                     2023-09-07T16:35:33Z
+natgateways.network.azure.gke.cloud.google.com                                     2023-09-07T16:35:33Z
+providerconfigs.azure.gke.cloud.google.com                                         2023-09-07T16:35:33Z
+providerconfigusages.azure.gke.cloud.google.com                                    2023-09-07T16:35:33Z
+publicips.network.azure.gke.cloud.google.com                                       2023-09-07T16:35:33Z
+resourcegroups.azure.gke.cloud.google.com                                          2023-09-07T16:35:33Z
+roleassignments.authorization.azure.gke.cloud.google.com                           2023-09-07T16:35:33Z
+storeconfigs.azure.gke.cloud.google.com                                            2023-09-07T16:35:33Z
+subnets.network.azure.gke.cloud.google.com                                         2023-09-07T16:35:33Z
+virtualnetworks.network.azure.gke.cloud.google.com                                 2023-09-07T16:35:33Z

@@ -1,0 +1,13 @@
+# apiVersion: gcp.upbound.io/v1beta1            the "native" upbound aviVersion
+apiVersion: gcp.gke.cloud.google.com/v1beta1  # the "tailored" apiVersion
+kind: ProviderConfig
+metadata:
+  name: default
+spec:
+  projectID: axial-life-395119
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: gcp-secret
+      key: creds

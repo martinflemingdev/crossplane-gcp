@@ -1,0 +1,31 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xpubsubs.infra.sample.org
+spec:
+  group: infra.sample.org
+  names:
+    kind: XPubSub
+    plural: xpubsubs
+  claimNames:
+    kind: PubSub
+    plural: pubsubs
+  versions:
+  - name: v1alpha1
+    served: true
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              ackDeadlineSeconds:
+                type: integer
+          status:
+            type: object
+            properties:
+              topicRefName:
+                description: The KRM resource name of the Pub/Sub topic
+                type: string

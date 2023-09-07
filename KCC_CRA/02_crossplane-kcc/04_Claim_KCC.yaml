@@ -1,0 +1,10 @@
+apiVersion: infra.sample.org/v1alpha1
+kind: PubSub
+metadata:
+  name: pubsubclaim
+  namespace: config-control
+spec:
+  ackDeadlineSeconds: 15
+  compositionRef:
+    name: kcc-pubsub-composition
+

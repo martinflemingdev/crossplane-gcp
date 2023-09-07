@@ -1,0 +1,8 @@
+apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+kind: PubSubTopic
+metadata: 
+  labels:
+    label-one: "value-one"
+  name: kcc-example-topic
+  namespace: config-control                     # controller is looking at this namespace
+# spec:                                         # all optional

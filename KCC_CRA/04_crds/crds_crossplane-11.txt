@@ -1,0 +1,11 @@
+compositeresourcedefinitions.apiextensions.crossplane.io                           2023-09-07T16:34:30Z
+compositionrevisions.apiextensions.crossplane.io                                   2023-09-07T16:34:30Z
+compositions.apiextensions.crossplane.io                                           2023-09-07T16:34:30Z
+configurationrevisions.pkg.crossplane.io                                           2023-09-07T16:34:30Z
+configurations.pkg.crossplane.io                                                   2023-09-07T16:34:30Z
+controllerconfigs.pkg.crossplane.io                                                2023-09-07T16:34:30Z
+environmentconfigs.apiextensions.crossplane.io                                     2023-09-07T16:34:30Z
+locks.pkg.crossplane.io                                                            2023-09-07T16:34:30Z
+providerrevisions.pkg.crossplane.io                                                2023-09-07T16:34:30Z
+providers.pkg.crossplane.io                                                        2023-09-07T16:34:30Z
+storeconfigs.secrets.crossplane.io                                                 2023-09-07T16:34:30Z

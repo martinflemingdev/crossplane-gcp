@@ -1,0 +1,9 @@
+apiVersion: infra.sample.org/v1alpha1
+kind: XPubSub
+metadata:
+  name: pubsubcmp01
+spec:
+  ackDeadlineSeconds: 15
+  compositionRef:
+    name: kcc-pubsub-composition
+

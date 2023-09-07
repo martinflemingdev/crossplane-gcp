@@ -1,0 +1,39 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: kcc-pubsub-composition
+spec:
+  compositeTypeRef:
+    apiVersion: infra.sample.org/v1alpha1
+    kind: XPubSub
+  resources:
+  - name: pubsubsubscription
+    base:
+      apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+      kind: PubSubSubscription
+      metadata:
+        labels:
+          label-one: "kcc-composite"
+        namespace: "config-control"
+      spec:
+        messageRetentionDuration: 86400s
+        retainAckedMessages: false
+    patches:
+    - type: FromCompositeFieldPath
+      fromFieldPath: spec.ackDeadlineSeconds
+      toFieldPath: spec.ackDeadlineSeconds
+    - type: FromCompositeFieldPath
+      fromFieldPath: status.topicRefName
+      toFieldPath: spec.topicRef.name
+  - name: pubsubsubtopic
+    base:
+      apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+      kind: PubSubTopic
+      metadata:
+        labels:
+          label-one: "kcc-composite"
+        namespace: "config-control"
+    patches:
+    - type: ToCompositeFieldPath
+      fromFieldPath: metadata.name
+      toFieldPath: status.topicRefName

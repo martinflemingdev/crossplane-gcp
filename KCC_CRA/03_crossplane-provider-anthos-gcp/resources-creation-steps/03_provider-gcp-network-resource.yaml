@@ -1,0 +1,14 @@
+apiVersion: compute.gcp.gke.cloud.google.com/v1beta1
+kind: Network
+metadata:
+  name: provideranthosgcp
+spec:
+  forProvider: {}
+#     autoCreateSubnetworks: null
+#     deleteDefaultRoutesOnCreate: null
+#     description: null
+#     enableUlaInternalIpv6: null
+#     internalIpv6Range: null
+#     mtu: null
+#     project: null
+#     routingMode: null

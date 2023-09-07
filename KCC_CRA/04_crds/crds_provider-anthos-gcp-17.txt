@@ -1,0 +1,17 @@
+clients.containerazure.gcp.gke.cloud.google.com                                    2023-09-07T16:35:19Z
+clusterbootstrapjobs.containerattached.gcp.gke.cloud.google.com                    2023-09-07T16:35:19Z
+clusters.container.gcp.gke.cloud.google.com                                        2023-09-07T16:35:20Z
+clusters.containerattached.gcp.gke.cloud.google.com                                2023-09-07T16:35:19Z
+clusters.containeraws.gcp.gke.cloud.google.com                                     2023-09-07T16:35:19Z
+clusters.containerazure.gcp.gke.cloud.google.com                                   2023-09-07T16:35:20Z
+membershipiammembers.gkehub.gcp.gke.cloud.google.com                               2023-09-07T16:35:20Z
+memberships.gkehub.gcp.gke.cloud.google.com                                        2023-09-07T16:35:20Z
+networks.compute.gcp.gke.cloud.google.com                                          2023-09-07T16:35:19Z
+nodepools.container.gcp.gke.cloud.google.com                                       2023-09-07T16:35:19Z
+nodepools.containeraws.gcp.gke.cloud.google.com                                    2023-09-07T16:35:19Z
+nodepools.containerazure.gcp.gke.cloud.google.com                                  2023-09-07T16:35:20Z
+providerconfigs.gcp.gke.cloud.google.com                                           2023-09-07T16:35:20Z
+providerconfigusages.gcp.gke.cloud.google.com                                      2023-09-07T16:35:20Z
+registries.container.gcp.gke.cloud.google.com                                      2023-09-07T16:35:19Z
+storeconfigs.gcp.gke.cloud.google.com                                              2023-09-07T16:35:20Z
+subnetworks.compute.gcp.gke.cloud.google.com                                       2023-09-07T16:35:19Z
