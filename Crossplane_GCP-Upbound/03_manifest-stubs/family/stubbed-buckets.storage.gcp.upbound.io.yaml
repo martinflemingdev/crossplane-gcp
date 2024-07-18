@@ -1,4 +1,4 @@
-apiVersion: storage.gcp.upbound.io/v1beta2
+apiVersion: storage.gcp.upbound.io/v1beta1
 kind: Bucket
 metadata:
   name: stubbed-bucket.storage.gcp.upbound.io

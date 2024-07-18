@@ -23,6 +23,6 @@ while IFS= read -r line; do
   # Extract the first column (CRD name)
   crd_name=$(echo "$line" | awk '{print $1}')
   
-  # Issue the kubectl command and save the output to a YAML file
+  # Get crd and save the output to a YAML file
   kubectl get crd "$crd_name" -o yaml > "${crd_name}.yaml"
 done <<< "$crds"

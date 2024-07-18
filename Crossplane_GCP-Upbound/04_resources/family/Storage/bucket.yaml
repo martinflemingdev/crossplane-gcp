@@ -5,7 +5,7 @@ metadata:
     meta.upbound.io/example-id: storage/v1beta1/notification
   labels:
     testing.upbound.io/example-name: bucket
-  name: bucket-${Rand.RFC1123Subdomain}
+  name: gcp-provider-family-bucket
 spec:
   forProvider:
     location: US
