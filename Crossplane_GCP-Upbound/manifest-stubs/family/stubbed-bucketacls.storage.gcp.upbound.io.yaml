@@ -1,0 +1,12 @@
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: BucketACL
+metadata:
+  name: stubbed-bucketacl.storage.gcp.upbound.io
+spec:
+  forProvider:
+    bucket: null
+    bucketRef: null
+    bucketSelector: null
+    defaultAcl: null
+    predefinedAcl: null
+    roleEntity: null

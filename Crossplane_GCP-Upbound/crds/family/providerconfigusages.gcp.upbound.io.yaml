@@ -1,0 +1,173 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.14.0
+    kustomize.config.k8s.io/id: |
+      group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: providerconfigusages.gcp.upbound.io
+      version: v1
+  creationTimestamp: "2024-07-18T18:16:53Z"
+  generation: 1
+  name: providerconfigusages.gcp.upbound.io
+  ownerReferences:
+  - apiVersion: pkg.crossplane.io/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ProviderRevision
+    name: provider-family-gcp-0836f16ff957
+    uid: 8cb01970-30e7-4517-9d68-f25937073704
+  - apiVersion: pkg.crossplane.io/v1
+    blockOwnerDeletion: true
+    controller: false
+    kind: Provider
+    name: provider-family-gcp
+    uid: 7e919227-d221-4d10-bd89-8e3f27fdd09b
+  resourceVersion: "3163"
+  uid: 7489257d-ac41-415b-93b3-dd7cd37116c6
+spec:
+  conversion:
+    strategy: Webhook
+    webhook:
+      clientConfig:
+        caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUQyVENDQXNHZ0F3SUJBZ0lDQitZd0RRWUpLb1pJaHZjTkFRRUxCUUF3V2pFT01Bd0dBMVVFQmhNRlJXRnkKZEdneERqQU1CZ05WQkFnVEJVVmhjblJvTVE0d0RBWURWUVFIRXdWRllYSjBhREVUTUJFR0ExVUVDaE1LUTNKdgpjM053YkdGdVpURVRNQkVHQTFVRUF4TUtRM0p2YzNOd2JHRnVaVEFlRncweU5EQTNNVGd4T0RFMk5UTmFGdzB6Ck5EQTNNVGd4T0RFMk5UTmFNRm94RGpBTUJnTlZCQVlUQlVWaGNuUm9NUTR3REFZRFZRUUlFd1ZGWVhKMGFERU8KTUF3R0ExVUVCeE1GUldGeWRHZ3hFekFSQmdOVkJBb1RDa055YjNOemNHeGhibVV4RXpBUkJnTlZCQU1UQ2tOeQpiM056Y0d4aGJtVXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFDdnNtemt1NlVDClFCQ3czM24xeHUvZ3lBS1JJVnRmM0hMSDNOa0NLQVlvRWQ5aW5YRURBVjc0eVpueEJKa0tqSmdxVDZreWZsaGMKMWxJdjFmQmdQUmQxbHA4MzBVOEtqYk1LczhHOUpKU095dUxiKytheU5WYit2QnUzTHVwVWJlQVh6Q2hiUWdpWApMUlJhMkdnQ1o4TDJtYUZEYkJYZG5WajFwUVRiVE5sbGdQMll2VzRGaDcvcllsNkJjSnZzdUtoY2dZS01CSHBPCjBFQlhOVFliOGJOUXlENjhybEZQNjhsUlhUK3JUU1U5Wm5jQ05yeWpzZVF2MWYxYnRmaEIvNzFQWEt5ME1LTnUKYnJ5ZUhjMW9KbEpkZkZsOWtiL3ZFZ0RrNTJZZENyYzlHdmQrRGNudXhuM3FFTFpwQVZLellOdXFLQVplVjRpaAozbUduWlZETVI5RWRBZ01CQUFHamdhZ3dnYVV3RGdZRFZSMFBBUUgvQkFRREFnU3dNQk1HQTFVZEpRUU1NQW9HCkNDc0dBUVVGQndNQk1Bd0dBMVVkRXdFQi93UUNNQUF3Y0FZRFZSMFJCR2t3WjRJVGNISnZkbWxrWlhJdFptRnQKYVd4NUxXZGpjSUlsY0hKdmRtbGtaWEl0Wm1GdGFXeDVMV2RqY0M1amNtOXpjM0JzWVc1bExYTjVjM1JsYllJcApjSEp2ZG1sa1pYSXRabUZ0YVd4NUxXZGpjQzVqY205emMzQnNZVzVsTFhONWMzUmxiUzV6ZG1Nd0RRWUpLb1pJCmh2Y05BUUVMQlFBRGdnRUJBRjUyRjEvRXRHemN3ZVVNVHFYS2NtZW5STjdOeStMQ1h0ditjeDhhcWRnamxlTW0KcFBIbVV5WXA3SVY4MkxtV2VlL1Vjb3lqUk5lUi9sTTlyUVVaMktIenoyYlNYekNyZjdYZDBvckVHMHdhSWJJQgpmVTNwRWtsOXFNczI5KzA2OGFYQUFvNlI3M01YUkJXMVp4bE5ScmxhVk5uT2NWRFJvTmh4U3VvOW8vVHZIYlhFClUzb3N6eHV2L1V4K2paM1I5cVZvOWZFYjFzdlFHYnM2OG9ia1B4WU82NGsvTzNxQzEwOExMUjQ4YmV5d0k4NjIKZ1F5VHlhTlE1aW1FRkhyK2NmTk5EU2VLNzNhV0pKcHo5TkY3bU9jYWpDZ3AxZ1YrcWx2TDE3cWE1OFBnbnArcApMMWpRSG5qUjFuN3lWSFh4REpobkJLWUViRWFZUWZUM0t3WkZsT3M9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+        service:
+          name: provider-family-gcp
+          namespace: crossplane-system
+          path: /convert
+          port: 9443
+      conversionReviewVersions:
+      - v1
+  group: gcp.upbound.io
+  names:
+    categories:
+    - crossplane
+    - providerconfig
+    - gcp
+    kind: ProviderConfigUsage
+    listKind: ProviderConfigUsageList
+    plural: providerconfigusages
+    singular: providerconfigusage
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    - jsonPath: .providerConfigRef.name
+      name: CONFIG-NAME
+      type: string
+    - jsonPath: .resourceRef.kind
+      name: RESOURCE-KIND
+      type: string
+    - jsonPath: .resourceRef.name
+      name: RESOURCE-NAME
+      type: string
+    name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: A ProviderConfigUsage indicates that a resource is using a ProviderConfig.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          providerConfigRef:
+            description: ProviderConfigReference to the provider config being used.
+            properties:
+              name:
+                description: Name of the referenced object.
+                type: string
+              policy:
+                description: Policies for referencing.
+                properties:
+                  resolution:
+                    default: Required
+                    description: |-
+                      Resolution specifies whether resolution of this reference is required.
+                      The default is 'Required', which means the reconcile will fail if the
+                      reference cannot be resolved. 'Optional' means this reference will be
+                      a no-op if it cannot be resolved.
+                    enum:
+                    - Required
+                    - Optional
+                    type: string
+                  resolve:
+                    description: |-
+                      Resolve specifies when this reference should be resolved. The default
+                      is 'IfNotPresent', which will attempt to resolve the reference only when
+                      the corresponding field is not present. Use 'Always' to resolve the
+                      reference on every reconcile.
+                    enum:
+                    - Always
+                    - IfNotPresent
+                    type: string
+                type: object
+            required:
+            - name
+            type: object
+          resourceRef:
+            description: ResourceReference to the managed resource using the provider
+              config.
+            properties:
+              apiVersion:
+                description: APIVersion of the referenced object.
+                type: string
+              kind:
+                description: Kind of the referenced object.
+                type: string
+              name:
+                description: Name of the referenced object.
+                type: string
+              uid:
+                description: UID of the referenced object.
+                type: string
+            required:
+            - apiVersion
+            - kind
+            - name
+            type: object
+        required:
+        - providerConfigRef
+        - resourceRef
+        type: object
+    served: true
+    storage: true
+    subresources: {}
+status:
+  acceptedNames:
+    categories:
+    - crossplane
+    - providerconfig
+    - gcp
+    kind: ProviderConfigUsage
+    listKind: ProviderConfigUsageList
+    plural: providerconfigusages
+    singular: providerconfigusage
+  conditions:
+  - lastTransitionTime: "2024-07-18T18:16:53Z"
+    message: no conflicts found
+    reason: NoConflicts
+    status: "True"
+    type: NamesAccepted
+  - lastTransitionTime: "2024-07-18T18:16:53Z"
+    message: the initial names have been accepted
+    reason: InitialNamesAccepted
+    status: "True"
+    type: Established
+  storedVersions:
+  - v1beta1

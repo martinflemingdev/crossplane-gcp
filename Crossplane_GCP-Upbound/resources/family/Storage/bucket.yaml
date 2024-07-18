@@ -1,0 +1,12 @@
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: Bucket
+metadata:
+  annotations:
+    meta.upbound.io/example-id: storage/v1beta1/notification
+  labels:
+    testing.upbound.io/example-name: bucket
+  name: bucket-${Rand.RFC1123Subdomain}
+spec:
+  forProvider:
+    location: US
+    forceDestroy: true

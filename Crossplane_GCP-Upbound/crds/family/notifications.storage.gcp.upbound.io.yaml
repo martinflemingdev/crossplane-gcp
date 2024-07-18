@@ -1,0 +1,794 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.14.0
+    kustomize.config.k8s.io/id: |
+      group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: notifications.storage.gcp.upbound.io
+      version: v1
+  creationTimestamp: "2024-07-18T18:16:59Z"
+  generation: 1
+  name: notifications.storage.gcp.upbound.io
+  ownerReferences:
+  - apiVersion: pkg.crossplane.io/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ProviderRevision
+    name: provider-gcp-storage-58288c1e38fe
+    uid: 36e90a91-4b06-4f8d-84d0-69e0378ab782
+  - apiVersion: pkg.crossplane.io/v1
+    blockOwnerDeletion: true
+    controller: false
+    kind: Provider
+    name: provider-gcp-storage
+    uid: 3ccb6b9c-ae87-4a4a-82a7-19d2ce73df00
+  resourceVersion: "3281"
+  uid: 19c7363b-50f8-4bce-8515-6b68fb664f87
+spec:
+  conversion:
+    strategy: Webhook
+    webhook:
+      clientConfig:
+        caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUQzRENDQXNTZ0F3SUJBZ0lDQitZd0RRWUpLb1pJaHZjTkFRRUxCUUF3V2pFT01Bd0dBMVVFQmhNRlJXRnkKZEdneERqQU1CZ05WQkFnVEJVVmhjblJvTVE0d0RBWURWUVFIRXdWRllYSjBhREVUTUJFR0ExVUVDaE1LUTNKdgpjM053YkdGdVpURVRNQkVHQTFVRUF4TUtRM0p2YzNOd2JHRnVaVEFlRncweU5EQTNNVGd4T0RFMk5UaGFGdzB6Ck5EQTNNVGd4T0RFMk5UaGFNRm94RGpBTUJnTlZCQVlUQlVWaGNuUm9NUTR3REFZRFZRUUlFd1ZGWVhKMGFERU8KTUF3R0ExVUVCeE1GUldGeWRHZ3hFekFSQmdOVkJBb1RDa055YjNOemNHeGhibVV4RXpBUkJnTlZCQU1UQ2tOeQpiM056Y0d4aGJtVXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFDeG43Q0p0MGFJCnZnZGZFSjFpdkVBOHNwZWhxL2lGTDJqK3Y4NU1DakhFbnYwMHVIcHRKd2dwNllTei9lR3JDWEhYVVkyalZPNHAKaGdLdVRhYjVYWnNaeENXblQvWlZ3bFVlcFdhcUtONW1xRFVpaUpoWmZ6QzJxdURZSklLT0M4MHF1b21IdXNWUwo5aXFrRy9KZWhnczZVUUJsaHBIMW5yak5Vc2cvd2Y3UnhDbERiakZxMjY5ZGxFYkdReXdhM2Z6QmF5dUtxU1pRCndlaTBZMzVja2lyUW1MVXU1bHovd3p5alJKbDU5L1cwSFF5MGVpblY2M1FKVzd5dlVNVC9pZzl3dkpJeWduT0MKQ2xwOXZwQzhkS2hHZ3gzTDFIUDBld3FmZFlyTUlxR2Vnb0ZqK0dWQytqWFJvU2xva014WHBOT1RFVzJqWDRGQQpuZkxQL2xoYkkvczFBZ01CQUFHamdhc3dnYWd3RGdZRFZSMFBBUUgvQkFRREFnU3dNQk1HQTFVZEpRUU1NQW9HCkNDc0dBUVVGQndNQk1Bd0dBMVVkRXdFQi93UUNNQUF3Y3dZRFZSMFJCR3d3YW9JVWNISnZkbWxrWlhJdFoyTncKTFhOMGIzSmhaMldDSm5CeWIzWnBaR1Z5TFdkamNDMXpkRzl5WVdkbExtTnliM056Y0d4aGJtVXRjM2x6ZEdWdApnaXB3Y205MmFXUmxjaTFuWTNBdGMzUnZjbUZuWlM1amNtOXpjM0JzWVc1bExYTjVjM1JsYlM1emRtTXdEUVlKCktvWklodmNOQVFFTEJRQURnZ0VCQU5ZYjI1ZG9tZnV4MjJZdkxrTjBaYTg0dlFJREdGVDVoYlk0UTZieXpJbTkKWEppU3lkOTZ4TXpGZGVOc0NhZW4vU2dwYzNxNWRFMG5FMVhlY2N2Uzl2bzRwakFVM3hjZjUveDZkTUN5UUg1ZQpBbmYvS2hLaFQrVG95R1NyWFZKS01aQzI3VHZac0g0Z1NDNlU1SVBFdFQ1c2pWcEdLSFJvM2VXSThLRjc2WnpVCmZJSmI1aXZHNjdlZ0tRL3gxSUNpN3p1Rjhjb2x4NUlrcThOM3h5WEI2NXVjbStvdFNJTEI4SmR6dTJuK203MFkKcUx4YUJPeDU2ZWZXV2FVdVJFTlgwTEx0REcxMUo2WlQwSFcwa3BOVUFsYzJnVEVCYzFla1hIWVhyM3ZCa2lFOApGOHVWN0kvKzM1SnV4N004UWdUNGdqSmdLVXp2QUczbFFSZHNvZy96QS9FPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+        service:
+          name: provider-gcp-storage
+          namespace: crossplane-system
+          path: /convert
+          port: 9443
+      conversionReviewVersions:
+      - v1
+  group: storage.gcp.upbound.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - gcp
+    kind: Notification
+    listKind: NotificationList
+    plural: notifications
+    singular: notification
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: Notification is the Schema for the Notifications API. Creates
+          a new notification configuration on a specified bucket.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: NotificationSpec defines the desired state of Notification
+            properties:
+              deletionPolicy:
+                default: Delete
+                description: |-
+                  DeletionPolicy specifies what will happen to the underlying external
+                  when this managed resource is deleted - either "Delete" or "Orphan" the
+                  external resource.
+                  This field is planned to be deprecated in favor of the ManagementPolicies
+                  field in a future release. Currently, both could be set independently and
+                  non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                enum:
+                - Orphan
+                - Delete
+                type: string
+              forProvider:
+                properties:
+                  bucket:
+                    description: The name of the bucket.
+                    type: string
+                  bucketRef:
+                    description: Reference to a Bucket in storage to populate bucket.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  bucketSelector:
+                    description: Selector for a Bucket in storage to populate bucket.
+                    properties:
+                      matchControllerRef:
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  customAttributes:
+                    additionalProperties:
+                      type: string
+                    description: A set of key/value attribute pairs to attach to each
+                      Cloud PubSub message published for this notification subscription
+                    type: object
+                    x-kubernetes-map-type: granular
+                  eventTypes:
+                    description: 'List of event type filters for this notification
+                      config. If not specified, Cloud Storage will send notifications
+                      for all event types. The valid types are: "OBJECT_FINALIZE",
+                      "OBJECT_METADATA_UPDATE", "OBJECT_DELETE", "OBJECT_ARCHIVE"'
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
+                  objectNamePrefix:
+                    description: Specifies a prefix path filter for this notification
+                      config. Cloud Storage will only send notifications for objects
+                      in this bucket whose names begin with the specified prefix.
+                    type: string
+                  payloadFormat:
+                    description: The desired content of the Payload. One of "JSON_API_V1"
+                      or "NONE".
+                    type: string
+                  topic:
+                    description: |-
+                      The Cloud PubSub topic to which this subscription publishes. Expects either the
+                      topic name, assumed to belong to the default GCP provider project, or the project-level name,
+                      i.e. projects/my-gcp-project/topics/my-topic or my-topic. If the project is not set in the provider,
+                      you will need to use the project-level name.
+                    type: string
+                  topicRef:
+                    description: Reference to a Topic in pubsub to populate topic.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  topicSelector:
+                    description: Selector for a Topic in pubsub to populate topic.
+                    properties:
+                      matchControllerRef:
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                type: object
+              initProvider:
+                description: |-
+                  THIS IS A BETA FIELD. It will be honored
+                  unless the Management Policies feature flag is disabled.
+                  InitProvider holds the same fields as ForProvider, with the exception
+                  of Identifier and other resource reference fields. The fields that are
+                  in InitProvider are merged into ForProvider when the resource is created.
+                  The same fields are also added to the terraform ignore_changes hook, to
+                  avoid updating them after creation. This is useful for fields that are
+                  required on creation, but we do not desire to update them after creation,
+                  for example because of an external controller is managing them, like an
+                  autoscaler.
+                properties:
+                  bucket:
+                    description: The name of the bucket.
+                    type: string
+                  bucketRef:
+                    description: Reference to a Bucket in storage to populate bucket.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  bucketSelector:
+                    description: Selector for a Bucket in storage to populate bucket.
+                    properties:
+                      matchControllerRef:
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  customAttributes:
+                    additionalProperties:
+                      type: string
+                    description: A set of key/value attribute pairs to attach to each
+                      Cloud PubSub message published for this notification subscription
+                    type: object
+                    x-kubernetes-map-type: granular
+                  eventTypes:
+                    description: 'List of event type filters for this notification
+                      config. If not specified, Cloud Storage will send notifications
+                      for all event types. The valid types are: "OBJECT_FINALIZE",
+                      "OBJECT_METADATA_UPDATE", "OBJECT_DELETE", "OBJECT_ARCHIVE"'
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
+                  objectNamePrefix:
+                    description: Specifies a prefix path filter for this notification
+                      config. Cloud Storage will only send notifications for objects
+                      in this bucket whose names begin with the specified prefix.
+                    type: string
+                  payloadFormat:
+                    description: The desired content of the Payload. One of "JSON_API_V1"
+                      or "NONE".
+                    type: string
+                  topic:
+                    description: |-
+                      The Cloud PubSub topic to which this subscription publishes. Expects either the
+                      topic name, assumed to belong to the default GCP provider project, or the project-level name,
+                      i.e. projects/my-gcp-project/topics/my-topic or my-topic. If the project is not set in the provider,
+                      you will need to use the project-level name.
+                    type: string
+                  topicRef:
+                    description: Reference to a Topic in pubsub to populate topic.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  topicSelector:
+                    description: Selector for a Topic in pubsub to populate topic.
+                    properties:
+                      matchControllerRef:
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                type: object
+              managementPolicies:
+                default:
+                - '*'
+                description: |-
+                  THIS IS A BETA FIELD. It is on by default but can be opted out
+                  through a Crossplane feature flag.
+                  ManagementPolicies specify the array of actions Crossplane is allowed to
+                  take on the managed and external resources.
+                  This field is planned to replace the DeletionPolicy field in a future
+                  release. Currently, both could be set independently and non-default
+                  values would be honored if the feature flag is enabled. If both are
+                  custom, the DeletionPolicy field will be ignored.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                  and this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md
+                items:
+                  description: |-
+                    A ManagementAction represents an action that the Crossplane controllers
+                    can take on an external resource.
+                  enum:
+                  - Observe
+                  - Create
+                  - Update
+                  - Delete
+                  - LateInitialize
+                  - '*'
+                  type: string
+                type: array
+              providerConfigRef:
+                default:
+                  name: default
+                description: |-
+                  ProviderConfigReference specifies how the provider that will be used to
+                  create, observe, update, and delete this managed resource should be
+                  configured.
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: |-
+                          Resolution specifies whether resolution of this reference is required.
+                          The default is 'Required', which means the reconcile will fail if the
+                          reference cannot be resolved. 'Optional' means this reference will be
+                          a no-op if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: |-
+                          Resolve specifies when this reference should be resolved. The default
+                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                          the corresponding field is not present. Use 'Always' to resolve the
+                          reference on every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              publishConnectionDetailsTo:
+                description: |-
+                  PublishConnectionDetailsTo specifies the connection secret config which
+                  contains a name, metadata and a reference to secret store config to
+                  which any connection details for this managed resource should be written.
+                  Connection details frequently include the endpoint, username,
+                  and password required to connect to the managed resource.
+                properties:
+                  configRef:
+                    default:
+                      name: default
+                    description: |-
+                      SecretStoreConfigRef specifies which secret store config should be used
+                      for this ConnectionSecret.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  metadata:
+                    description: Metadata is the metadata for connection secret.
+                    properties:
+                      annotations:
+                        additionalProperties:
+                          type: string
+                        description: |-
+                          Annotations are the annotations to be added to connection secret.
+                          - For Kubernetes secrets, this will be used as "metadata.annotations".
+                          - It is up to Secret Store implementation for others store types.
+                        type: object
+                      labels:
+                        additionalProperties:
+                          type: string
+                        description: |-
+                          Labels are the labels/tags to be added to connection secret.
+                          - For Kubernetes secrets, this will be used as "metadata.labels".
+                          - It is up to Secret Store implementation for others store types.
+                        type: object
+                      type:
+                        description: |-
+                          Type is the SecretType for the connection secret.
+                          - Only valid for Kubernetes Secret Stores.
+                        type: string
+                    type: object
+                  name:
+                    description: Name is the name of the connection secret.
+                    type: string
+                required:
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: |-
+                  WriteConnectionSecretToReference specifies the namespace and name of a
+                  Secret to which any connection details for this managed resource should
+                  be written. Connection details frequently include the endpoint, username,
+                  and password required to connect to the managed resource.
+                  This field is planned to be replaced in a future release in favor of
+                  PublishConnectionDetailsTo. Currently, both could be set independently
+                  and connection details would be published to both without affecting
+                  each other.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                  namespace:
+                    description: Namespace of the secret.
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+            required:
+            - forProvider
+            type: object
+            x-kubernetes-validations:
+            - message: spec.forProvider.payloadFormat is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.payloadFormat)
+                || (has(self.initProvider) && has(self.initProvider.payloadFormat))'
+          status:
+            description: NotificationStatus defines the observed state of Notification.
+            properties:
+              atProvider:
+                properties:
+                  bucket:
+                    description: The name of the bucket.
+                    type: string
+                  customAttributes:
+                    additionalProperties:
+                      type: string
+                    description: A set of key/value attribute pairs to attach to each
+                      Cloud PubSub message published for this notification subscription
+                    type: object
+                    x-kubernetes-map-type: granular
+                  eventTypes:
+                    description: 'List of event type filters for this notification
+                      config. If not specified, Cloud Storage will send notifications
+                      for all event types. The valid types are: "OBJECT_FINALIZE",
+                      "OBJECT_METADATA_UPDATE", "OBJECT_DELETE", "OBJECT_ARCHIVE"'
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
+                  id:
+                    type: string
+                  notificationId:
+                    description: The ID of the created notification.
+                    type: string
+                  objectNamePrefix:
+                    description: Specifies a prefix path filter for this notification
+                      config. Cloud Storage will only send notifications for objects
+                      in this bucket whose names begin with the specified prefix.
+                    type: string
+                  payloadFormat:
+                    description: The desired content of the Payload. One of "JSON_API_V1"
+                      or "NONE".
+                    type: string
+                  selfLink:
+                    description: The URI of the created resource.
+                    type: string
+                  topic:
+                    description: |-
+                      The Cloud PubSub topic to which this subscription publishes. Expects either the
+                      topic name, assumed to belong to the default GCP provider project, or the project-level name,
+                      i.e. projects/my-gcp-project/topics/my-topic or my-topic. If the project is not set in the provider,
+                      you will need to use the project-level name.
+                    type: string
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        LastTransitionTime is the last time this condition transitioned from one
+                        status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        A Message containing details about this condition's last transition from
+                        one status to another, if any.
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        ObservedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      type: integer
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: |-
+                        Type of this condition. At most one of each condition type may apply to
+                        a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              observedGeneration:
+                description: |-
+                  ObservedGeneration is the latest metadata.generation
+                  which resulted in either a ready state, or stalled due to error
+                  it can not recover from without human intervention.
+                format: int64
+                type: integer
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    categories:
+    - crossplane
+    - managed
+    - gcp
+    kind: Notification
+    listKind: NotificationList
+    plural: notifications
+    singular: notification
+  conditions:
+  - lastTransitionTime: "2024-07-18T18:16:59Z"
+    message: no conflicts found
+    reason: NoConflicts
+    status: "True"
+    type: NamesAccepted
+  - lastTransitionTime: "2024-07-18T18:16:59Z"
+    message: the initial names have been accepted
+    reason: InitialNamesAccepted
+    status: "True"
+    type: Established
+  storedVersions:
+  - v1beta1

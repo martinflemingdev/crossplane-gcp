@@ -1,0 +1,279 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.14.0
+    kustomize.config.k8s.io/id: |
+      group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: storeconfigs.gcp.upbound.io
+      version: v1
+  creationTimestamp: "2024-07-18T18:16:53Z"
+  generation: 1
+  name: storeconfigs.gcp.upbound.io
+  ownerReferences:
+  - apiVersion: pkg.crossplane.io/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ProviderRevision
+    name: provider-family-gcp-0836f16ff957
+    uid: 8cb01970-30e7-4517-9d68-f25937073704
+  - apiVersion: pkg.crossplane.io/v1
+    blockOwnerDeletion: true
+    controller: false
+    kind: Provider
+    name: provider-family-gcp
+    uid: 7e919227-d221-4d10-bd89-8e3f27fdd09b
+  resourceVersion: "3161"
+  uid: e1127504-b1a6-40d5-89b3-0bca41cedd8f
+spec:
+  conversion:
+    strategy: Webhook
+    webhook:
+      clientConfig:
+        caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUQyVENDQXNHZ0F3SUJBZ0lDQitZd0RRWUpLb1pJaHZjTkFRRUxCUUF3V2pFT01Bd0dBMVVFQmhNRlJXRnkKZEdneERqQU1CZ05WQkFnVEJVVmhjblJvTVE0d0RBWURWUVFIRXdWRllYSjBhREVUTUJFR0ExVUVDaE1LUTNKdgpjM053YkdGdVpURVRNQkVHQTFVRUF4TUtRM0p2YzNOd2JHRnVaVEFlRncweU5EQTNNVGd4T0RFMk5UTmFGdzB6Ck5EQTNNVGd4T0RFMk5UTmFNRm94RGpBTUJnTlZCQVlUQlVWaGNuUm9NUTR3REFZRFZRUUlFd1ZGWVhKMGFERU8KTUF3R0ExVUVCeE1GUldGeWRHZ3hFekFSQmdOVkJBb1RDa055YjNOemNHeGhibVV4RXpBUkJnTlZCQU1UQ2tOeQpiM056Y0d4aGJtVXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFDdnNtemt1NlVDClFCQ3czM24xeHUvZ3lBS1JJVnRmM0hMSDNOa0NLQVlvRWQ5aW5YRURBVjc0eVpueEJKa0tqSmdxVDZreWZsaGMKMWxJdjFmQmdQUmQxbHA4MzBVOEtqYk1LczhHOUpKU095dUxiKytheU5WYit2QnUzTHVwVWJlQVh6Q2hiUWdpWApMUlJhMkdnQ1o4TDJtYUZEYkJYZG5WajFwUVRiVE5sbGdQMll2VzRGaDcvcllsNkJjSnZzdUtoY2dZS01CSHBPCjBFQlhOVFliOGJOUXlENjhybEZQNjhsUlhUK3JUU1U5Wm5jQ05yeWpzZVF2MWYxYnRmaEIvNzFQWEt5ME1LTnUKYnJ5ZUhjMW9KbEpkZkZsOWtiL3ZFZ0RrNTJZZENyYzlHdmQrRGNudXhuM3FFTFpwQVZLellOdXFLQVplVjRpaAozbUduWlZETVI5RWRBZ01CQUFHamdhZ3dnYVV3RGdZRFZSMFBBUUgvQkFRREFnU3dNQk1HQTFVZEpRUU1NQW9HCkNDc0dBUVVGQndNQk1Bd0dBMVVkRXdFQi93UUNNQUF3Y0FZRFZSMFJCR2t3WjRJVGNISnZkbWxrWlhJdFptRnQKYVd4NUxXZGpjSUlsY0hKdmRtbGtaWEl0Wm1GdGFXeDVMV2RqY0M1amNtOXpjM0JzWVc1bExYTjVjM1JsYllJcApjSEp2ZG1sa1pYSXRabUZ0YVd4NUxXZGpjQzVqY205emMzQnNZVzVsTFhONWMzUmxiUzV6ZG1Nd0RRWUpLb1pJCmh2Y05BUUVMQlFBRGdnRUJBRjUyRjEvRXRHemN3ZVVNVHFYS2NtZW5STjdOeStMQ1h0ditjeDhhcWRnamxlTW0KcFBIbVV5WXA3SVY4MkxtV2VlL1Vjb3lqUk5lUi9sTTlyUVVaMktIenoyYlNYekNyZjdYZDBvckVHMHdhSWJJQgpmVTNwRWtsOXFNczI5KzA2OGFYQUFvNlI3M01YUkJXMVp4bE5ScmxhVk5uT2NWRFJvTmh4U3VvOW8vVHZIYlhFClUzb3N6eHV2L1V4K2paM1I5cVZvOWZFYjFzdlFHYnM2OG9ia1B4WU82NGsvTzNxQzEwOExMUjQ4YmV5d0k4NjIKZ1F5VHlhTlE1aW1FRkhyK2NmTk5EU2VLNzNhV0pKcHo5TkY3bU9jYWpDZ3AxZ1YrcWx2TDE3cWE1OFBnbnArcApMMWpRSG5qUjFuN3lWSFh4REpobkJLWUViRWFZUWZUM0t3WkZsT3M9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+        service:
+          name: provider-family-gcp
+          namespace: crossplane-system
+          path: /convert
+          port: 9443
+      conversionReviewVersions:
+      - v1
+  group: gcp.upbound.io
+  names:
+    categories:
+    - crossplane
+    - store
+    - gcp
+    kind: StoreConfig
+    listKind: StoreConfigList
+    plural: storeconfigs
+    singular: storeconfig
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    - jsonPath: .spec.type
+      name: TYPE
+      type: string
+    - jsonPath: .spec.defaultScope
+      name: DEFAULT-SCOPE
+      type: string
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: A StoreConfig configures how GCP controller should store connection
+          details.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: A StoreConfigSpec defines the desired state of a ProviderConfig.
+            properties:
+              defaultScope:
+                description: |-
+                  DefaultScope used for scoping secrets for "cluster-scoped" resources.
+                  If store type is "Kubernetes", this would mean the default namespace to
+                  store connection secrets for cluster scoped resources.
+                  In case of "Vault", this would be used as the default parent path.
+                  Typically, should be set as Crossplane installation namespace.
+                type: string
+              kubernetes:
+                description: |-
+                  Kubernetes configures a Kubernetes secret store.
+                  If the "type" is "Kubernetes" but no config provided, in cluster config
+                  will be used.
+                properties:
+                  auth:
+                    description: Credentials used to connect to the Kubernetes API.
+                    properties:
+                      env:
+                        description: |-
+                          Env is a reference to an environment variable that contains credentials
+                          that must be used to connect to the provider.
+                        properties:
+                          name:
+                            description: Name is the name of an environment variable.
+                            type: string
+                        required:
+                        - name
+                        type: object
+                      fs:
+                        description: |-
+                          Fs is a reference to a filesystem location that contains credentials that
+                          must be used to connect to the provider.
+                        properties:
+                          path:
+                            description: Path is a filesystem path.
+                            type: string
+                        required:
+                        - path
+                        type: object
+                      secretRef:
+                        description: |-
+                          A SecretRef is a reference to a secret key that contains the credentials
+                          that must be used to connect to the provider.
+                        properties:
+                          key:
+                            description: The key to select.
+                            type: string
+                          name:
+                            description: Name of the secret.
+                            type: string
+                          namespace:
+                            description: Namespace of the secret.
+                            type: string
+                        required:
+                        - key
+                        - name
+                        - namespace
+                        type: object
+                      source:
+                        description: Source of the credentials.
+                        enum:
+                        - None
+                        - Secret
+                        - Environment
+                        - Filesystem
+                        type: string
+                    required:
+                    - source
+                    type: object
+                required:
+                - auth
+                type: object
+              plugin:
+                description: Plugin configures External secret store as a plugin.
+                properties:
+                  configRef:
+                    description: ConfigRef contains store config reference info.
+                    properties:
+                      apiVersion:
+                        description: APIVersion of the referenced config.
+                        type: string
+                      kind:
+                        description: Kind of the referenced config.
+                        type: string
+                      name:
+                        description: Name of the referenced config.
+                        type: string
+                    required:
+                    - apiVersion
+                    - kind
+                    - name
+                    type: object
+                  endpoint:
+                    description: Endpoint is the endpoint of the gRPC server.
+                    type: string
+                type: object
+              type:
+                default: Kubernetes
+                description: |-
+                  Type configures which secret store to be used. Only the configuration
+                  block for this store will be used and others will be ignored if provided.
+                  Default is Kubernetes.
+                enum:
+                - Kubernetes
+                - Vault
+                - Plugin
+                type: string
+            required:
+            - defaultScope
+            type: object
+          status:
+            description: A StoreConfigStatus represents the status of a StoreConfig.
+            properties:
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        LastTransitionTime is the last time this condition transitioned from one
+                        status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        A Message containing details about this condition's last transition from
+                        one status to another, if any.
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        ObservedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      type: integer
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: |-
+                        Type of this condition. At most one of each condition type may apply to
+                        a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    categories:
+    - crossplane
+    - store
+    - gcp
+    kind: StoreConfig
+    listKind: StoreConfigList
+    plural: storeconfigs
+    singular: storeconfig
+  conditions:
+  - lastTransitionTime: "2024-07-18T18:16:53Z"
+    message: no conflicts found
+    reason: NoConflicts
+    status: "True"
+    type: NamesAccepted
+  - lastTransitionTime: "2024-07-18T18:16:53Z"
+    message: the initial names have been accepted
+    reason: InitialNamesAccepted
+    status: "True"
+    type: Established
+  storedVersions:
+  - v1alpha1

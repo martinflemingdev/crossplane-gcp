@@ -1,0 +1,11 @@
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: BucketAccessControl
+metadata:
+  name: stubbed-bucketaccesscontrol.storage.gcp.upbound.io
+spec:
+  forProvider:
+    bucket: null
+    bucketRef: null
+    bucketSelector: null
+    entity: null
+    role: null

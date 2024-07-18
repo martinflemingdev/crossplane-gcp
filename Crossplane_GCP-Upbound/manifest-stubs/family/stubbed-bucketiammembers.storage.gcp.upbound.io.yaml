@@ -1,0 +1,12 @@
+apiVersion: storage.gcp.upbound.io/v1beta2
+kind: BucketIAMMember
+metadata:
+  name: stubbed-bucketiammember.storage.gcp.upbound.io
+spec:
+  forProvider:
+    bucket: null
+    bucketRef: null
+    bucketSelector: null
+    condition: null
+    member: null
+    role: null

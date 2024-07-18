@@ -1,0 +1,16 @@
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: Notification
+metadata:
+  name: stubbed-notification.storage.gcp.upbound.io
+spec:
+  forProvider:
+    bucket: null
+    bucketRef: null
+    bucketSelector: null
+    customAttributes: null
+    eventTypes: null
+    objectNamePrefix: null
+    payloadFormat: null
+    topic: null
+    topicRef: null
+    topicSelector: null

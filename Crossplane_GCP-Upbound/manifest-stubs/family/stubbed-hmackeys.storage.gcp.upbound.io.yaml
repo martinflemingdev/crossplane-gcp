@@ -1,0 +1,11 @@
+apiVersion: storage.gcp.upbound.io/v1beta1
+kind: HMACKey
+metadata:
+  name: stubbed-hmackey.storage.gcp.upbound.io
+spec:
+  forProvider:
+    project: null
+    serviceAccountEmail: null
+    serviceAccountEmailRef: null
+    serviceAccountEmailSelector: null
+    state: null
