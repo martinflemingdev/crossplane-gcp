@@ -1,0 +1,7 @@
+create:
+- pool (just a name and description)
+- add poolProvider linking to a AWS by account ID
+- configure provider attributes
+attribute-mapping:
+- google.subject = assertion.arn
+- attribute.aws_role = assertion.arn.contains('assumed-role') ? assertion.arn.extract('{account_arn}assumed-role/') + 'assumed-role/' + assertion.arn.extract('assumed-role/{role_name}/') : assertion.arn

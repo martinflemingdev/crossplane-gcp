@@ -1,0 +1,5 @@
+enable:
+- Identity and Access Management (IAM) API
+- Cloud Resource Manager API
+- IAM Service Account Credentials API
+- Security Token Service API

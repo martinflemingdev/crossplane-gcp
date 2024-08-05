@@ -1,0 +1,3 @@
+workload identity pool:
+- grant access using Service Account impersonation
+- attribute name: subject -> attribute value fill in ARN for IAM Role 
