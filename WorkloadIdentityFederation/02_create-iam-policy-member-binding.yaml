@@ -1,0 +1,7 @@
+policy member binding:
+- reference a project
+- reference a roles/storage.admin (role=set of permissions/actions)
+- reference a iam role thru workload federation using principleSet
+
+# PRINCIPAL SET FORMAT
+# principalSet://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_NAME/attribute.aws_role/arn:aws:sts::011882408883:assumed-role/gcp-youtube-demo
