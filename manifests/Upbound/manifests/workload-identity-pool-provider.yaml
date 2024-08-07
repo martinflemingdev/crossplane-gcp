@@ -1,0 +1,17 @@
+apiVersion: iam.gcp.upbound.io/v1beta1
+kind: WorkloadIdentityPoolProvider
+metadata:
+  name: upbound-workdload-id-provider # becomes ID (not display name), ID needs to be 32 characters or less
+spec:
+  forProvider:
+    attributeMapping: 
+      google.subject: assertion.arn
+      attribute.aws_role: "assertion.arn.contains('assumed-role') ? assertion.arn.extract('{account_arn}assumed-role/') + 'assumed-role/' + assertion.arn.extract('assumed-role/{role_name}/') : assertion.arn"
+    aws:
+      - accountId: "011882408883"
+    description: "A sample workload identity pool provider using a newly created project"
+    displayName: upbound-workdload-id-provider  # 32 character max
+    disabled: false
+    project: axial-life-395119 # ID
+    workloadIdentityPoolIdRef:
+      name: upbound-workload-identity-pool

@@ -1,4 +1,8 @@
-$ ssh -i /home/martinfleming/src/crossplane/gcp/crossplane-gcp/gcp.pem ec2-user@184.73.120.8
+# CONSOLE/CLI
+ssh -i /home/martinfleming/src/crossplane/gcp/crossplane-gcp/gcp.pem ec2-user@184.73.120.8
+
+# Upbound 
+ssh -i /home/martinfleming/src/crossplane/gcp/crossplane-gcp/gcp.pem ec2-user@34.228.200.191
 
 # list pools
 gcloud iam workload-identity-pools list --location="global"

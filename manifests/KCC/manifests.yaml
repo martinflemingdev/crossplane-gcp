@@ -39,11 +39,11 @@ kind: IAMPolicyMember
 metadata:
   name: iampolicymember-sample-projlevel
 spec:
-  member: principalSet://iam.googleapis.com/projects/workloadidfederation/locations/global/workloadIdentityPools/youtube-demo/providers/youtube-demo-provider/attribute.aws_role/arn:aws:iam::011882408883:role/gcp-youtube-demo
+  member: principalSet://iam.googleapis.com/projects/1234567890/locations/global/workloadIdentityPools/youtube-demo/attribute.aws_role/arn:aws:iam::011882408883:role/gcp-youtube-demo
   role: roles/storage.admin
   resourceRef:
     kind: Project
     external: projects/${PROJECT_ID?}
 ---
-   #      principalSet://iam.googleapis.com/projects/${PROJECT_ID}/locations/global/workloadIdentityPools/${POOL_NAME}/attribute.aws_role/arn:aws:iam::${AWS_ACCOUNT_ID}:role/${ROLE_NAME}
+   #      principalSet://iam.googleapis.com/projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/${POOL_NAME}/attribute.aws_role/arn:aws:iam::${AWS_ACCOUNT_ID}:role/${ROLE_NAME}
 # principalSet://iam.googleapis.com/projects/workloadidfederation/locations/global/workloadIdentityPools/youtube-demo/providers/youtube-demo-provider/attribute.aws_role/arn:aws:iam::011882408883:role/gcp-youtube-demo

@@ -1,0 +1,13 @@
+apiVersion: cloudplatform.gcp.upbound.io/v1beta1
+kind: ProjectIAMMember
+metadata:
+  name: project-iam-member
+spec:
+  forProvider:
+    member: principalSet://iam.googleapis.com/projects/376994270622/locations/global/workloadIdentityPools/upbound-workload-identity-pool/attribute.aws_role/arn:aws:sts::011882408883:assumed-role/gcp-upbound
+    project: axial-life-395119
+    role: roles/storage.admin
+
+# PRINCIPAL SET FORMAT
+
+# principalSet://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/upbound-workload-identity-pool/attribute.aws_role/arn:aws:sts::011882408883:assumed-role/gcp-youtube-demo

@@ -1,0 +1,10 @@
+apiVersion: iam.gcp.upbound.io/v1beta1
+kind: WorkloadIdentityPool
+metadata:
+  name: upbound-workload-identity-pool
+spec:
+  forProvider:
+    description: "A sample workload identity pool using a newly created project"
+    disabled: false
+    displayName: upbound-workload-identity-pool
+    project: axial-life-395119 # ID
