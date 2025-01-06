@@ -1,12 +1,7 @@
 apiVersion: storage.gcp.upbound.io/v1beta1
 kind: Bucket
 metadata:
-  annotations:
-    meta.upbound.io/example-id: storage/v1beta1/notification
-  labels:
-    testing.upbound.io/example-name: bucket
-  name: gcp-provider-family-bucket
+  name: gcp-provider-family-bucket-mf123
 spec:
   forProvider:
     location: US
-    forceDestroy: true
