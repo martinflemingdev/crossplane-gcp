@@ -1,0 +1,16 @@
+apiVersion: bigquery.gcp.upbound.io/v1beta2
+kind: Dataset
+metadata:
+  name: tftest
+  labels:
+    foo: bar
+spec:
+  forProvider:
+    description: This is a test description
+    friendlyName: test
+    location: US
+  managementPolicies:
+    - Create
+    - Update
+    - Delete
+    - Observe

@@ -1,0 +1,12 @@
+apiVersion: bigquery.gcp.upbound.io/v1beta2
+kind: DatasetIAMMember
+metadata:
+  name: dataset-terraform-test
+spec:
+  forProvider:
+    datasetIdSelector:
+      matchLabels:
+        foo: bar
+    member: user:martinflemingdev@gmail.com
+    role: roles/bigquery.dataEditor
+    project: axial-life-395119
