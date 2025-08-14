@@ -1,0 +1,23 @@
+# apiVersion: vertexai.gcp.upbound.io/v1beta1
+# kind: Endpoint
+# metadata:
+#   name: demo-endpoint            
+# spec:
+#   forProvider:
+#     location: us-central1        # required
+#     region: us-central1
+#     displayName: crossplane-demo # required
+#     project: axial-life-395119 # required
+---
+apiVersion: vertexai.gcp-beta.upbound.io/v1beta1
+kind: Endpoint
+metadata:
+  name: sydney-endpoint
+  labels:
+    endpoint-name: sydney-endpoint
+spec:
+  forProvider:
+    displayName: sydney-endpoint
+    region: australia-southeast1
+    location: australia-southeast1
+    project: axial-life-395119

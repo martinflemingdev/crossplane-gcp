@@ -1,0 +1,25 @@
+# apiVersion: vertexai.gcp.upbound.io/v1beta1
+# kind: EndpointIAMMember
+# metadata:
+#   name: demo-endpoint-viewer
+# spec:
+#   forProvider:
+#     location: us-central1
+#     endpoint: projects/axial-life-395119/locations/us-central1/endpoints/demo-endpoint
+#     role: roles/aiplatform.viewer
+#     member: user:martinflemingdev@gmail.com
+#     project: axial-life-395119
+# ---
+apiVersion: vertexai.gcp-beta.upbound.io/v1beta1
+kind: EndpointIAMMember
+metadata:
+  name: sydney-endpoint-viewer
+spec:
+  forProvider:
+    location: australia-southeast1
+    endpointSelector:
+      matchLabels:
+        endpoint-name: sydney-endpoint
+    role: roles/aiplatform.viewer
+    member: user:martinflemingdev@gmail.com
+    project: axial-life-395119

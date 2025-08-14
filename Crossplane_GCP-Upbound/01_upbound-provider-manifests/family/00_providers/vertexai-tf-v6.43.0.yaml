@@ -1,0 +1,45 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-gcp-beta-vertexai-tf-v6-48-0
+spec:
+  package: docker.io/martinflemingdev/provider-gcp-beta-vertexai-tf-v6.48.0:v1.0.1
+  controllerConfigRef:
+    name: provider-gcp-debug
+---
+# martinflemingdev/provider-gcp-beta-vertexai-tf-v6.48.0:v1.0.0
+# ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: provider-gcp-config-manager
+rules:
+  - apiGroups:
+      - "*"
+    resources:
+      - "*"
+    verbs:
+      - "*"
+---
+# Binding to VertexAi Pod SA
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: provider-gcp-vertexai-tf-v6-43-0
+subjects:
+  - kind: ServiceAccount
+    name: provider-gcp-beta-vertexai-tf-v6-48-0-718eff4f6d0c  # replace this with generated service account
+    namespace: crossplane-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: provider-gcp-config-manager
+
+---
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: provider-gcp-debug
+spec:
+  args:
+    - --debug

@@ -1,7 +1,7 @@
 apiVersion: bigquery.gcp.upbound.io/v1beta2
 kind: Dataset
 metadata:
-  name: tftest
+  name: upgradetest
   labels:
     foo: bar
 spec:
