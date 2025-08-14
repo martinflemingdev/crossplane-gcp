@@ -3,7 +3,7 @@ kind: Provider
 metadata:
   name: provider-gcp-beta-vertexai-tf-v6-48-0
 spec:
-  package: docker.io/martinflemingdev/provider-gcp-beta-vertexai-tf-v6.48.0:v1.0.1
+  package: docker.io/martinflemingdev/provider-gcp-beta-vertexai-tf-v6.48.0:v1.0.2
   controllerConfigRef:
     name: provider-gcp-debug
 ---
@@ -28,7 +28,7 @@ metadata:
   name: provider-gcp-vertexai-tf-v6-43-0
 subjects:
   - kind: ServiceAccount
-    name: provider-gcp-beta-vertexai-tf-v6-48-0-718eff4f6d0c  # replace this with generated service account
+    name: provider-gcp-beta-vertexai-tf-v6-48-0-1dbaefd4bfd5 # replace this with generated service account
     namespace: crossplane-system
 roleRef:
   apiGroup: rbac.authorization.k8s.io

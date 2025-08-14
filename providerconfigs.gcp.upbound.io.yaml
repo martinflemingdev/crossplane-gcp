@@ -1,0 +1,308 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    auth.upbound.io/config: |
+      version: "2023-01-30"
+      discriminant: spec.credentials.source
+      sources:
+      - name: Upbound
+        docs: "# OpenID Connect (OIDC)\n\nUsing OIDC to authenticate to GCP eliminates the
+          need to store credentials\nin this control plane. Instead, you will need to add
+          Upbound as an identity\nprovider in your GCP account, and then add it to an enabled
+          identity pool. Go \nthrough the following steps to add the identity provider.\n\n##
+          Creating an Identity Pool\n\n1. Open the IAM console at [https://console.cloud.google.com/iam-admin/iam](https://console.cloud.google.com/iam-admin/iam).\n2.
+          Select [Workload Identity Federation](https://console.cloud.google.com/iam-admin/workload-identity-pools)\n3.
+          Select **Create Pool** and name it, for example `upbound-oidc-pool`.\n4. **Enable**
+          the pool.\n\n## Add Upbound IdP to the pool\n\n1. Select **Add a provider to pool**
+          and then select **OpenID Connect (OIDC)** with the following details.\n```\nProvider
+          Name: upbound-oidc-provider\nProvider ID: upbound-oidc-provider (by default, this
+          will be the same as the provider name)\nIssuer (URL): https://proidc.upbound.io\n```\n2.
+          Select **Allowed audiences** and add `sts.googleapis.com` for **Audience 1**.\n\n##
+          Optional: Configure provider attributes and conditions\n\nWhen Upbound authenticates
+          to GCP it provides an OIDC subject (`sub`) of a managed control plane:\n`mcp:<account>/<mcp-name>:provider:<provider-name>`.
+          GCP allows specifying conditions via CEL for\nmore fine-grained control of your
+          access scopes.\n\n1. In **Attribute Mapping**, configure `google.subject` to `assertion.sub`.\n2.
+          Select **Attribute Conditions** > **Add Condition**. For example, to authenticate
+          any control plane in the organization:\n```\ngoogle.subject.contains(\"mcp:<ORGANIZATION_NAME>\")\n```\n\n##
+          Create and grant access to service account\n\nTo access GCP resources, pool identities
+          will need to be granted access to a service account.\nThe service account email
+          will be used to create the ProviderConfig.\n\nCreate the service account by following
+          the steps in [Create a GCP Service Account](https://docs.upbound.io/quickstart/gcp-deploy/#create-a-gcp-service-account).\n\nTo
+          add the service account to the Workload Identity pool:\n\n1. Return to the Workload
+          Identity Federation page and select your pool.\n2. Near the top of the page select
+          Grant Access.\n3. Select the new service account, upbound-service-account.\n4.
+          Under Select principals use All identities in the pool.\n\nSee the [Upbound documentation](https://docs.upbound.io/all-spaces/legacy-spaces/multicloud-deploy/#connect-to-gcp-with-oidc)\nfor
+          more information on configuring OIDC with Upbound and GCP.\n"
+        additionalResources: []
+        showFields:
+        - spec.credentials.upbound
+        - spec.projectID
+    controller-gen.kubebuilder.io/version: v0.14.0
+    kustomize.config.k8s.io/id: |
+      group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: providerconfigs.gcp.upbound.io
+      version: v1
+  creationTimestamp: "2025-07-21T21:08:36Z"
+  generation: 1
+  name: providerconfigs.gcp.upbound.io
+  ownerReferences:
+  - apiVersion: pkg.crossplane.io/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ProviderRevision
+    name: provider-family-gcp-0836f16ff957
+    uid: 7802e704-cf57-4814-be7b-c15354571515
+  - apiVersion: pkg.crossplane.io/v1
+    blockOwnerDeletion: true
+    controller: false
+    kind: Provider
+    name: provider-family-gcp
+    uid: 7a8ea84c-11c2-4206-a0a5-a42d0bb51187
+  resourceVersion: "847"
+  uid: fe4d9ae8-243f-415f-9bc0-c29c9f234961
+spec:
+  conversion:
+    strategy: Webhook
+    webhook:
+      clientConfig:
+        caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUQyVENDQXNHZ0F3SUJBZ0lDQitZd0RRWUpLb1pJaHZjTkFRRUxCUUF3V2pFT01Bd0dBMVVFQmhNRlJXRnkKZEdneERqQU1CZ05WQkFnVEJVVmhjblJvTVE0d0RBWURWUVFIRXdWRllYSjBhREVUTUJFR0ExVUVDaE1LUTNKdgpjM053YkdGdVpURVRNQkVHQTFVRUF4TUtRM0p2YzNOd2JHRnVaVEFlRncweU5UQTNNakV5TVRBNE16WmFGdzB6Ck5UQTNNakV5TVRBNE16WmFNRm94RGpBTUJnTlZCQVlUQlVWaGNuUm9NUTR3REFZRFZRUUlFd1ZGWVhKMGFERU8KTUF3R0ExVUVCeE1GUldGeWRHZ3hFekFSQmdOVkJBb1RDa055YjNOemNHeGhibVV4RXpBUkJnTlZCQU1UQ2tOeQpiM056Y0d4aGJtVXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFDamFoMjlhb2ZGCmhySEozUVpLT1h4eFlSYVhvK0oya3B1RE1Ja2VtY0dmRmpQdnFxSkNTNkt3dG9HS0RjRW80ZTNyRVBJVVY3R3MKK3NPVDk3MVBGNEdkSHk2U2lBamRqeDFMSXV2TFk2MWM1TnJ5emM4UE9rbFNaeFFsRUhsS3FESEhWdkw1ZGR6YwpQK3ZlalNFMi9NV3VjOXNZQ1FlczhEeERtbHk5SUZsZzk4MDl6OC9zMmFWUTZ4UUl3YkNGL1VRSVlkdTZpVkpsClFwQzBidGVzUWdxNElnaE1NYS92VzlOREpPbWNSaUJnWEI1aldQaWNLY1BINWhwcnZDeVVyZ0RPRlhtK0kvWkMKaVhyeXZIdkdGNjBiaVN3SkUrZTdvS0pTNFFPNTlQVWIzcGZydmFpQ1NNRVVQUkFQRk50VHgwM2cvU2lDMGZUYwpMRjlDaTgxTldUUzNBZ01CQUFHamdhZ3dnYVV3RGdZRFZSMFBBUUgvQkFRREFnU3dNQk1HQTFVZEpRUU1NQW9HCkNDc0dBUVVGQndNQk1Bd0dBMVVkRXdFQi93UUNNQUF3Y0FZRFZSMFJCR2t3WjRJVGNISnZkbWxrWlhJdFptRnQKYVd4NUxXZGpjSUlsY0hKdmRtbGtaWEl0Wm1GdGFXeDVMV2RqY0M1amNtOXpjM0JzWVc1bExYTjVjM1JsYllJcApjSEp2ZG1sa1pYSXRabUZ0YVd4NUxXZGpjQzVqY205emMzQnNZVzVsTFhONWMzUmxiUzV6ZG1Nd0RRWUpLb1pJCmh2Y05BUUVMQlFBRGdnRUJBSXVXSERtY1lyN0FNNlRpNlllSlo3NXVhUFRHL2tFUVZMeWJMWVgvbHVhUTNGNnUKTThqY2VtaVNLejNBOFJGS294VVRiVHZnbzRZVWRxbU1FTGN6dmk2WTdmT0FNYnhDWGExWGNvMDhRNTN0NmI5TgpDSGtTZ3Q0ZFVXSjU4a1cxQ05NYkk3akFUYjhHd1J1YjBRUHZnM3hxUTc2MmdzRy9ETmVlclRUM0YxYmNObktRClZBN21QeHd1T29mSkxGRFlDWk9lMlBocnEwUXZEUk5BMFVyOG43VDBPVTJXc1NmSjFwZE5JUkxDY1BIMEd3bFIKSlc2N3FEdWNxVkRJRWVaVElpVFgwSTY4VHZldU40QVlsTlROaEIvYlByMmI4L3NqNjhDT1hXSURJQkhDc04vcgp6ekxBYmhxRFhUNjNjU20waUlaSEljRDhPQWNoU3NQV2l3YWNWT289Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+        service:
+          name: provider-family-gcp
+          namespace: crossplane-system
+          path: /convert
+          port: 9443
+      conversionReviewVersions:
+      - v1
+  group: gcp.upbound.io
+  names:
+    categories:
+    - crossplane
+    - providerconfig
+    - gcp
+    kind: ProviderConfig
+    listKind: ProviderConfigList
+    plural: providerconfigs
+    singular: providerconfig
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    - jsonPath: .spec.credentials.secretRef.name
+      name: SECRET-NAME
+      priority: 1
+      type: string
+    name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: A ProviderConfig configures a GCP provider.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: A ProviderConfigSpec defines the desired state of a ProviderConfig.
+            properties:
+              credentials:
+                description: Credentials required to authenticate to this provider.
+                properties:
+                  env:
+                    description: |-
+                      Env is a reference to an environment variable that contains credentials
+                      that must be used to connect to the provider.
+                    properties:
+                      name:
+                        description: Name is the name of an environment variable.
+                        type: string
+                    required:
+                    - name
+                    type: object
+                  fs:
+                    description: |-
+                      Fs is a reference to a filesystem location that contains credentials that
+                      must be used to connect to the provider.
+                    properties:
+                      path:
+                        description: Path is a filesystem path.
+                        type: string
+                    required:
+                    - path
+                    type: object
+                  impersonateServiceAccount:
+                    description: Use GCP service account impersonation for authentication.
+                    properties:
+                      name:
+                        description: GCP service account email address
+                        type: string
+                    required:
+                    - name
+                    type: object
+                  secretRef:
+                    description: |-
+                      A SecretRef is a reference to a secret key that contains the credentials
+                      that must be used to connect to the provider.
+                    properties:
+                      key:
+                        description: The key to select.
+                        type: string
+                      name:
+                        description: Name of the secret.
+                        type: string
+                      namespace:
+                        description: Namespace of the secret.
+                        type: string
+                    required:
+                    - key
+                    - name
+                    - namespace
+                    type: object
+                  source:
+                    description: Source of the provider credentials.
+                    enum:
+                    - None
+                    - Secret
+                    - AccessToken
+                    - ImpersonateServiceAccount
+                    - InjectedIdentity
+                    - Environment
+                    - Filesystem
+                    - Upbound
+                    type: string
+                  upbound:
+                    description: |-
+                      Upbound defines the options for authenticating using Upbound as an
+                      identity provider.
+                    properties:
+                      federation:
+                        description: Federation is the configuration for federated
+                          identity.
+                        properties:
+                          providerID:
+                            description: |-
+                              ProviderID is the fully-qualified identifier for the identity provider on
+                              GCP. The format is
+                              `projects/<project-id>/locations/global/workloadIdentityPools/<identity-pool>/providers/<identity-provider>`.
+                            minLength: 1
+                            type: string
+                          serviceAccount:
+                            description: ServiceAccount is the email address for the
+                              attached service account.
+                            minLength: 1
+                            type: string
+                        required:
+                        - providerID
+                        - serviceAccount
+                        type: object
+                    type: object
+                required:
+                - source
+                type: object
+              projectID:
+                description: ProjectID is the project name (not numerical ID) of this
+                  GCP ProviderConfig.
+                type: string
+            required:
+            - credentials
+            - projectID
+            type: object
+          status:
+            description: A ProviderConfigStatus reflects the observed state of a ProviderConfig.
+            properties:
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        LastTransitionTime is the last time this condition transitioned from one
+                        status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        A Message containing details about this condition's last transition from
+                        one status to another, if any.
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        ObservedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      type: integer
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: |-
+                        Type of this condition. At most one of each condition type may apply to
+                        a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              users:
+                description: Users of this provider configuration.
+                format: int64
+                type: integer
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    categories:
+    - crossplane
+    - providerconfig
+    - gcp
+    kind: ProviderConfig
+    listKind: ProviderConfigList
+    plural: providerconfigs
+    singular: providerconfig
+  conditions:
+  - lastTransitionTime: "2025-07-21T21:08:36Z"
+    message: no conflicts found
+    reason: NoConflicts
+    status: "True"
+    type: NamesAccepted
+  - lastTransitionTime: "2025-07-21T21:08:36Z"
+    message: the initial names have been accepted
+    reason: InitialNamesAccepted
+    status: "True"
+    type: Established
+  storedVersions:
+  - v1beta1

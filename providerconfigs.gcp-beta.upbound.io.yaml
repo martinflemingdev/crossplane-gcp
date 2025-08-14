@@ -1,0 +1,30 @@
+apiVersion: v1
+items:
+- apiVersion: gcp-beta.upbound.io/v1beta1
+  kind: ProviderConfig
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"gcp-beta.upbound.io/v1beta1","kind":"ProviderConfig","metadata":{"annotations":{},"name":"default"},"spec":{"credentials":{"secretRef":{"key":"creds","name":"gcp-secret","namespace":"crossplane-system"},"source":"Secret"},"projectID":"axial-life-395119"}}
+    creationTimestamp: "2025-08-13T22:16:14Z"
+    finalizers:
+    - in-use.crossplane.io
+    generation: 2
+    name: default
+    resourceVersion: "170617"
+    uid: 12113a32-3292-4d16-821c-0f2d5bd60c3b
+  spec:
+    credentials:
+      impersonateServiceAccount:
+        name: ""
+      secretRef:
+        key: creds
+        name: gcp-secret
+        namespace: crossplane-system
+      source: Secret
+    projectID: axial-life-395119
+  status:
+    users: 2
+kind: List
+metadata:
+  resourceVersion: ""
