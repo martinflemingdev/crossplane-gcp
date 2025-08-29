@@ -1,0 +1,13 @@
+apiVersion: bigquery.gcp.upbound.io/v1beta1
+kind: AnalyticsHubDataExchange
+metadata:
+  name: minimal-data-exchange
+  labels:
+    name: minimal-data-exchange
+spec:
+  forProvider:
+    dataExchangeId: "minimal_data_exchange"
+    description: "A sample data exchange for testing"
+    displayName: "Minimal Data Exchange"
+    location: "australia-southeast1"
+    project: "axial-life-395119"

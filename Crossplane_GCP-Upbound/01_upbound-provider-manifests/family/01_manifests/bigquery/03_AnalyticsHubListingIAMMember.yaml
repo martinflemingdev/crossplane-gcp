@@ -1,0 +1,14 @@
+apiVersion: bigquery.gcp.upbound.io/v1beta1
+kind: AnalyticsHubListingIAMMember
+metadata:
+  name: my-listing-iam-member
+spec:
+  forProvider:
+    dataExchangeId: "minimal_data_exchange"
+    member: "user:martinflemingdev@gmail.com"
+    role: "roles/analyticshub.subscriber"
+    location: "australia-southeast1"
+    project: "axial-life-395119"
+    listingIdSelector:
+      matchLabels:
+        name: my-data-listing

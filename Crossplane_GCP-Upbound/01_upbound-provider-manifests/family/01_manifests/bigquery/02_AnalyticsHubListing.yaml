@@ -1,0 +1,20 @@
+apiVersion: bigquery.gcp.upbound.io/v1beta2
+kind: AnalyticsHubListing
+metadata:
+  annotations:
+    crossplane.io/external-name: "my_data_listing"
+  name: my-data-listing
+  labels:
+    name: my-data-listing
+spec:
+  forProvider:
+    displayName: "my_data_listing"
+    location: "australia-southeast1"
+    bigqueryDataset:
+      datasetSelector:
+        matchLabels:
+          name: ahtest
+    dataExchangeIdSelector:
+      matchLabels:
+        name: minimal-data-exchange
+    project: "axial-life-395119"

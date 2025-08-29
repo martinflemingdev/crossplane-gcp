@@ -1,9 +1,9 @@
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
-  name: provider-gcp-bigquery-tf-v6-43-0
+  name: provider-gcp-bigquery-v2
 spec:
-  package: docker.io/martinflemingdev/provider-gcp-bigquery-tf-v6.43.0:1.1.0
+  package: docker.io/martinflemingdev/provider-gcp-bigquery-v2.0.0:v1.0.0
 ---
 # ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -26,7 +26,7 @@ metadata:
   name: provider-gcp-bigquery-tf-v6-43-0
 subjects:
   - kind: ServiceAccount
-    name: provider-gcp-bigquery-tf-v6-43-0-02aad17bd09f    # replace this with BQ service account
+    name: provider-gcp-bigquery-v2-802be3f262e1    # replace this with BQ service account
     namespace: crossplane-system
 roleRef:
   apiGroup: rbac.authorization.k8s.io

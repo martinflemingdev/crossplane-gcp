@@ -10,6 +10,8 @@ spec:
         spec:
           containers:
             - name: package-runtime
+              args:
+              - --debug
               # env:
               #   - name: GOOGLE_REGION
               #     value: australia-southeast1

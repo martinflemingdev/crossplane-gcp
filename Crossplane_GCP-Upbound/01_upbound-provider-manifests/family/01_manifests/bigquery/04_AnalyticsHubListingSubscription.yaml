@@ -1,0 +1,21 @@
+apiVersion: bigquery.gcp.upbound.io/v1beta1
+kind: AnalyticsHubListingSubscription
+metadata:
+  name: my-listing-subscription
+spec:
+  forProvider:
+    location: "australia-southeast1"
+    destinationDataset: # created for you, CANNOT already exist
+      datasetReference:
+        datasetId: "destinationdataset"
+        projectId: "axial-life-395119"
+      location: "australia-southeast1"
+      friendlyName: "Subscribed Dataset"
+      description: "Dataset created from Analytics Hub subscription"
+    dataExchangeIdSelector:
+      matchLabels:
+        name: minimal-data-exchange
+    listingIdSelector:
+      matchLabels:
+        name: my-data-listing
+    project: "axial-life-395119"
