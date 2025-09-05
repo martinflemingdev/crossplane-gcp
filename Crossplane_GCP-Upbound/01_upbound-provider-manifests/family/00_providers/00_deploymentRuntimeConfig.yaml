@@ -8,6 +8,7 @@ spec:
       selector: {}
       template:
         spec:
+          serviceAccountName: crossplane-providers-sa
           containers:
             - name: package-runtime
               args:
