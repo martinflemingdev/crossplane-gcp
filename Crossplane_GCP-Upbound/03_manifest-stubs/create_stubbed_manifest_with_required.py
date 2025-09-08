@@ -3,6 +3,20 @@
 import yaml, sys, os
 
 
+class RequiredFieldTracker:
+    """Helper class to track required fields and add comments."""
+    def __init__(self):
+        self.required_fields = {}
+    
+    def add_required_fields(self, path: str, required_list: list):
+        """Add required fields for a given path."""
+        self.required_fields[path] = set(required_list) if required_list else set()
+    
+    def is_required(self, path: str, field: str) -> bool:
+        """Check if a field is required at the given path."""
+        return field in self.required_fields.get(path, set())
+
+
 def load_yaml_to_dict(file_path: str) -> dict:
     with open(file_path, 'r') as file:
         data = yaml.safe_load(file)
@@ -50,7 +64,7 @@ def get_primitive_value(field_schema: dict) -> any:
         return "string"  # fallback
 
 
-def process_schema_properties(properties: dict, visited_refs: set = None) -> dict:
+def process_schema_properties(properties: dict, required_tracker: RequiredFieldTracker, current_path: str = "", visited_refs: set = None) -> dict:
     """
     Recursively process schema properties to build nested structure with primitive values.
     """
@@ -60,6 +74,8 @@ def process_schema_properties(properties: dict, visited_refs: set = None) -> dic
     result = {}
     
     for key, field_schema in properties.items():
+        field_path = f"{current_path}.{key}" if current_path else key
+        
         # Handle $ref references to avoid infinite recursion
         if '$ref' in field_schema:
             ref_path = field_schema['$ref']
@@ -70,10 +86,17 @@ def process_schema_properties(properties: dict, visited_refs: set = None) -> dic
         
         field_type = field_schema.get('type', 'string')
         
+        # Track required fields for this level
+        if 'required' in field_schema:
+            required_tracker.add_required_fields(field_path, field_schema['required'])
+        
         if field_type == 'object':
             # Handle object type
             if 'properties' in field_schema:
-                result[key] = process_schema_properties(field_schema['properties'], visited_refs.copy())
+                # Track required fields for the object
+                if 'required' in field_schema:
+                    required_tracker.add_required_fields(field_path, field_schema['required'])
+                result[key] = process_schema_properties(field_schema['properties'], required_tracker, field_path, visited_refs.copy())
             elif 'additionalProperties' in field_schema:
                 # Handle maps/dictionaries
                 additional_props = field_schema['additionalProperties']
@@ -92,7 +115,10 @@ def process_schema_properties(properties: dict, visited_refs: set = None) -> dic
             
             if items_type == 'object' and 'properties' in items_schema:
                 # Array of objects
-                result[key] = [process_schema_properties(items_schema['properties'], visited_refs.copy())]
+                array_path = f"{field_path}[0]"
+                if 'required' in items_schema:
+                    required_tracker.add_required_fields(array_path, items_schema['required'])
+                result[key] = [process_schema_properties(items_schema['properties'], required_tracker, array_path, visited_refs.copy())]
             else:
                 # Array of primitives
                 result[key] = [get_primitive_value(items_schema)]
@@ -101,6 +127,40 @@ def process_schema_properties(properties: dict, visited_refs: set = None) -> dic
             result[key] = get_primitive_value(field_schema)
     
     return result
+
+
+def add_required_comments_to_yaml(yaml_content: str, required_tracker: RequiredFieldTracker) -> str:
+    """
+    Add '# required' comments to YAML content for required fields.
+    """
+    lines = yaml_content.split('\n')
+    result_lines = []
+    
+    for line in lines:
+        # Check if this line contains a field definition
+        if ':' in line and not line.strip().startswith('#'):
+            # Extract indentation and field name
+            stripped = line.lstrip()
+            indent = line[:len(line) - len(stripped)]
+            
+            if ':' in stripped:
+                field_name = stripped.split(':')[0].strip()
+                
+                # Calculate the path based on indentation level
+                indent_level = len(indent) // 2  # Assuming 2 spaces per indent
+                
+                # Build path from context (this is simplified - for complex nested structures
+                # you might need a more sophisticated path tracking)
+                if indent_level == 1 and field_name == 'forProvider':
+                    line += '  # required'
+                elif indent_level == 2:  # Fields under forProvider
+                    if required_tracker.is_required('forProvider', field_name):
+                        line += '  # required'
+                # Add more path tracking as needed for deeper nesting
+        
+        result_lines.append(line)
+    
+    return '\n'.join(result_lines)
 
 
 def stub_manifest(crd: dict) -> str:
@@ -120,12 +180,23 @@ def stub_manifest(crd: dict) -> str:
 
     # Navigate to the forProvider fields
     schema_root = crd['spec']['versions'][i]['schema']['openAPIV3Schema']
-    for_provider_schema = schema_root['properties']['spec']['properties']['forProvider']
+    
+    # Check if spec is required
+    required_tracker = RequiredFieldTracker()
+    spec_schema = schema_root['properties']['spec']
+    if 'required' in spec_schema:
+        required_tracker.add_required_fields('spec', spec_schema['required'])
+    
+    for_provider_schema = spec_schema['properties']['forProvider']
+    if 'required' in for_provider_schema:
+        required_tracker.add_required_fields('forProvider', for_provider_schema['required'])
     
     if 'properties' in for_provider_schema:
-        manifest['spec']['forProvider'] = process_schema_properties(for_provider_schema['properties'])
+        manifest['spec']['forProvider'] = process_schema_properties(for_provider_schema['properties'], required_tracker, 'forProvider')
 
-    return yaml.dump(manifest, default_flow_style=False)
+    # Convert to YAML and add required comments
+    yaml_content = yaml.dump(manifest, default_flow_style=False)
+    return add_required_comments_to_yaml(yaml_content, required_tracker)
 
 
 def write_to_file(filename: str, content: str):
@@ -135,7 +206,7 @@ def write_to_file(filename: str, content: str):
 
 def run():
     if len(sys.argv) != 2:
-        print("Please provider exactly one argument\nUsage: python3 create_stubbed_manifest.py <crd dir or file path>")
+        print("Please provider exactly one argument\nUsage: python3 create_stubbed_manifest_with_required.py <crd dir or file path>")
         sys.exit(1)
     path = sys.argv[1]
 
