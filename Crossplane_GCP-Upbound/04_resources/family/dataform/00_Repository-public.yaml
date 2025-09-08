@@ -1,0 +1,32 @@
+apiVersion: dataform.gcp-beta.upbound.io/v1beta1
+kind: Repository
+metadata:
+  name: gcp-dataform-public-sandbox
+  labels:
+    name: gcp-dataform-public-sandbox
+spec:
+  forProvider: 
+    # deletionPolicy: DELETE | FORCE (Default: DELETE)
+    # DELETE: Only deletes the repository 
+    # FORCE: Deletes repository AND all child resources (workspaces, release configs, etc.)
+    displayName: gcp-dataform-sandbox
+    gitRemoteSettings:
+      # For public repos, you can omit authenticationTokenSecretVersion and sshAuthenticationConfig
+      # authenticationTokenSecretVersion: string  # Secret Manager version containing GitHub token for private repos
+      defaultBranch: main
+      # sshAuthenticationConfig:  # Only needed for SSH-based authentication
+      #   hostPublicKey: string           # GitHub's SSH host key
+      #   userPrivateKeySecretVersion: string  # Secret Manager version containing your SSH private key
+      url: "https://github.com/martinflemingdev/gcp-dataform-public-sandbox.git"  # Use HTTPS for public repos
+    # kmsKeyName: string  # Optional: KMS key for encrypting Dataform artifacts
+    # labels:
+    #   environment: dev
+    #   team: data-engineering
+    # npmrcEnvironmentVariablesSecretVersion: string  # For private npm packages - stores .npmrc config in Secret Manager
+    project: axial-life-395119
+    region: australia-southeast1  # required
+    # serviceAccount: string  # Optional: Service account for Dataform to impersonate (for fine-grained permissions)
+    # workspaceCompilationOverrides:  # Optional: Override settings from dataform.json during compilation
+    #   defaultDatabase: string      # Override default BigQuery dataset
+    #   schemaSuffix: string         # Add suffix to all schema names (useful for environments)
+    #   tablePrefix: string          # Add prefix to all table names

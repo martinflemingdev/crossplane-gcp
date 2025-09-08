@@ -1,0 +1,27 @@
+apiVersion: dataform.gcp-beta.upbound.io/v1beta1
+kind: RepositoryIAMMember
+metadata:
+  name: gcp-dataform-public-sandbox-iam-member
+spec:
+  forProvider:  # required
+    # condition:
+    #   description: string
+    #   expression: string
+    #   title: string
+    member: "user:martinflemingdev@gmail.com"
+    project: "axial-life-395119"
+    region: "australia-southeast1"
+    # repository: string
+    # repositoryRef:
+    #   name: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    repositorySelector:
+      # matchControllerRef: false
+      matchLabels:
+        name: gcp-dataform-public-sandbox
+      # policy:
+      #   resolution: string
+      #   resolve: string
+    role: "roles/dataform.admin"

@@ -1,0 +1,58 @@
+apiVersion: dataform.gcp-beta.upbound.io/v1beta1
+kind: RepositoryReleaseConfig
+metadata:
+  name: stubbed-repositoryreleaseconfig.dataform.gcp-beta.upbound.io
+spec:
+  forProvider:  # required
+    codeCompilationConfig:
+      assertionSchema: string
+      databaseSuffix: string
+      defaultDatabase: string
+      defaultLocation: string
+      defaultSchema: string
+      schemaSuffix: string
+      tablePrefix: string
+      vars:
+        key: string
+    cronSchedule: string
+    gitCommitish: string
+    project: string
+    projectRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    projectSelector:
+      matchControllerRef: false
+      matchLabels:
+        key: string
+      policy:
+        resolution: string
+        resolve: string
+    region: string
+    regionRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    regionSelector:
+      matchControllerRef: false
+      matchLabels:
+        key: string
+      policy:
+        resolution: string
+        resolve: string
+    repository: string
+    repositoryRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    repositorySelector:
+      matchControllerRef: false
+      matchLabels:
+        key: string
+      policy:
+        resolution: string
+        resolve: string
+    timeZone: string

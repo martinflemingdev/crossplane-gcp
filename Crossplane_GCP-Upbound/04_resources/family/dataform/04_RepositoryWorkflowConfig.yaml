@@ -1,0 +1,104 @@
+apiVersion: dataform.gcp-beta.upbound.io/v1beta1
+kind: RepositoryWorkflowConfig
+metadata:
+  name: gcp-dataform-public-sandbox-workflow-config
+spec:
+  forProvider:  # required
+    # cronSchedule: string
+      # Optional in WorkflowConfig. This is for direct scheduled executions.
+      # ReleaseConfig has its own cronSchedule for automated releases from Git commits.
+      # You can omit this for manual-only workflow executions.
+    invocationConfig:
+      fullyRefreshIncrementalTablesEnabled: false 
+        # When true, forces incremental tables to do a full refresh instead of incremental updates.
+        # Useful for data quality issues or schema changes. Default: false
+      includedTags: []
+      # - string
+        # Only run Dataform objects with these tags. 
+        # Tags are defined in your .sqlx files like: config { tags: ["daily", "critical"] }
+        # Leave empty array to run all objects
+      includedTargets: []
+      # - database: string
+      #   name: string
+      #   schema: string
+        # Specific Dataform objects to run (tables/views by name).
+        # Leave empty array to run all objects. Format: database.schema.name
+      serviceAccount: dataform-service-account@axial-life-395119.iam.gserviceaccount.com
+      # serviceAccountRef:
+      #   name: string
+      #   policy:
+      #     resolution: string
+      #     resolve: string
+      # serviceAccountSelector: # DOESN'T WORK WITH GA SAs, selector is looking for cloudplatform.gcp-beta.upbound.io/v1beta1 SAs
+      #   # matchControllerRef: false
+      #   matchLabels:
+      #     name: dataform-service-account
+        # policy:
+        #   resolution: string
+        #   resolve: string
+          # Service account for Dataform to impersonate when running workflows.
+          # NEEDS: BigQuery Data Editor, BigQuery Job User
+          # If omitted, uses default Dataform service account
+      transitiveDependenciesIncluded: true
+        # When true, automatically includes all upstream dependencies of included targets.
+        # E.g., if you target "users_clean", it will also run "raw_users" (its dependency)
+        # Recommended: true for most cases
+      transitiveDependentsIncluded: false 
+        # When true, automatically includes all downstream dependents of included targets.
+        # E.g., if you target "raw_users", it will also run "users_clean" (depends on raw_users)
+        # Usually false to avoid running too much
+    project: axial-life-395119
+    # projectRef:
+    #   name: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    # projectSelector:
+    #   matchControllerRef: false
+    #   matchLabels:
+    #     key: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    region: australia-southeast1
+    # regionRef:
+    #   name: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    # regionSelector:
+    #   matchControllerRef: false
+    #   matchLabels:
+    #     key: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    # releaseConfig: string
+    # releaseConfigRef:
+    #   name: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    # releaseConfigSelector:
+    #   matchControllerRef: false
+    #   matchLabels:
+    #     key: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    # repository: string
+    # repositoryRef:
+    #   name: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    repositorySelector:
+      # matchControllerRef: false
+      matchLabels:
+        name: gcp-dataform-public-sandbox
+      # policy:
+      #   resolution: string
+      #   resolve: string
+    # timeZone: string
+      # Timezone for cron scheduling. Only needed if you use cronSchedule.
+      # Format: "America/New_York", "UTC", "Australia/Sydney"
