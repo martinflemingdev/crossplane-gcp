@@ -1,0 +1,116 @@
+apiVersion: dataform.gcp-beta.upbound.io/v1beta1
+kind: RepositoryWorkflowConfig
+metadata:
+  name: gcp-dataform-public-sandbox-workflow-config
+spec:
+  forProvider:  # required
+    # cronSchedule: string
+    #   Optional in WorkflowConfig. This is for direct scheduled executions.
+    #   ReleaseConfig has its own cronSchedule for automated releases from Git commits.
+    #   You can omit this for manual-only workflow executions.
+    invocationConfig:
+      fullyRefreshIncrementalTablesEnabled: false
+      # When true, forces incremental tables to do a full refresh instead of incremental updates.
+      # Useful for data quality issues or schema changes. Default: false
+      includedTags: []
+      # - string
+      #   Only run Dataform objects with these tags. 
+      #   Tags are defined in your .sqlx files like: config { tags: ["daily", "critical"] }
+      #   Leave empty array to run all objects
+      includedTargets: []
+      # - database: string
+      #   name: string
+      #   schema: string
+      #   Specific Dataform objects to run (tables/views by name).
+      #   Leave empty array to run all objects. Format: database.schema.name
+      transitiveDependenciesIncluded: true
+      # When true, automatically includes all upstream dependencies of included targets.
+      # E.g., if you target "users_clean", it will also run "raw_users" (its dependency)
+      # Recommended: true for most cases
+      transitiveDependentsIncluded: false
+      # When true, automatically includes all downstream dependents of included targets.
+      # E.g., if you target "raw_users", it will also run "users_clean" (depends on raw_users)
+      # Usually false to avoid running too much
+    serviceAccount: dataform-service-account@axial-life-395119.iam.gserviceaccount.com # Execution identity to impersonate when running workflows
+    # NOTE: This `serviceAccount` is the identity Dataform will impersonate to
+    # execute BigQuery jobs and access project resources during workflow runs.
+    # It is NOT the principal that reads your GitHub authentication secret.
+    #
+    # Important permissions and setup when using a custom service account:
+    # 1) Give the custom SA the BigQuery roles it needs (for example,
+    #    roles/bigquery.jobUser, dataset-level editors) so jobs can run.
+    # 2) Allow the Dataform service agent (service-<PROJECT_NUMBER>@gcp-sa-dataform.iam.gserviceaccount.com)
+    #    to impersonate the custom SA by granting it:
+    #      roles/iam.serviceAccountTokenCreator on the custom SA
+    #    Without this, the agent cannot mint credentials for your SA and cannot run jobs as that SA.
+    # 3) The Dataform service agent also needs access to any secrets (GitHub PAT) via
+    #    roles/secretmanager.secretAccessor on the secret resource so it can read authentication credentials.
+    #
+    # If you prefer not to use impersonation, grant the Dataform service agent the
+    # necessary BigQuery roles directly (roles/bigquery.jobUser) and it will run jobs
+    # using its own managed identity. Impersonation is recommended for auditing and
+    # cross-project access control because jobs run under your managed SA.
+    #
+    # serviceAccountRef:
+    #   name: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    # serviceAccountSelector: # selector variants are not supported for Google-managed SAs in GA
+    #   matchLabels:
+    #     name: dataform-service-account
+    project: axial-life-395119
+    # projectRef:
+    #   name: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    # projectSelector:
+    #   matchControllerRef: false
+    #   matchLabels:
+    #     key: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    region: australia-southeast1
+    # regionRef:
+    #   name: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    # regionSelector:
+    #   matchControllerRef: false
+    #   matchLabels:
+    #     key: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    # releaseConfig: string
+    # releaseConfigRef:
+    #   name: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    releaseConfigSelector:
+      # matchControllerRef: false
+      matchLabels:
+        name: gcp-dataform-public-sandbox-release-config
+      # policy:
+      #   resolution: string
+      #   resolve: string
+    # repository: string
+    # repositoryRef:
+    #   name: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    repositorySelector:
+      # matchControllerRef: false
+      matchLabels:
+        name: gcp-dataform-public-sandbox
+      # policy:
+      #   resolution: string
+      #   resolve: string
+    # timeZone: string
+    #   Timezone for cron scheduling. Only needed if you use cronSchedule.
+    #   Format: "America/New_York", "UTC", "Australia/Sydney"

@@ -5,7 +5,7 @@ metadata:
   name: dataform-sa-bigquery-editor
 spec:
   forProvider:
-    member: serviceAccount:dataform-service-account@axial-life-395119.iam.gserviceaccount.com
+    member: serviceAccount:service-376994270622@gcp-sa-dataform.iam.gserviceaccount.com # GCP managed Dataform Service Agent / Service Account
     project: "axial-life-395119"
     role: "roles/bigquery.dataEditor"
 
@@ -17,6 +17,6 @@ metadata:
   name: dataform-sa-bigquery-job-user
 spec:
   forProvider:
-    member: serviceAccount:dataform-service-account@axial-life-395119.iam.gserviceaccount.com
+    member: serviceAccount:service-376994270622@gcp-sa-dataform.iam.gserviceaccount.com # GCP managed Dataform Service Agent / Service Account
     project: "axial-life-395119"
     role: "roles/bigquery.jobUser"
