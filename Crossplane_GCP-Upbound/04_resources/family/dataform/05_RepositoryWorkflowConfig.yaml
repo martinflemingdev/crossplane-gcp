@@ -23,16 +23,16 @@ spec:
       #   schema: string
         # Specific Dataform objects to run (tables/views by name).
         # Leave empty array to run all objects. Format: database.schema.name
-      # serviceAccount: dataform-service-account@axial-life-395119.iam.gserviceaccount.com
+      serviceAccount: dataform-service-account@axial-life-395119.iam.gserviceaccount.com # MUST USE THIS FIELD, safe because SA must have project specific permissions anyway
       # serviceAccountRef:
       #   name: string
       #   policy:
       #     resolution: string
       #     resolve: string
-      serviceAccountSelector: # DOESN'T WORK WITH GA SAs, selector is looking for cloudplatform.gcp-beta.upbound.io/v1beta1 SAs
-        # matchControllerRef: false
-        matchLabels:
-          name: dataform-service-account
+      # serviceAccountSelector: # DOESN'T WORK WITH GA SAs, selector is looking for cloudplatform.gcp-beta.upbound.io/v1beta1 SAs
+      #   # matchControllerRef: false
+      #   matchLabels:
+      #     name: dataform-service-account
         # policy:
         #   resolution: string
         #   resolve: string

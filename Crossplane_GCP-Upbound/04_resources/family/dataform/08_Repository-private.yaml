@@ -1,0 +1,62 @@
+apiVersion: dataform.gcp-beta.upbound.io/v1beta1
+kind: Repository
+metadata:
+  name: gcp-dataform-private-sandbox
+  labels:
+    name: gcp-dataform-private-sandbox
+spec:
+  forProvider: 
+
+    # deletionPolicy: DELETE | FORCE (Default: DELETE)
+      # DELETE: Only deletes the repository 
+      # FORCE: Deletes repository AND all child resources (workspaces, release configs, etc.)
+
+    displayName: gcp-dataform-private-sandbox
+    gitRemoteSettings:
+      # For public repos, you can omit authenticationTokenSecretVersion and sshAuthenticationConfig
+      authenticationTokenSecretVersion: projects/axial-life-395119/secrets/github-dataform-private-sandbox/versions/1 # Secret Manager version containing GitHub token for private repos
+      defaultBranch: main
+
+      # sshAuthenticationConfig:  # Only needed for SSH-based authentication
+      #   hostPublicKey: string           # GitHub's SSH host key
+      #   userPrivateKeySecretVersion: string  # Secret Manager version containing your SSH private key
+
+      url: "https://github.com/martinflemingdev/gcp-dataform-private-sandbox.git"  # Use HTTPS for public repos
+
+    # kmsKeyName: string  # Optional: KMS key for encrypting Dataform artifacts
+
+    # labels:
+    #   environment: dev
+    #   team: data-engineering
+
+    # npmrcEnvironmentVariablesSecretVersion: string  # For private npm packages - stores .npmrc config in Secret Manager
+
+    project: axial-life-395119
+    region: australia-southeast1  # required
+
+    # serviceAccount: # Optional: Service account for Dataform to impersonate (for fine-grained permissions)
+      # NOTE: this field is the identity Dataform will impersonate when running workspaces
+      # and submitting BigQuery jobs. It is NOT the principal that reads your GitHub
+      # authentication secret. The Dataform *service agent* (a Google-managed service
+      # account) performs secret access and token exchange for impersonation.
+      #
+      # Required IAM for a private repo setup:
+      # 1) Grant the Dataform service agent (service-<PROJECT_NUMBER>@gcp-sa-dataform.iam.gserviceaccount.com)
+      #    the Secret Manager accessor role on the secret so it can read the GitHub PAT:
+      #      roles/secretmanager.secretAccessor (on the secret resource)
+      #
+      # 2) If you set `serviceAccount` to a custom SA so jobs run as that SA, allow the
+      #    Dataform service agent to impersonate it:
+      #      roles/iam.serviceAccountTokenCreator on the custom SA, granted to the Dataform agent
+      #
+      # 3) Ensure the custom SA has the BigQuery permissions it needs (for example,
+      #    roles/bigquery.jobUser) so workspaces can submit jobs.
+      #
+      # In short: the secret (GitHub PAT) lives in Secret Manager and the Dataform
+      # service agent must be permitted to read it; the `serviceAccount` is the
+      # execution identity for BigQuery work and must be permitted for impersonation and BQ access.
+
+    # workspaceCompilationOverrides:  # Optional: Override settings from dataform.json during compilation
+    #   defaultDatabase: string      # Override default BigQuery dataset
+    #   schemaSuffix: string         # Add suffix to all schema names (useful for environments)
+    #   tablePrefix: string          # Add prefix to all table names
