@@ -54,4 +54,4 @@ done
 popd >/dev/null
 
 echo "Done. CRDs saved to: $CRD_DIR"
-echo "Stub manifests (stubbed-*.yaml) created in:
+echo "Stub manifests (stubbed-*.yaml) created in: $CRD_DIR"
