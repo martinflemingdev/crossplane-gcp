@@ -1,0 +1,84 @@
+apiVersion: dataform.gcp-beta.upbound.io/v1beta1
+kind: RepositoryReleaseConfig
+metadata:
+  name: gcp-dataform-public-sandbox-release-config
+  labels:
+    name: gcp-dataform-public-sandbox-release-config
+spec:
+  forProvider:
+    codeCompilationConfig:
+      # assertionSchema: string
+        # BigQuery dataset for storing assertion results (data quality tests)
+        # If omitted, assertions stored in same dataset as tables
+      # databaseSuffix: string  
+        # Suffix added to database names during compilation
+        # Useful for environment separation (e.g., "_dev", "_staging")
+      defaultDatabase: "dataform_demo"
+        # Default BigQuery dataset where tables will be created
+        # Should match your dataform.json defaultDatabase setting
+      defaultLocation: "australia-southeast1"
+        # Default BigQuery location for datasets and jobs created by Dataform
+        # Should match where you want your BigQuery datasets to be located
+      # defaultSchema: string
+        # Default schema name within the database
+        # Usually omitted for BigQuery (uses dataset as schema)
+      # schemaSuffix: string
+        # Suffix added to schema names during compilation  
+        # Useful for environment separation
+      # tablePrefix: string
+        # Prefix added to all table names during compilation
+        # Useful for avoiding naming conflicts
+      # vars:
+      #   key: string
+        # Variables available in your Dataform code
+        # Accessible in .sqlx files as ${vars.key}
+    # cronSchedule: string
+      # Schedule for automatic releases (cron format)
+      # If omitted, releases are manual only
+      # Example: "0 9 * * 1-5" (9 AM weekdays)
+    gitCommitish: "main" # required
+      # Git branch, tag, or commit SHA to release from
+      # Usually "main" for latest code
+    project: axial-life-395119
+    # projectRef:
+    #   name: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    # projectSelector:
+    #   matchControllerRef: false
+    #   matchLabels:
+    #     key: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    region: australia-southeast1
+    # regionRef:
+    #   name: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    # regionSelector:
+    #   matchControllerRef: false
+    #   matchLabels:
+    #     key: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    # repository: string
+    # repositoryRef:
+    #   name: string
+    #   policy:
+    #     resolution: string
+    #     resolve: string
+    repositorySelector:
+      # matchControllerRef: false
+      matchLabels:
+        name: gcp-dataform-public-sandbox
+      # policy:
+      #   resolution: string
+      #   resolve: string
+    # timeZone: string
+      # Timezone for cron schedule
+      # Example: "Australia/Sydney", "UTC"
+      # Only needed if using cronSchedule
