@@ -14,7 +14,7 @@ spec:
     displayName: gcp-dataform-private-sandbox
     gitRemoteSettings:
       # For public repos, you can omit authenticationTokenSecretVersion and sshAuthenticationConfig
-      authenticationTokenSecretVersion: projects/axial-life-395119/secrets/github-dataform-private-sandbox/versions/1 # Secret Manager version containing GitHub token for private repos
+      authenticationTokenSecretVersion: projects/axial-life-395119/secrets/crossplane-github-private-sandbox/versions/1 # Secret Manager version containing GitHub token for private repos
       defaultBranch: main
 
       # sshAuthenticationConfig:  # Only needed for SSH-based authentication
