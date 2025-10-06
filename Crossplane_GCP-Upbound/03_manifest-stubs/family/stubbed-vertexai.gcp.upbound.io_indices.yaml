@@ -1,0 +1,27 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta1
+kind: Index
+metadata:
+  name: stubbed-index.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    description: string
+    displayName: string
+    indexUpdateMethod: string
+    labels:
+      key: string
+    metadata:
+      config:
+        algorithmConfig:
+          bruteForceConfig: {}
+          treeAhConfig:
+            leafNodeEmbeddingCount: 0.0
+            leafNodesToSearchPercent: 0.0
+        approximateNeighborsCount: 0.0
+        dimensions: 0.0
+        distanceMeasureType: string
+        featureNormType: string
+        shardSize: string
+      contentsDeltaUri: string
+      isCompleteOverwrite: false
+    project: string
+    region: string  # required

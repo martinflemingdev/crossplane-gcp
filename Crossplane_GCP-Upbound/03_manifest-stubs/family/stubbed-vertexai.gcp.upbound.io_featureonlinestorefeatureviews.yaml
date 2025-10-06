@@ -1,0 +1,71 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta1
+kind: FeatureOnlineStoreFeatureview
+metadata:
+  name: stubbed-featureonlinestorefeatureview.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    bigQuerySource:
+      entityIdColumns:
+      - string
+      uri: string
+    featureOnlineStore: string
+    featureOnlineStoreRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    featureOnlineStoreSelector:
+      matchControllerRef: false
+      matchLabels:
+        key: string
+      policy:
+        resolution: string
+        resolve: string
+    featureRegistrySource:
+      featureGroups:
+      - featureGroupId: string
+        featureGroupIdRef:
+          name: string
+          policy:
+            resolution: string
+            resolve: string
+        featureGroupIdSelector:
+          matchControllerRef: false
+          matchLabels:
+            key: string
+          policy:
+            resolution: string
+            resolve: string
+        featureIds:
+        - string
+        featureIdsRefs:
+        - name: string
+          policy:
+            resolution: string
+            resolve: string
+        featureIdsSelector:
+          matchControllerRef: false
+          matchLabels:
+            key: string
+          policy:
+            resolution: string
+            resolve: string
+      projectNumber: string
+    labels:
+      key: string
+    project: string
+    projectRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    projectSelector:
+      matchControllerRef: false
+      matchLabels:
+        key: string
+      policy:
+        resolution: string
+        resolve: string
+    region: string  # required
+    syncConfig:
+      cron: string

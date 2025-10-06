@@ -1,0 +1,16 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta1
+kind: FeatureGroup
+metadata:
+  name: stubbed-featuregroup.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    bigQuery:
+      bigQuerySource:
+        inputUri: string
+      entityIdColumns:
+      - string
+    description: string
+    labels:
+      key: string
+    project: string
+    region: string  # required

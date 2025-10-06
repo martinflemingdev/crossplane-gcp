@@ -1,0 +1,14 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta2
+kind: Dataset
+metadata:
+  name: stubbed-dataset.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    displayName: string
+    encryptionSpec:
+      kmsKeyName: string
+    labels:
+      key: string
+    metadataSchemaUri: string
+    project: string
+    region: string

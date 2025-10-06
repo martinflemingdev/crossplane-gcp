@@ -1,0 +1,13 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta2
+kind: Tensorboard
+metadata:
+  name: stubbed-tensorboard.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    description: string
+    encryptionSpec:
+      kmsKeyName: string
+    labels:
+      key: string
+    project: string
+    region: string  # required

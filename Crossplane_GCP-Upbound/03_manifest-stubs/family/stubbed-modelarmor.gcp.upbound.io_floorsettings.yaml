@@ -1,0 +1,34 @@
+apiVersion: modelarmor.gcp.upbound.io/v1beta1
+kind: Floorsetting
+metadata:
+  name: stubbed-floorsetting.modelarmor.gcp.upbound.io
+spec:
+  forProvider:  # required
+    aiPlatformFloorSetting:
+      enableCloudLogging: false
+      inspectAndBlock: false
+      inspectOnly: false
+    enableFloorSettingEnforcement: false
+    filterConfig:
+      maliciousUriFilterSettings:
+        filterEnforcement: string
+      piAndJailbreakFilterSettings:
+        confidenceLevel: string
+        filterEnforcement: string
+      raiSettings:
+        raiFilters:
+        - confidenceLevel: string
+          filterType: string
+      sdpSettings:
+        advancedConfig:
+          deidentifyTemplate: string
+          inspectTemplate: string
+        basicConfig:
+          filterEnforcement: string
+    floorSettingMetadata:
+      multiLanguageDetection:
+        enableMultiLanguageDetection: false
+    integratedServices:
+    - string
+    location: string  # required
+    parent: string  # required

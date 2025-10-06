@@ -1,0 +1,127 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta1
+kind: EndpointWithModelGardenDeployment
+metadata:
+  name: stubbed-endpointwithmodelgardendeployment.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    deployConfig:
+      dedicatedResources:
+        autoscalingMetricSpecs:
+        - metricName: string
+          target: 0.0
+        machineSpec:
+          acceleratorCount: 0.0
+          acceleratorType: string
+          machineType: string
+          multihostGpuNodeCount: 0.0
+          reservationAffinity:
+            key: string
+            reservationAffinityType: string
+            values:
+            - string
+          tpuTopology: string
+        maxReplicaCount: 0.0
+        minReplicaCount: 0.0
+        requiredReplicaCount: 0.0
+        spot: false
+      fastTryoutEnabled: false
+      systemLabels:
+        key: string
+    endpointConfig:
+      dedicatedEndpointEnabled: false
+      endpointDisplayName: string
+    huggingFaceModelId: string
+    location: string
+    modelConfig:
+      acceptEula: false
+      containerSpec:
+        args:
+        - string
+        command:
+        - string
+        deploymentTimeout: string
+        env:
+        - name: string
+          value: string
+        grpcPorts:
+        - containerPort: 0.0
+        healthProbe:
+          exec:
+            command:
+            - string
+          failureThreshold: 0.0
+          grpc:
+            port: 0.0
+            service: string
+          httpGet:
+            host: string
+            httpHeaders:
+            - name: string
+              value: string
+            path: string
+            port: 0.0
+            scheme: string
+          initialDelaySeconds: 0.0
+          periodSeconds: 0.0
+          successThreshold: 0.0
+          tcpSocket:
+            host: string
+            port: 0.0
+          timeoutSeconds: 0.0
+        healthRoute: string
+        imageUri: string
+        livenessProbe:
+          exec:
+            command:
+            - string
+          failureThreshold: 0.0
+          grpc:
+            port: 0.0
+            service: string
+          httpGet:
+            host: string
+            httpHeaders:
+            - name: string
+              value: string
+            path: string
+            port: 0.0
+            scheme: string
+          initialDelaySeconds: 0.0
+          periodSeconds: 0.0
+          successThreshold: 0.0
+          tcpSocket:
+            host: string
+            port: 0.0
+          timeoutSeconds: 0.0
+        ports:
+        - containerPort: 0.0
+        predictRoute: string
+        sharedMemorySizeMb: string
+        startupProbe:
+          exec:
+            command:
+            - string
+          failureThreshold: 0.0
+          grpc:
+            port: 0.0
+            service: string
+          httpGet:
+            host: string
+            httpHeaders:
+            - name: string
+              value: string
+            path: string
+            port: 0.0
+            scheme: string
+          initialDelaySeconds: 0.0
+          periodSeconds: 0.0
+          successThreshold: 0.0
+          tcpSocket:
+            host: string
+            port: 0.0
+          timeoutSeconds: 0.0
+      huggingFaceAccessToken: string
+      huggingFaceCacheEnabled: false
+      modelDisplayName: string
+    project: string
+    publisherModelName: string

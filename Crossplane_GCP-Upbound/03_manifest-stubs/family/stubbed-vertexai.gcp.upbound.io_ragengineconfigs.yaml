@@ -1,0 +1,12 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta1
+kind: RagEngineConfig
+metadata:
+  name: stubbed-ragengineconfig.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    project: string
+    ragManagedDbConfig:
+      basic: {}
+      scaled: {}
+      unprovisioned: {}
+    region: string  # required

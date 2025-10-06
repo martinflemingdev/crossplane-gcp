@@ -1,0 +1,18 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta1
+kind: IndexEndpoint
+metadata:
+  name: stubbed-indexendpoint.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    description: string
+    displayName: string
+    labels:
+      key: string
+    network: string
+    privateServiceConnectConfig:
+      enablePrivateServiceConnect: false
+      projectAllowlist:
+      - string
+    project: string
+    publicEndpointEnabled: false
+    region: string  # required

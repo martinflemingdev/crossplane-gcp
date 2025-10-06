@@ -1,0 +1,22 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta1
+kind: FeatureOnlineStore
+metadata:
+  name: stubbed-featureonlinestore.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    bigtable:
+      autoScaling:
+        cpuUtilizationTarget: 0.0
+        maxNodeCount: 0.0
+        minNodeCount: 0.0
+    dedicatedServingEndpoint:
+      privateServiceConnectConfig:
+        enablePrivateServiceConnect: false
+        projectAllowlist:
+        - string
+    forceDestroy: false
+    labels:
+      key: string
+    optimized: {}
+    project: string
+    region: string  # required

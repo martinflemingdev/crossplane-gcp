@@ -1,0 +1,52 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta1
+kind: IndexEndpointDeployedIndex
+metadata:
+  name: stubbed-indexendpointdeployedindex.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    automaticResources:
+      maxReplicaCount: 0.0
+      minReplicaCount: 0.0
+    dedicatedResources:
+      machineSpec:
+        machineType: string
+      maxReplicaCount: 0.0
+      minReplicaCount: 0.0
+    deployedIndexAuthConfig:
+      authProvider:
+        allowedIssuers:
+        - string
+        audiences:
+        - string
+    deploymentGroup: string
+    displayName: string
+    enableAccessLogging: false
+    index: string
+    indexEndpoint: string
+    indexEndpointRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    indexEndpointSelector:
+      matchControllerRef: false
+      matchLabels:
+        key: string
+      policy:
+        resolution: string
+        resolve: string
+    indexRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    indexSelector:
+      matchControllerRef: false
+      matchLabels:
+        key: string
+      policy:
+        resolution: string
+        resolve: string
+    region: string  # required
+    reservedIpRanges:
+    - string

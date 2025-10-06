@@ -1,0 +1,19 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta2
+kind: Featurestore
+metadata:
+  name: stubbed-featurestore.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    encryptionSpec:
+      kmsKeyName: string
+    forceDestroy: false
+    labels:
+      key: string
+    name: string
+    onlineServingConfig:
+      fixedNodeCount: 0.0
+      scaling:
+        maxNodeCount: 0.0
+        minNodeCount: 0.0
+    project: string
+    region: string

@@ -1,0 +1,28 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta1
+kind: Endpoint
+metadata:
+  name: stubbed-endpoint.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    dedicatedEndpointEnabled: false
+    description: string
+    displayName: string
+    encryptionSpec:
+      kmsKeyName: string
+    labels:
+      key: string
+    location: string  # required
+    network: string
+    predictRequestResponseLoggingConfig:
+      bigqueryDestination:
+        outputUri: string
+      enabled: false
+      samplingRate: 0.0
+    privateServiceConnectConfig:
+      enablePrivateServiceConnect: false
+      enableSecurePrivateServiceConnect: false
+      projectAllowlist:
+      - string
+    project: string
+    region: string
+    trafficSplit: string

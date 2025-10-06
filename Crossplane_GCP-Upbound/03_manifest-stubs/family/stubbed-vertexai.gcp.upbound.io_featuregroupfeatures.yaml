@@ -1,0 +1,25 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta1
+kind: FeatureGroupFeature
+metadata:
+  name: stubbed-featuregroupfeature.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    description: string
+    featureGroup: string
+    featureGroupRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    featureGroupSelector:
+      matchControllerRef: false
+      matchLabels:
+        key: string
+      policy:
+        resolution: string
+        resolve: string
+    labels:
+      key: string
+    project: string
+    region: string  # required
+    versionColumnName: string

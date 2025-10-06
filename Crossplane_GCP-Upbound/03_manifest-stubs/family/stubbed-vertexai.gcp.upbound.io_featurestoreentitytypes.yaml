@@ -1,0 +1,35 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta2
+kind: FeaturestoreEntitytype
+metadata:
+  name: stubbed-featurestoreentitytype.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    description: string
+    featurestore: string
+    featurestoreRef:
+      name: string
+      policy:
+        resolution: string
+        resolve: string
+    featurestoreSelector:
+      matchControllerRef: false
+      matchLabels:
+        key: string
+      policy:
+        resolution: string
+        resolve: string
+    labels:
+      key: string
+    monitoringConfig:
+      categoricalThresholdConfig:
+        value: 0.0
+      importFeaturesAnalysis:
+        anomalyDetectionBaseline: string
+        state: string
+      numericalThresholdConfig:
+        value: 0.0
+      snapshotAnalysis:
+        disabled: false
+        monitoringIntervalDays: 0.0
+        stalenessDays: 0.0
+    name: string

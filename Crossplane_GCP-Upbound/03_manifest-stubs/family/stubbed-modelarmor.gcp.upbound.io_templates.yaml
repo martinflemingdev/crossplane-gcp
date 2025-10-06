@@ -1,0 +1,37 @@
+apiVersion: modelarmor.gcp.upbound.io/v1beta1
+kind: Template
+metadata:
+  name: stubbed-template.modelarmor.gcp.upbound.io
+spec:
+  forProvider:  # required
+    filterConfig:
+      maliciousUriFilterSettings:
+        filterEnforcement: string
+      piAndJailbreakFilterSettings:
+        confidenceLevel: string
+        filterEnforcement: string
+      raiSettings:
+        raiFilters:
+        - confidenceLevel: string
+          filterType: string
+      sdpSettings:
+        advancedConfig:
+          deidentifyTemplate: string
+          inspectTemplate: string
+        basicConfig:
+          filterEnforcement: string
+    labels:
+      key: string
+    location: string  # required
+    project: string
+    templateMetadata:
+      customLlmResponseSafetyErrorCode: 0.0
+      customLlmResponseSafetyErrorMessage: string
+      customPromptSafetyErrorCode: 0.0
+      customPromptSafetyErrorMessage: string
+      enforcementType: string
+      ignorePartialInvocationFailures: false
+      logSanitizeOperations: false
+      logTemplateOperations: false
+      multiLanguageDetection:
+        enableMultiLanguageDetection: false

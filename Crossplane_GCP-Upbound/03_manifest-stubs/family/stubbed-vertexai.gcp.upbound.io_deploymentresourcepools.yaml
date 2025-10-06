@@ -1,0 +1,18 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta1
+kind: DeploymentResourcePool
+metadata:
+  name: stubbed-deploymentresourcepool.vertexai.gcp.upbound.io
+spec:
+  forProvider:  # required
+    dedicatedResources:
+      autoscalingMetricSpecs:
+      - metricName: string
+        target: 0.0
+      machineSpec:
+        acceleratorCount: 0.0
+        acceleratorType: string
+        machineType: string
+      maxReplicaCount: 0.0
+      minReplicaCount: 0.0
+    project: string
+    region: string  # required
