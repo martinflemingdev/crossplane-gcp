@@ -1,0 +1,61 @@
+apiVersion: billing.gcp.upbound.io/v1beta1
+kind: Budget
+metadata:
+  name: stubbed-budget.billing.gcp.upbound.io
+spec:
+  forProvider:  # required
+    allUpdatesRule:
+      disableDefaultIamRecipients: false
+      enableProjectLevelRecipients: false
+      monitoringNotificationChannels:
+      - string
+      monitoringNotificationChannelsRefs:
+      - name: string
+        policy:
+          resolution: string
+          resolve: string
+      monitoringNotificationChannelsSelector:
+        matchControllerRef: false
+        matchLabels:
+          key: string
+        policy:
+          resolution: string
+          resolve: string
+      pubsubTopic: string
+      schemaVersion: string
+    amount:
+      lastPeriodAmount: false
+      specifiedAmount:
+        currencyCode: string
+        nanos: 0.0
+        units: string
+    billingAccount: string  # required
+    budgetFilter:
+      calendarPeriod: string
+      creditTypes:
+      - string
+      creditTypesTreatment: string
+      customPeriod:
+        endDate:
+          day: 0.0
+          month: 0.0
+          year: 0.0
+        startDate:
+          day: 0.0
+          month: 0.0
+          year: 0.0
+      labels:
+        key: string
+      projects:
+      - string
+      resourceAncestors:
+      - string
+      services:
+      - string
+      subaccounts:
+      - string
+    displayName: string
+    ownershipScope: string
+    thresholdRules:
+    - spendBasis: string
+      thresholdPercent: 0.0
