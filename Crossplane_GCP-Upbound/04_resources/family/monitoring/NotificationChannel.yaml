@@ -1,0 +1,13 @@
+apiVersion: monitoring.gcp.upbound.io/v1beta2
+kind: NotificationChannel
+metadata:
+  labels:
+    name: budget-email-channel
+  name: budget-email-channel
+spec:
+  forProvider:
+    project: axial-life-395119
+    displayName: Budget Alert Email
+    type: email
+    labels:
+      email_address: martinflemingdev@gmail.com

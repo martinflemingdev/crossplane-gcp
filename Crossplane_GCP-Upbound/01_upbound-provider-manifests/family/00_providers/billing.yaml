@@ -1,0 +1,7 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-gcp-billing
+spec: 
+  package: docker.io/martinflemingdev/provider-gcp-billing-tf-v6.47.0:v1.0.1
+
