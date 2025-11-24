@@ -1,0 +1,24 @@
+apiVersion: billing.gcp.upbound.io/v1beta1
+kind: Budget
+metadata:
+  name: budget-metadata-name-email-test
+spec:
+  forProvider:
+    allUpdatesRule:
+      disableDefaultIamRecipients: false
+      monitoringNotificationChannelsSelector:
+        matchLabels:
+          name: budget-email-channel
+    amount:
+      specifiedAmount:
+        currencyCode: USD
+        units: "0"
+    billingAccount: XXXXXXXXXXXXXXXXXXXXXX
+    budgetFilter:
+      calendarPeriod: MONTH
+      projects:
+      - projects/axial-life-395119 # just project id does not work, need "projects/" prefix
+    displayName: Example Billing Budget
+    thresholdRules:
+    - spendBasis: CURRENT_SPEND
+      thresholdPercent: 1.1
