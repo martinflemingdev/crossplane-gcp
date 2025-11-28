@@ -1,0 +1,7 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-gcp-bigquery-v2
+spec:
+  package: docker.io/martinflemingdev/provider-gcp-bigquery-tf-v7.12.0:v1.0.3
+  # package: docker.io/martinflemingdev/provider-gcp-bigquery-v2.0.0:v1.0.0

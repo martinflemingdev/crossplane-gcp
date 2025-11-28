@@ -1,12 +1,16 @@
 apiVersion: bigquery.gcp.upbound.io/v1beta2
 kind: DatasetIAMMember
 metadata:
-  name: dataset-terraform-test
+  name: dataset-condition-test
 spec:
   forProvider:
     datasetIdSelector:
       matchLabels:
-        foo: bar
+        name: conditiontest
     member: user:martinflemingdev@gmail.com
     role: roles/bigquery.dataEditor
     project: axial-life-395119
+    condition:
+      title: "expirable access"
+      description: "Grants access to a user until 2025-12-31"
+      expression: "request.time < timestamp('2025-12-31T23:59:59Z')"

@@ -1,3 +1,5 @@
 *.json
 function/
 *.pem
+# Crossplane_GCP-Upbound/04_resources/family/billing/projectinfo.yaml
+# Crossplane_GCP-Upbound/04_resources/family/billing/budget.yaml

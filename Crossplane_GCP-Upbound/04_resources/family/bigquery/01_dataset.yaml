@@ -1,13 +1,13 @@
 apiVersion: bigquery.gcp.upbound.io/v1beta2
 kind: Dataset
 metadata:
-  name: ahtest
+  name: conditiontest
   labels:
-    name: ahtest
+    name: conditiontest
 spec:
   forProvider:
-    description: ahtest
-    friendlyName: ahtest
+    description: conditiontest
+    friendlyName: conditiontest
     location: "australia-southeast1"
   managementPolicies:
     - Create
