@@ -1,0 +1,52 @@
+apiVersion: dataform.gcp-beta.upbound.io/v1beta1
+kind: RepositoryWorkflowConfig
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dataform/v1beta1/repositoryworkflowconfig
+  labels:
+    testing.upbound.io/example-name: workflow-config
+  name: workflow-config
+spec:
+  forProvider:
+    region: us-central1
+    releaseConfigSelector:
+      matchLabels:
+        testing.upbound.io/example-name: release-workflow-config
+    repositorySelector:
+      matchLabels:
+        testing.upbound.io/example-name: repository-workflow-config
+
+---
+
+apiVersion: dataform.gcp-beta.upbound.io/v1beta1
+kind: Repository
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dataform/v1beta1/repositoryworkflowconfig
+  labels:
+    testing.upbound.io/example-name: repository-workflow-config
+  name: repository-workflow-config
+spec:
+  forProvider:
+    region: us-central1
+    gitRemoteSettings:
+      defaultBranch: main
+      url: "https://github.com/martinflemingdev/gcp-dataform-public-sandbox.git"
+
+---
+
+apiVersion: dataform.gcp-beta.upbound.io/v1beta1
+kind: RepositoryReleaseConfig
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dataform/v1beta1/repositoryworkflowconfig
+  labels:
+    testing.upbound.io/example-name: release-workflow-config
+  name: release-workflow-config
+spec:
+  forProvider:
+    gitCommitish: main
+    region: us-central1
+    repositorySelector:
+      matchLabels:
+        testing.upbound.io/example-name: repository-workflow-config
