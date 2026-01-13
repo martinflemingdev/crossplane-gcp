@@ -3,5 +3,6 @@ kind: Provider
 metadata:
   name: provider-gcp-bigquery-v2
 spec:
-  package: docker.io/martinflemingdev/provider-gcp-bigquery-tf-v7.12.0:v1.0.4
+  package: docker.io/martinflemingdev/provider-gcp-bigquery-tf-v7.12.0:v1.1.0
+  # package: docker.io/martinflemingdev/provider-gcp-bigquery-tf-v7.12.0:v1.0.4
   # package: docker.io/martinflemingdev/provider-gcp-bigquery-v2.0.0:v1.0.0
