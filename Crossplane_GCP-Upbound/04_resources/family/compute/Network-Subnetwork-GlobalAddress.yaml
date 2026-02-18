@@ -1,0 +1,36 @@
+#  1. VPC Network
+apiVersion: compute.gcp.upbound.io/v1beta1
+kind: Network
+metadata:
+  name: vertex-private-network
+spec:
+  forProvider:
+    project: axial-life-395119
+    autoCreateSubnetworks: false
+---
+# 2. Subnetwork
+apiVersion: compute.gcp.upbound.io/v1beta1
+kind: Subnetwork
+metadata:
+  name: vertex-private-subnet
+spec:
+  forProvider:
+    project: axial-life-395119
+    region: australia-southeast1
+    network: projects/axial-life-395119/global/networks/vertex-private-network
+    ipCidrRange: "10.1.0.0/24"
+---
+# 3. Global Address (IP allocation for Google services)
+apiVersion: compute.gcp.upbound.io/v1beta1
+kind: GlobalAddress
+metadata:
+  name: google-managed-services-range
+spec:
+  forProvider:
+    project: axial-life-395119
+    purpose: VPC_PEERING
+    addressType: INTERNAL
+    prefixLength: 16
+    network: projects/axial-life-395119/global/networks/vertex-private-network
+---
+# Crossplane_GCP-Upbound/04_resources/family/servicenetwork/Connection.yaml

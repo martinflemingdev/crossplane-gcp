@@ -9,7 +9,7 @@
 #     displayName: crossplane-demo # required
 #     project: axial-life-395119 # required
 ---
-apiVersion: vertexai.gcp-beta.upbound.io/v1beta1
+apiVersion: vertexai.gcp.upbound.io/v1beta1
 kind: Endpoint
 metadata:
   name: sydney-endpoint

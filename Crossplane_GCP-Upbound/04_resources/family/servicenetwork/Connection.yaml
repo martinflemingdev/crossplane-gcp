@@ -1,0 +1,12 @@
+# Crossplane_GCP-Upbound/04_resources/family/compute/Network-Subnetwork-GlobalAddress.yaml
+# 4. Service Networking Connection (VPC peering to Google)
+apiVersion: servicenetworking.gcp.upbound.io/v1beta1
+kind: Connection
+metadata:
+  name: google-services-peering
+spec:
+  forProvider:
+    network: projects/axial-life-395119/global/networks/vertex-private-network
+    reservedPeeringRanges:
+      - google-managed-services-range
+    service: servicenetworking.googleapis.com

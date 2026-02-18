@@ -1,0 +1,6 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-gcp-servicenetworking
+spec:
+  package: xpkg.upbound.io/crossplane-contrib/provider-gcp-servicenetworking:v2.0.0

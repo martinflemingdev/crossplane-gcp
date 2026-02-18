@@ -1,0 +1,26 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta1
+kind: Endpoint
+metadata:
+  name: vertex-endpoint-test-no-network
+  labels:
+    name: vertex-endpoint-test-no-network
+spec:
+  forProvider:
+    displayName: vertex-endpoint-test-no-network
+    location: australia-southeast1
+    project: axial-life-395119
+
+    # description: string                    # Optional: human-readable description
+
+    # encryptionSpec:                        # Optional: CMEK encryption for the endpoint
+    #   kmsKeyName: string                   # KMS key resource name
+
+    # labels:                                # Optional: GCP resource labels
+    #   environment: dev
+
+    # Full resource name of the VPC network for private endpoint
+    # Format: projects/{project}/global/networks/{network}
+    # NOTE: once set, this CANNOT be changed — the endpoint must be recreated
+    # network: projects/axial-life-395119/global/networks/vertex-private-network
+
+    # region: string                         # Optional: alias for location in some provider versions
