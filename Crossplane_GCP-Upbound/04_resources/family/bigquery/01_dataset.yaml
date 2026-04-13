@@ -1,13 +1,31 @@
-apiVersion: bigquery.gcp.upbound.io/v1beta2
+apiVersion: bigquery.gcp.m.upbound.io/v1beta1
 kind: Dataset
 metadata:
-  name: conditiontest
+  name: conditiontestns
+  namespace: non-app-1234
   labels:
     name: conditiontest
 spec:
   forProvider:
-    description: conditiontest
-    friendlyName: conditiontest
+    description: conditiontestns
+    friendlyName: conditiontestns
+    location: "australia-southeast1"
+  managementPolicies:
+    - Create
+    - Update
+    - Delete
+    - Observe
+---
+apiVersion: bigquery.gcp.m.upbound.io/v1beta1
+kind: Dataset
+metadata:
+  name: conditiontestcluster
+  labels:
+    name: conditiontest
+spec:
+  forProvider:
+    description: conditiontestcluster
+    friendlyName: conditiontestcluster
     location: "australia-southeast1"
   managementPolicies:
     - Create

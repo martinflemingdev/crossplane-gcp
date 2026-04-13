@@ -3,4 +3,4 @@ kind: Provider
 metadata:
   name: provider-gcp-compute
 spec:
-  package: xpkg.upbound.io/crossplane-contrib/provider-gcp-compute:v2.0.0
+  package: docker.io/martinflemingdev/provider-gcp-compute-tf-v7.20.0:v1.0.0

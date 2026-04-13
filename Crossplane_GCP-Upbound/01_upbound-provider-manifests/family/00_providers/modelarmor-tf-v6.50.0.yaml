@@ -3,4 +3,4 @@ kind: Provider
 metadata:
   name: provider-gcp-modelarmor
 spec:
-  package: docker.io/martinflemingdev/provider-gcp-modelarmor-tf-v6.50.0:v1.0.0
+  package: docker.io/martinflemingdev/provider-gcp-modelarmor-tf-v7.20.0:v1.0.0
