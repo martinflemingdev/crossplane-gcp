@@ -1,0 +1,10 @@
+apiVersion: cloudrun.gcp.upbound.io/v1beta2
+kind: ServiceIAMMember
+metadata:
+  name: test-function-invoker
+spec:
+  forProvider:
+    service: test-function
+    role: roles/run.invoker
+    member: allUsers
+    location: us-central1

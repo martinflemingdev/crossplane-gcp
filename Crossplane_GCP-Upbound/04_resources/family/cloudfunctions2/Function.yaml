@@ -1,0 +1,18 @@
+apiVersion: cloudfunctions2.gcp.upbound.io/v1beta2
+kind: Function
+metadata:
+  name: test-function
+  labels: 
+    app: test-function
+spec:
+  forProvider:
+    buildConfig:
+      # dockerRepository: >-
+      #   projects/official-provider-testing/locations/us-central1/repositories/gcf-artifacts
+      entryPoint: helloHttp
+      runtime: nodejs20
+      source:
+        storageSource:
+          bucket: mflemincloudfunctiontest
+          object: function-source.zip
+    location: us-central1

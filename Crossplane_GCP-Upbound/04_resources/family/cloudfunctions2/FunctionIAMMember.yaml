@@ -1,0 +1,12 @@
+apiVersion: cloudfunctions2.gcp.upbound.io/v1beta1
+kind: FunctionIAMMember
+metadata:
+  name: test-function-invoker
+spec:
+  forProvider:
+    cloudFunctionSelector:
+      matchLabels:
+        app: test-function
+    role: roles/cloudfunctions.invoker
+    member: allUsers
+    location: us-central1
