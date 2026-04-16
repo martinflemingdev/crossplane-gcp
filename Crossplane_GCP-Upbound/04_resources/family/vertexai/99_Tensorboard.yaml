@@ -1,0 +1,11 @@
+apiVersion: vertexai.gcp.upbound.io/v1beta2
+kind: Tensorboard
+metadata:
+  name: tensorboard-test
+spec:
+  forProvider:
+    description: sample description
+    labels:
+      key1: value1
+      key2: value2
+    region: us-central1
