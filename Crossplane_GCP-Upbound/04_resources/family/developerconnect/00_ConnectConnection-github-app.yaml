@@ -40,7 +40,32 @@ spec:
       hostUri: https://github.com
       # GitHub App ID. This is an identifier, not a secret.
       appId: "5062914"
-      # GitHub App installation ID for the martinflemingdev account/repositories.
+      # GitHub App installation ID. This is NOT the GitHub App ID, NOT the
+      # GitHub org/user ID, and NOT derived from either one. It is the unique ID
+      # of GitHub's installation object: this specific GitHub App installed on
+      # this specific target account/org/enterprise, with its selected repository
+      # access. GitHub's installation API models it as:
+      #   installation.id        -> this value
+      #   installation.app_id    -> the GitHub App ID
+      #   installation.account.id / target_id -> the user/org/enterprise target
+      #
+      # It is a bootstrap input for a declarative Crossplane/API-created
+      # connection. Get it from GitHub after the app is installed, either from
+      # the installation management URL or by querying GitHub as the App.
+      #
+      # Personal-account install URL pattern:
+      #   https://github.com/settings/installations/164497631
+      # Org install URL pattern:
+      #   https://github.com/organizations/<ORG>/settings/installations/<ID>
+      # Enterprise install URL pattern:
+      #   https://github.com/enterprises/<ENTERPRISE>/settings/installations/<ID>
+      #
+      # In this POC, we bootstrapped once through the Google Cloud console and
+      # copied the resulting value from the console-created connection:
+      #   gcloud alpha developer-connect connections describe syd-data-res \
+      #     --project=axial-life-395119 \
+      #     --location=australia-southeast1 \
+      #     --format='value(githubEnterpriseConfig.appInstallationId)'
       appInstallationId: "164497631"
       # Secret Manager version containing the GitHub App private key PEM.
       # The private key is sensitive; the manifest stores only the Secret Manager reference.
