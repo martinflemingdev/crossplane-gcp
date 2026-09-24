@@ -1,0 +1,6 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-gcp-developerconnect
+spec:
+  package: xpkg.upbound.io/crossplane-contrib/provider-gcp-developerconnect:v3.0.0

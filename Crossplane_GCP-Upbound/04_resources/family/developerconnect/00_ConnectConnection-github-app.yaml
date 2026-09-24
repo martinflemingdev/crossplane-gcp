@@ -1,0 +1,50 @@
+# Creates the platform-owned Developer Connect connection that Dataform will use
+# for GitHub access.
+#
+# Platform project: axial-life-395119
+# Region: australia-southeast1
+# GitHub App: the dedicated app created during the console/data-residency test.
+#
+# This is a new Crossplane-managed connection, not the console-created
+# `syd-data-res` connection. The goal is to prove that the connection can be
+# represented as infrastructure-as-code and then consumed by Dataform.
+apiVersion: developerconnect.gcp.upbound.io/v1beta1
+kind: ConnectConnection
+metadata:
+  # Kubernetes managed-resource name. Crossplane uses this name inside the cluster.
+  name: syd-data-res-crossplane
+  annotations:
+    # Google Cloud Developer Connect connection ID.
+    crossplane.io/external-name: syd-data-res-crossplane
+  labels:
+    poc: dataform-developer-connect
+spec:
+  # Delete the Google Cloud connection if this Crossplane managed resource is deleted.
+  deletionPolicy: Delete
+  providerConfigRef:
+    # Uses the default GCP provider config in the Crossplane cluster.
+    name: default
+  forProvider:
+    # The GCP project that owns the central Developer Connect connection.
+    project: axial-life-395119
+    # The Developer Connect resource region. This is where the connection/link
+    # resource metadata is regionalized.
+    location: australia-southeast1
+    # We use githubEnterpriseConfig here even though the host is github.com
+    # because this field accepts a specific GitHub App ID, installation ID,
+    # private key secret, and webhook secret. That lets us reuse the dedicated
+    # GitHub App created by the console flow.
+    githubEnterpriseConfig:
+      # GitHub.com host for this POC. For GitHub Enterprise Server this would be
+      # the enterprise host URI.
+      hostUri: https://github.com
+      # GitHub App ID. This is an identifier, not a secret.
+      appId: "5062914"
+      # GitHub App installation ID for the martinflemingdev account/repositories.
+      appInstallationId: "164497631"
+      # Secret Manager version containing the GitHub App private key PEM.
+      # The private key is sensitive; the manifest stores only the Secret Manager reference.
+      privateKeySecretVersion: projects/376994270622/locations/australia-southeast1/secrets/syd-data-res-ghe-private-key-e12264/versions/latest
+      # Secret Manager version containing the GitHub webhook secret.
+      # This is separate from the GitHub App private key and client secret.
+      webhookSecretSecretVersion: projects/376994270622/locations/australia-southeast1/secrets/syd-data-res-ghe-webhook-secret-82755d/versions/latest

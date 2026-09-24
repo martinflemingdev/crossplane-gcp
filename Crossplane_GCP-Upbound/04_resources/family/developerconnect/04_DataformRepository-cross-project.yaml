@@ -1,0 +1,41 @@
+# Cross-project Dataform test.
+#
+# This creates a Dataform repository in consuming project cdmc-data, while the
+# Developer Connect connection/link remains in platform project axial-life-395119.
+#
+# Purpose: prove the API/Crossplane can do what the console picker did not show:
+# a consuming project's Dataform repository can reference a full GitRepositoryLink
+# resource name from a different project.
+apiVersion: dataform.gcp.upbound.io/v1beta1
+kind: Repository
+metadata:
+  # Kubernetes managed-resource name.
+  name: dataform-devconnect-cross-project
+  annotations:
+    # Google Cloud Dataform repository ID in cdmc-data.
+    crossplane.io/external-name: dataform-devconnect-cross-project
+  labels:
+    poc: dataform-developer-connect
+    test: cross-project
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: default
+  forProvider:
+    # Consuming project that owns the Dataform repository.
+    project: cdmc-data
+    # Dataform repository region for the consuming project.
+    region: australia-southeast1
+    displayName: Dataform Developer Connect cross-project POC
+    gitRemoteSettings:
+      # Remote Git repository shown in Dataform.
+      url: https://github.com/martinflemingdev/gcp-dataform-developer-connect.git
+      # Default branch Dataform uses for Git operations.
+      defaultBranch: main
+      # Full GitRepositoryLink in the platform project. This is intentionally
+      # not a cdmc-data resource.
+      #
+      # Required IAM lives in 02_ProjectIAMMember-dataform-service-agent.yaml:
+      # cdmc-data's Dataform service agent is granted Developer Connect access
+      # on axial-life-395119 so it can use this central link.
+      gitRepositoryLink: projects/axial-life-395119/locations/australia-southeast1/connections/syd-data-res-crossplane/gitRepositoryLinks/martinflemingdev-gcp-dataform-developer-connect-xp

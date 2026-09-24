@@ -1,0 +1,111 @@
+# These IAM grants authorize Dataform service agents to use the Developer Connect
+# GitRepositoryLink that lives in the platform project.
+#
+# The important detail: spec.forProvider.project is intentionally the platform
+# project, axial-life-395119. That is where the Developer Connect connection and
+# GitRepositoryLink exist.
+#
+# For a consuming project, do not grant these roles in the consuming project.
+# Grant them on the platform project to the consuming project's Dataform service
+# agent:
+#
+#   service-<CONSUMING_PROJECT_NUMBER>@gcp-sa-dataform.iam.gserviceaccount.com
+#
+# That lets the consuming project's Dataform repository read/use the central
+# Developer Connect GitRepositoryLink. It does not grant BigQuery permissions;
+# BigQuery execution IAM is separate.
+
+# Same-project POC grant.
+#
+# This authorizes the axial-life-395119 Dataform service agent to use the
+# Developer Connect connection/link that also lives in axial-life-395119.
+apiVersion: cloudplatform.gcp.upbound.io/v1beta2
+kind: ProjectIAMMember
+metadata:
+  name: axial-life-dataform-developerconnect-token-accessor
+  labels:
+    poc: dataform-developer-connect
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: default
+  forProvider:
+    # Platform project that owns the Developer Connect connection/link.
+    project: axial-life-395119
+    # Lets Dataform read the GitRepositoryLink and access Developer Connect tokens.
+    role: roles/developerconnect.tokenAccessor
+    # Dataform service agent for axial-life-395119, project number 376994270622.
+    member: serviceAccount:service-376994270622@gcp-sa-dataform.iam.gserviceaccount.com
+---
+# Same-project POC grant.
+#
+# This role is needed when the Developer Connect connection uses the Git proxy.
+# It is kept here with tokenAccessor so the same Dataform service agent can use
+# either proxy-enabled or direct Developer Connect links during the POC.
+apiVersion: cloudplatform.gcp.upbound.io/v1beta2
+kind: ProjectIAMMember
+metadata:
+  name: axial-life-dataform-developerconnect-git-proxy-user
+  labels:
+    poc: dataform-developer-connect
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: default
+  forProvider:
+    # Platform project that owns the Developer Connect connection/link.
+    project: axial-life-395119
+    # Lets Dataform use the Developer Connect Git proxy path when proxy is enabled.
+    role: roles/developerconnect.gitProxyUser
+    # Dataform service agent for axial-life-395119, project number 376994270622.
+    member: serviceAccount:service-376994270622@gcp-sa-dataform.iam.gserviceaccount.com
+---
+# Cross-project POC grant.
+#
+# This is the example for an outside/consuming project.
+#
+# cdmc-data owns the Dataform repository, but axial-life-395119 owns the central
+# Developer Connect connection and GitRepositoryLink. Therefore the IAM grant is
+# made on axial-life-395119 to the cdmc-data Dataform service agent.
+apiVersion: cloudplatform.gcp.upbound.io/v1beta2
+kind: ProjectIAMMember
+metadata:
+  name: cdmc-data-dataform-developerconnect-token-accessor
+  labels:
+    poc: dataform-developer-connect
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: default
+  forProvider:
+    # Platform project that owns the Developer Connect connection/link.
+    # This is intentionally not cdmc-data.
+    project: axial-life-395119
+    # Lets the cdmc-data Dataform service agent read/use the central GitRepositoryLink.
+    role: roles/developerconnect.tokenAccessor
+    # Dataform service agent for cdmc-data, project number 370318638050.
+    member: serviceAccount:service-370318638050@gcp-sa-dataform.iam.gserviceaccount.com
+---
+# Cross-project POC grant.
+#
+# This pairs with tokenAccessor for the same outside/consuming Dataform service
+# agent. It is required if the central Developer Connect connection is proxy
+# enabled.
+apiVersion: cloudplatform.gcp.upbound.io/v1beta2
+kind: ProjectIAMMember
+metadata:
+  name: cdmc-data-dataform-developerconnect-git-proxy-user
+  labels:
+    poc: dataform-developer-connect
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: default
+  forProvider:
+    # Platform project that owns the Developer Connect connection/link.
+    # This is intentionally not cdmc-data.
+    project: axial-life-395119
+    # Lets the cdmc-data Dataform service agent use the Developer Connect Git proxy path.
+    role: roles/developerconnect.gitProxyUser
+    # Dataform service agent for cdmc-data, project number 370318638050.
+    member: serviceAccount:service-370318638050@gcp-sa-dataform.iam.gserviceaccount.com

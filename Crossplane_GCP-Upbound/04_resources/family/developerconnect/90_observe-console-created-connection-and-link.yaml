@@ -1,0 +1,62 @@
+# Observes the connection/link that were created manually through the Google
+# Cloud console.
+#
+# These managed resources are intentionally observe-only:
+#
+# - managementPolicies: Observe means Crossplane reads status but does not create,
+#   update, or delete the cloud resource.
+# - deletionPolicy: Orphan prevents deleting the console-created resource if this
+#   Kubernetes object is removed.
+#
+# Purpose: compare the console-created connection with the Crossplane-created
+# connection. The console-created connection had Developer Connect proxy enabled;
+# the Crossplane-created connection did not expose gitProxyConfig in the provider.
+apiVersion: developerconnect.gcp.upbound.io/v1beta1
+kind: ConnectConnection
+metadata:
+  # Local Kubernetes name for the observed console connection.
+  name: syd-data-res-console
+  annotations:
+    # Existing Google Cloud Developer Connect connection ID created in the console.
+    crossplane.io/external-name: syd-data-res
+  labels:
+    poc: dataform-developer-connect
+spec:
+  deletionPolicy: Orphan
+  managementPolicies:
+    - Observe
+  providerConfigRef:
+    name: default
+  forProvider:
+    # Platform project containing the console-created connection.
+    project: axial-life-395119
+    # Region of the console-created connection.
+    location: australia-southeast1
+---
+# Observe-only GitRepositoryLink under the console-created connection.
+apiVersion: developerconnect.gcp.upbound.io/v1beta1
+kind: ConnectGitRepositoryLink
+metadata:
+  # Local Kubernetes name for the observed console-created link.
+  name: martinflemingdev-gcp-dataform-developer-connect-console
+  annotations:
+    # Existing Google Cloud GitRepositoryLink ID created in the console.
+    crossplane.io/external-name: martinflemingdev-gcp-dataform-developer-connect
+  labels:
+    poc: dataform-developer-connect
+spec:
+  deletionPolicy: Orphan
+  managementPolicies:
+    - Observe
+  providerConfigRef:
+    name: default
+  forProvider:
+    # Platform project containing the console-created connection/link.
+    project: axial-life-395119
+    # Must match the parent connection region.
+    location: australia-southeast1
+    # Parent connection observed above in this same file.
+    parentConnectionRef:
+      name: syd-data-res-console
+    # GitHub repository URL linked through the console-created connection.
+    cloneUri: https://github.com/martinflemingdev/gcp-dataform-developer-connect.git

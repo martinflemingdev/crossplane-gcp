@@ -1,0 +1,29 @@
+# Grants the Crossplane provider identity permission to create/manage Dataform
+# repositories in the consuming project.
+#
+# This is separate from 02_ProjectIAMMember-dataform-service-agent.yaml:
+#
+# - 02 grants the consuming project's Dataform service agent access to the
+#   platform Developer Connect Git link.
+# - This file grants the IaC/controller identity permission to create the
+#   Dataform Repository resource in the consuming project.
+#
+# Without this grant, 04_DataformRepository-cross-project.yaml failed with:
+# `dataform.repositories.create` denied on cdmc-data.
+apiVersion: cloudplatform.gcp.upbound.io/v1beta2
+kind: ProjectIAMMember
+metadata:
+  name: crossplane-provider-dataform-admin-cdmc-data
+  labels:
+    poc: dataform-developer-connect
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: default
+  forProvider:
+    # Consuming project where Crossplane creates the Dataform repository.
+    project: cdmc-data
+    # Dataform admin lets the provider create/manage Dataform Repository resources.
+    role: roles/dataform.admin
+    # GCP service account used by the Crossplane provider.
+    member: serviceAccount:crossplane@axial-life-395119.iam.gserviceaccount.com

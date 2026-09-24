@@ -1,0 +1,21 @@
+# Applies the complete Developer Connect + Dataform Crossplane POC.
+#
+# The order below is documentation only; Kubernetes/Crossplane reconcile
+# asynchronously. References and IAM may take multiple reconciles to settle.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  # Platform-owned Developer Connect connection using the GitHub App credentials.
+  - 00_ConnectConnection-github-app.yaml
+  # GitHub repository link under the platform connection.
+  - 01_ConnectGitRepositoryLink.yaml
+  # Dataform service-agent grants on the platform project/link.
+  - 02_ProjectIAMMember-dataform-service-agent.yaml
+  # Same-project Dataform repository test in axial-life-395119.
+  - 03_DataformRepository-same-project.yaml
+  # Cross-project Dataform repository test in cdmc-data.
+  - 04_DataformRepository-cross-project.yaml
+  # Crossplane provider identity grant in cdmc-data.
+  - 05_ProjectIAMMember-crossplane-provider.yaml
+  # Observe-only resources for the console-created connection/link.
+  - 90_observe-console-created-connection-and-link.yaml

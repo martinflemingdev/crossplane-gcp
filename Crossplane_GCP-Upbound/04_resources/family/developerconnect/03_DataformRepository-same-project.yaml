@@ -1,0 +1,38 @@
+# Same-project Dataform test.
+#
+# This creates a Dataform repository in the same project that owns the Developer
+# Connect connection/link: axial-life-395119.
+#
+# Purpose: prove the basic Dataform -> Developer Connect -> GitHub path works
+# through Crossplane before testing cross-project consumption.
+apiVersion: dataform.gcp.upbound.io/v1beta1
+kind: Repository
+metadata:
+  # Kubernetes managed-resource name.
+  name: dataform-devconnect-same-project
+  annotations:
+    # Google Cloud Dataform repository ID.
+    crossplane.io/external-name: dataform-devconnect-same-project
+  labels:
+    poc: dataform-developer-connect
+    test: same-project
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: default
+  forProvider:
+    # Same project as the Developer Connect connection/link.
+    project: axial-life-395119
+    # Dataform repository region. This matches the Developer Connect link region
+    # for the POC, but the key field for Git is gitRepositoryLink below.
+    region: australia-southeast1
+    displayName: Dataform Developer Connect same-project POC
+    gitRemoteSettings:
+      # Remote Git repository shown in Dataform.
+      url: https://github.com/martinflemingdev/gcp-dataform-developer-connect.git
+      # Default branch Dataform uses for Git operations.
+      defaultBranch: main
+      # Full Developer Connect GitRepositoryLink resource name. This is what
+      # makes Dataform use Developer Connect/GitHub App credentials instead of
+      # legacy HTTPS token or SSH configuration.
+      gitRepositoryLink: projects/axial-life-395119/locations/australia-southeast1/connections/syd-data-res-crossplane/gitRepositoryLinks/martinflemingdev-gcp-dataform-developer-connect-xp

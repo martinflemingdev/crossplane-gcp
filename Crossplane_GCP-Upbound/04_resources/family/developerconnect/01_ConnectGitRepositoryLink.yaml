@@ -1,0 +1,30 @@
+# Creates a Developer Connect GitRepositoryLink under the platform connection.
+#
+# This is the resource Dataform repositories reference through
+# gitRemoteSettings.gitRepositoryLink. The key POC point is that the Dataform
+# repository can live in another project as long as it references this full link
+# name and its Dataform service agent has IAM on the platform project/link.
+apiVersion: developerconnect.gcp.upbound.io/v1beta1
+kind: ConnectGitRepositoryLink
+metadata:
+  # Kubernetes managed-resource name.
+  name: martinflemingdev-gcp-dataform-developer-connect-xp
+  annotations:
+    # Google Cloud GitRepositoryLink ID under the connection.
+    crossplane.io/external-name: martinflemingdev-gcp-dataform-developer-connect-xp
+  labels:
+    poc: dataform-developer-connect
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: default
+  forProvider:
+    # Platform project that owns the Developer Connect connection and link.
+    project: axial-life-395119
+    # Must match the parent connection region.
+    location: australia-southeast1
+    # Parent connection managed by 00_ConnectConnection-github-app.yaml.
+    parentConnectionRef:
+      name: syd-data-res-crossplane
+    # GitHub repository URL that the GitHub App installation can access.
+    cloneUri: https://github.com/martinflemingdev/gcp-dataform-developer-connect.git
