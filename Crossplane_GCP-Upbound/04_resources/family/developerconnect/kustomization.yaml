@@ -17,5 +17,7 @@ resources:
   - 04_DataformRepository-cross-project.yaml
   # Crossplane provider identity grant in cdmc-data.
   - 05_ProjectIAMMember-crossplane-provider.yaml
+  # Custom Dataform execution identity and BigQuery/strict-act-as IAM.
+  - 06_DataformExecutionServiceAccount-and-IAM.yaml
   # Observe-only resources for the console-created connection/link.
   - 90_observe-console-created-connection-and-link.yaml

@@ -26,6 +26,7 @@ The high-level setup notes live in the Dataform repo setup guide. This README ex
 | `03_DataformRepository-same-project.yaml` | Creates a Dataform repository in `axial-life-395119` that uses the Crossplane-managed GitRepositoryLink. |
 | `04_DataformRepository-cross-project.yaml` | Creates a Dataform repository in `cdmc-data` that uses the GitRepositoryLink from platform project `axial-life-395119`. This proves cross-project consumption works through the API/Crossplane. |
 | `05_ProjectIAMMember-crossplane-provider.yaml` | Grants the Crossplane provider identity permission to create/manage Dataform repositories in `cdmc-data`. |
+| `06_DataformExecutionServiceAccount-and-IAM.yaml` | Creates the custom `dataform-e2e-runner` workflow identity, grants its BigQuery permissions, and lets the default Dataform service agent impersonate it under strict act-as mode. |
 | `90_observe-console-created-connection-and-link.yaml` | Observes the console-created Developer Connect connection/link without managing updates or deletion. |
 | `kustomization.yaml` | Applies the POC resources together. |
 
@@ -135,6 +136,24 @@ Keep this separate from `02_ProjectIAMMember-dataform-service-agent.yaml`:
 
 - `02_ProjectIAMMember-dataform-service-agent.yaml` authorizes the Dataform service agent to use the platform Git link.
 - `05_ProjectIAMMember-crossplane-provider.yaml` authorizes the Crossplane provider identity to create the Dataform repository in the consuming project.
+
+## Dataform workflow execution IAM
+
+`06_DataformExecutionServiceAccount-and-IAM.yaml` creates this custom execution identity in the consuming project:
+
+```text
+dataform-e2e-runner@cdmc-data.iam.gserviceaccount.com
+```
+
+The two `ProjectIAMMember` resources grant it `roles/bigquery.jobUser` and, for this POC, project-wide `roles/bigquery.dataEditor`. The latter should normally be replaced with dataset-scoped `DatasetIAMMember` grants in production.
+
+The two `ServiceAccountIAMMember` resources grant `roles/iam.serviceAccountUser` and `roles/iam.serviceAccountTokenCreator` on the custom execution account to the default Dataform service agent:
+
+```text
+service-370318638050@gcp-sa-dataform.iam.gserviceaccount.com
+```
+
+Those bindings cannot be represented correctly as `ProjectIAMMember` resources because strict act-as authorization is evaluated on the custom service account resource. `04_DataformRepository-cross-project.yaml` selects this custom account through `spec.forProvider.serviceAccount`.
 
 ## Observed console resources
 

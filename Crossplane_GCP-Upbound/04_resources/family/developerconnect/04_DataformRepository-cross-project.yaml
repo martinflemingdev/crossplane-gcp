@@ -27,6 +27,10 @@ spec:
     # Dataform repository region for the consuming project.
     region: australia-southeast1
     displayName: Dataform Developer Connect cross-project POC
+    # Custom identity used for workflow execution under Dataform strict
+    # act-as mode. Its BigQuery and impersonation grants are defined in
+    # 06_DataformExecutionServiceAccount-and-IAM.yaml.
+    serviceAccount: dataform-e2e-runner@cdmc-data.iam.gserviceaccount.com
     gitRemoteSettings:
       # Remote Git repository shown in Dataform.
       url: https://github.com/martinflemingdev/gcp-dataform-developer-connect.git
