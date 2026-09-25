@@ -185,6 +185,17 @@ The console-created GitRepositoryLink also exposes a proxy URL:
 "gitProxyUri": "https://australia-southeast1-git.developerconnect.dev/376994270622/syd-data-res/martinflemingdev-gcp-dataform-developer-connect"
 ```
 
+A DNS lookup of the proxy hostname on 2026-09-25 returned:
+
+```text
+australia-southeast1-git.developerconnect.dev
+  CNAME: googlecode.l.googleusercontent.com
+  IPv4:  192.178.155.82
+  IPv6:  2607:f8b0:4004:c23::52
+```
+
+DNS resolves only the hostname, not the remaining project/connection/repository path. This is a point-in-time answer behind Google infrastructure and must not be treated as a permanent proxy allowlist. The returned addresses can vary by resolver, client location, routing, and time. Production firewall rules need Google-published ranges or an explicitly supported private-connectivity design rather than this single lookup result.
+
 The Crossplane-created connection did not include `gitProxyConfig`, and its GitRepositoryLink did not include `gitProxyUri`. Treat the Crossplane-created connection as proxy disabled unless a separate API/gcloud step enables it.
 
 Workaround:
