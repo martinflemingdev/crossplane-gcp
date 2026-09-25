@@ -1,0 +1,70 @@
+# Creates the platform-owned Developer Connect connection that Dataform will use
+# for GitHub access.
+#
+# Platform project: axial-life-395119
+# Region: australia-southeast1
+# GitHub App: the dedicated app created during the console/data-residency test.
+#
+# This is a new Crossplane-managed connection, not the console-created
+# `syd-data-res` connection. The goal is to prove that the connection can be
+# represented as infrastructure-as-code and then consumed by Dataform.
+apiVersion: developerconnect.gcp.upbound.io/v1beta1
+kind: ConnectConnection
+metadata:
+  # Kubernetes managed-resource name. Crossplane uses this name inside the cluster.
+  name: syd-data-res-xp-no-app-id
+  annotations:
+    # Google Cloud Developer Connect connection ID.
+    crossplane.io/external-name: syd-data-res-xp-no-app-id
+spec:
+  # Delete the Google Cloud connection if this Crossplane managed resource is deleted.
+  deletionPolicy: Delete
+  forProvider:
+    # The GCP project that owns the central Developer Connect connection.
+    project: axial-life-395119
+    # The Developer Connect resource region. This is where the connection/link
+    # resource metadata is regionalized.
+    location: australia-southeast1
+    # We use githubEnterpriseConfig here even though the host is github.com
+    # because this field accepts a specific GitHub App ID, installation ID,
+    # private key secret, and webhook secret. That lets us reuse the dedicated
+    # GitHub App created by the console flow.
+    githubEnterpriseConfig:
+      # GitHub.com host for this POC. For GitHub Enterprise Server this would be
+      # the enterprise host URI.
+      hostUri: https://github.com
+      # GitHub App ID. This is an identifier, not a secret.
+      appId: "5062914"
+      # GitHub App installation ID. This is NOT the GitHub App ID, NOT the
+      # GitHub org/user ID, and NOT derived from either one. It is the unique ID
+      # of GitHub's installation object: this specific GitHub App installed on
+      # this specific target account/org/enterprise, with its selected repository
+      # access. GitHub's installation API models it as:
+      #   installation.id        -> this value
+      #   installation.app_id    -> the GitHub App ID
+      #   installation.account.id / target_id -> the user/org/enterprise target
+      #
+      # It is a bootstrap input for a declarative Crossplane/API-created
+      # connection. Get it from GitHub after the app is installed, either from
+      # the installation management URL or by querying GitHub as the App.
+      #
+      # Personal-account install URL pattern:
+      #   https://github.com/settings/installations/164497631
+      # Org install URL pattern:
+      #   https://github.com/organizations/<ORG>/settings/installations/<ID>
+      # Enterprise install URL pattern:
+      #   https://github.com/enterprises/<ENTERPRISE>/settings/installations/<ID>
+      #
+      # In this POC, we bootstrapped once through the Google Cloud console and
+      # copied the resulting value from the console-created connection:
+      #   gcloud alpha developer-connect connections describe syd-data-res \
+      #     --project=axial-life-395119 \
+      #     --location=australia-southeast1 \
+      #     --format='value(githubEnterpriseConfig.appInstallationId)'
+      # appInstallationId: "164497631"
+      # Secret Manager version containing the GitHub App private key PEM.
+      # The private key is sensitive; the manifest stores only the Secret Manager reference.
+      privateKeySecretVersion: projects/376994270622/locations/australia-southeast1/secrets/syd-data-res-ghe-private-key-e12264/versions/latest
+      # Secret Manager version containing the GitHub webhook secret.
+      # This is separate from the GitHub App private key and client secret.
+      webhookSecretSecretVersion: projects/376994270622/locations/australia-southeast1/secrets/syd-data-res-ghe-webhook-secret-82755d/versions/latest
